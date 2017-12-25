@@ -1,4 +1,5 @@
-﻿using NickAc.Backend.Utils;
+﻿using NickAc.Backend.Networking.TcpLib;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +23,14 @@ namespace NickAc.Backend.Networking.Implementation
         public override void ToStreamWriter(BinaryWriter writer)
         {
             writer.Write(Constants.PROTOCOL_VERSION);
+        }
+
+        public override void Execute(ConnectionState state)
+        {
+            if (ProtocolVersion != Constants.PROTOCOL_VERSION) {
+                
+                state.EndConnection();
+            }
         }
     }
 }

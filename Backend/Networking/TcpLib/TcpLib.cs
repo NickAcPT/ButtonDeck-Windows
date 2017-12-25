@@ -67,7 +67,6 @@ namespace NickAc.Backend.Networking.TcpLib
             }
         }
 
-
         /// <summary>
         /// Ends connection with the remote host.
         /// </summary>

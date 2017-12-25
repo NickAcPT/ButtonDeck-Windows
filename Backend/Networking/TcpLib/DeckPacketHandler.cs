@@ -43,12 +43,13 @@ namespace NickAc.Backend.Networking.TcpLib
 
         public override void OnReceiveData(ConnectionState state)
         {
-            using (var input = new MemoryStream(state._buffer)) {
-                using (var reader = new BinaryReader(input)) {
-                    var packetId = reader.ReadInt64();
-
-                }
+            List<byte> allData = new List<byte>();
+            byte[] buffer = new byte[1024];
+            while (state.AvailableData > 0) {
+                state.Read(buffer, 0, 1024);
+                allData.AddRange(buffer);
             }
+            state.ReadPacket()
         }
     }
 }
