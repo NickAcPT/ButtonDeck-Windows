@@ -20,7 +20,7 @@ namespace NickAc.Backend.Networking.TcpLib
         public static INetworkPacket GetNewNetworkPacketById(long id)
         {
             try {
-                return (NickAc.Backend.Networking.INetworkPacket)networkPackets.FirstOrDefault(p => p.GetPacketNumber() == id).Clone();
+                return (INetworkPacket)networkPackets.FirstOrDefault(p => p.GetPacketNumber() == id).Clone();
             } catch (Exception) {
                 throw new Exception($"NetworkPacket[ID: {id}] wasn't registered to the packet storage.");
             }

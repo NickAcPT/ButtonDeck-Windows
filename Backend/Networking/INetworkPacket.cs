@@ -62,7 +62,7 @@ namespace NickAc.Backend.Networking
 
         public object Clone()
         {
-            throw new NotImplementedException($"NetworkPacket[ID: {GetPacketNumber()}] didn't implement Clone() method.");
+            throw new Exception($"NetworkPacket[ID: {GetPacketNumber()}] didn't implement Clone() method.");
         }
     }
 }
