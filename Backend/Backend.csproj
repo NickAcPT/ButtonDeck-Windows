@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,6 +46,7 @@
     <Compile Include="Networking\Implementation\DataRequestPacket.cs" />
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
+    <Compile Include="Networking\TcpLib\DataOutputStream.cs" />
     <Compile Include="Networking\TcpLib\DeckPacketHandler.cs" />
     <Compile Include="Networking\TcpLib\TcpLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

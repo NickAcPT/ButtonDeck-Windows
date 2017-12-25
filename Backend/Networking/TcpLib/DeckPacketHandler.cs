@@ -30,7 +30,7 @@ namespace NickAc.Backend.Networking.TcpLib
         {
 
         }
-
+        
         public override void OnDropConnection(ConnectionState state)
         {
 
