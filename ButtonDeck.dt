@@ -1,41 +1,20 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT53M16.4518963S" SolutionTotalViewTime="PT46M35.7691331S" SolutionTotalDebugTime="PT0S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT55M59.3692383S" SolutionTotalViewTime="PT52M34.076739S" SolutionTotalDebugTime="PT0S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
   </FileVersion>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT7M53.5478085S" EditActiveTime="PT3M58.4943381S">
-      <ModifiedDate>2017-12-25T12:42:11.8928073+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M58.3049556S" EditActiveTime="PT2M42.9183444S">
+      <ModifiedDate>2017-12-25T17:53:22.703124+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-25T12:27:00.1364033+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT0.6873767S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>c:\users\user\documents\visual studio 2017\projects\buttondeck\backend\networking\implementation\HelloPacket.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-25T12:46:08.05321+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT18.6848675S" EditActiveTime="PT6M44.7298445S">
-      <ModifiedDate>2017-12-25T12:42:11.8615555+00:00</ModifiedDate>
-      <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>c:\users\user\documents\visual studio 2017\projects\buttondeck\backend\networking\INetworkPacket.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-25T12:32:28.0159166+00:00</CreatedDate>
+      <CreatedDate>2017-12-25T17:32:17.6076099+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -61,11 +40,11 @@
       <CreatedDate>2017-12-24T18:38:12.1353043+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11M15.0133054S" EditActiveTime="PT11M43.7321662S">
-      <ModifiedDate>2017-12-25T12:42:11.8928073+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT17M13.3072472S" EditActiveTime="PT14M26.6505106S">
+      <ModifiedDate>2017-12-25T17:53:22.703124+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>2</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
@@ -139,6 +118,17 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT5M58.2959424S" EditActiveTime="PT2M42.9183444S">
+      <ModifiedDate>2017-12-25T17:53:22.703124+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-25T17:32:17.6076099+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT0.6873767S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>

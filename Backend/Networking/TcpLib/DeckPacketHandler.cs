@@ -22,7 +22,7 @@ namespace NickAc.Backend.Networking.TcpLib
             try {
                 return (NickAc.Backend.Networking.INetworkPacket)networkPackets.FirstOrDefault(p => p.GetPacketNumber() == id).Clone();
             } catch (Exception) {
-                throw new NotImplementedException("NetworkPacket[ID: {id}] wasn't registered to the packet storage.");
+                throw new Exception($"NetworkPacket[ID: {id}] wasn't registered to the packet storage.");
             }
         }
 
@@ -49,7 +49,7 @@ namespace NickAc.Backend.Networking.TcpLib
                 state.Read(buffer, 0, 1024);
                 allData.AddRange(buffer);
             }
-            state.ReadPacket()
+            var packet = state.ReadPacket(allData.ToArray());
         }
     }
 }
