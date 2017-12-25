@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Networking\Attributes\ArchitectureAttribute.cs" />
+    <Compile Include="Networking\Attributes\PacketArchitecture.cs" />
     <Compile Include="Networking\Implementation\DataRequestPacket.cs" />
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
@@ -48,8 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constants.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Networking\Attributes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,6 +45,7 @@ namespace NickAc.Backend.Networking.TcpLib
                 allData.AddRange(buffer);
             }
             var packet = state.ReadPacket(allData.ToArray());
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NickAc.Backend.Networking.TcpLib;
+﻿using NickAc.Backend.Networking.Attributes;
+using NickAc.Backend.Networking.TcpLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,9 @@ namespace NickAc.Backend.Networking
         /// </summary>
         public static bool SendPacket(this ConnectionState con, INetworkPacket packet)
         {
+            if (!packet.CanClientReceive()) {
+                throw new Exception($"Client can't receive NetworkPacket[ID: {packet.GetPacketNumber()}].");
+            }
             byte[] bytesToSend = null;
             using (var memoryStream = new MemoryStream()) {
                 using (var binaryWriter = new BinaryWriter(memoryStream)) {
@@ -47,6 +51,9 @@ namespace NickAc.Backend.Networking
                     packet.FromStreamReader(binaryReader);
                     packet.Execute(con);
                 }
+            }
+            if (!packet.CanServerReceive()) {
+                throw new Exception($"Server can't receive NetworkPacket[ID: {packet.GetPacketNumber()}].");
             }
             return packet;
         }
