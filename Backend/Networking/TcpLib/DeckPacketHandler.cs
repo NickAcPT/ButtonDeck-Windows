@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Networking.TcpLib
 {
-    public class DeckServiceProvider : NickAc.Backend.Networking.TcpLib.TcpServiceProvider
+    public class DeckServiceProvider : TcpServiceProvider
     {
 
         private static List<INetworkPacket> networkPackets = new List<INetworkPacket>();
@@ -24,11 +24,6 @@ namespace NickAc.Backend.Networking.TcpLib
             } catch (Exception) {
                 throw new Exception($"NetworkPacket[ID: {id}] wasn't registered to the packet storage.");
             }
-        }
-
-        public override object Clone()
-        {
-            return new DeckServiceProvider();
         }
 
         public override void OnAcceptConnection(ConnectionState state)

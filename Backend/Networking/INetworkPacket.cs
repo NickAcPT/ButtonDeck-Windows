@@ -60,7 +60,7 @@ namespace NickAc.Backend.Networking
         public abstract void ToStreamWriter(BinaryWriter writer);
         public virtual void Execute(ConnectionState state) { }
 
-        public object Clone()
+        public virtual object Clone()
         {
             throw new Exception($"NetworkPacket[ID: {GetPacketNumber()}] didn't implement Clone() method.");
         }

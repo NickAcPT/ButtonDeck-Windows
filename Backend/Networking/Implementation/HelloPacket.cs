@@ -28,9 +28,13 @@ namespace NickAc.Backend.Networking.Implementation
         public override void Execute(ConnectionState state)
         {
             if (ProtocolVersion != Constants.PROTOCOL_VERSION) {
-                
                 state.EndConnection();
             }
+        }
+
+        public override object Clone()
+        {
+            return new HelloPacket();
         }
     }
 }
