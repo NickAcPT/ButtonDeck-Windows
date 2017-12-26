@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NickAc.ModernUIDoneRight.Objects;
 using NickAc.ModernUIDoneRight.Controls;
+using ButtonDeck.Misc;
 
 namespace ButtonDeck.Forms
 {
     public partial class MainForm : ModernForm
     {
+        public int ConnectedDevices { get => Program.ServerThread.TcpServer.CurrentConnections; }
         public MainForm()
         {
             InitializeComponent();
@@ -27,6 +29,10 @@ namespace ButtonDeck.Forms
                 }
                 return true;
             });
+            label1.ForeColor = ColorScheme.SecondaryColor;
+
+            TitlebarButtons.Add(new DevicesTitlebarButton(this));
+
         }
     }
 }

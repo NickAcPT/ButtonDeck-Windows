@@ -34,16 +34,17 @@
             this.modernButton4 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.modernButton5 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.modernButton6 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton7 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton8 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton9 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton10 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton11 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton12 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton13 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
-            this.modernButton14 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.modernButton15 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton10 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton14 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton9 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton13 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton8 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton12 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton7 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton11 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.modernButton6 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,41 +127,14 @@
             this.panel1.Size = new System.Drawing.Size(546, 333);
             this.panel1.TabIndex = 2;
             // 
-            // modernButton6
+            // modernButton15
             // 
-            this.modernButton6.Location = new System.Drawing.Point(223, 116);
-            this.modernButton6.Name = "modernButton6";
-            this.modernButton6.Size = new System.Drawing.Size(100, 100);
-            this.modernButton6.TabIndex = 1;
-            this.modernButton6.Text = "modernButton1";
-            this.modernButton6.UseVisualStyleBackColor = true;
-            // 
-            // modernButton7
-            // 
-            this.modernButton7.Location = new System.Drawing.Point(114, 116);
-            this.modernButton7.Name = "modernButton7";
-            this.modernButton7.Size = new System.Drawing.Size(100, 100);
-            this.modernButton7.TabIndex = 1;
-            this.modernButton7.Text = "modernButton1";
-            this.modernButton7.UseVisualStyleBackColor = true;
-            // 
-            // modernButton8
-            // 
-            this.modernButton8.Location = new System.Drawing.Point(332, 116);
-            this.modernButton8.Name = "modernButton8";
-            this.modernButton8.Size = new System.Drawing.Size(100, 100);
-            this.modernButton8.TabIndex = 1;
-            this.modernButton8.Text = "modernButton1";
-            this.modernButton8.UseVisualStyleBackColor = true;
-            // 
-            // modernButton9
-            // 
-            this.modernButton9.Location = new System.Drawing.Point(5, 116);
-            this.modernButton9.Name = "modernButton9";
-            this.modernButton9.Size = new System.Drawing.Size(100, 100);
-            this.modernButton9.TabIndex = 1;
-            this.modernButton9.Text = "modernButton1";
-            this.modernButton9.UseVisualStyleBackColor = true;
+            this.modernButton15.Location = new System.Drawing.Point(441, 227);
+            this.modernButton15.Name = "modernButton15";
+            this.modernButton15.Size = new System.Drawing.Size(100, 100);
+            this.modernButton15.TabIndex = 1;
+            this.modernButton15.Text = "modernButton1";
+            this.modernButton15.UseVisualStyleBackColor = true;
             // 
             // modernButton10
             // 
@@ -171,23 +145,23 @@
             this.modernButton10.Text = "modernButton1";
             this.modernButton10.UseVisualStyleBackColor = true;
             // 
-            // modernButton11
+            // modernButton14
             // 
-            this.modernButton11.Location = new System.Drawing.Point(223, 227);
-            this.modernButton11.Name = "modernButton11";
-            this.modernButton11.Size = new System.Drawing.Size(100, 100);
-            this.modernButton11.TabIndex = 1;
-            this.modernButton11.Text = "modernButton1";
-            this.modernButton11.UseVisualStyleBackColor = true;
+            this.modernButton14.Location = new System.Drawing.Point(5, 227);
+            this.modernButton14.Name = "modernButton14";
+            this.modernButton14.Size = new System.Drawing.Size(100, 100);
+            this.modernButton14.TabIndex = 1;
+            this.modernButton14.Text = "modernButton1";
+            this.modernButton14.UseVisualStyleBackColor = true;
             // 
-            // modernButton12
+            // modernButton9
             // 
-            this.modernButton12.Location = new System.Drawing.Point(114, 227);
-            this.modernButton12.Name = "modernButton12";
-            this.modernButton12.Size = new System.Drawing.Size(100, 100);
-            this.modernButton12.TabIndex = 1;
-            this.modernButton12.Text = "modernButton1";
-            this.modernButton12.UseVisualStyleBackColor = true;
+            this.modernButton9.Location = new System.Drawing.Point(5, 116);
+            this.modernButton9.Name = "modernButton9";
+            this.modernButton9.Size = new System.Drawing.Size(100, 100);
+            this.modernButton9.TabIndex = 1;
+            this.modernButton9.Text = "modernButton1";
+            this.modernButton9.UseVisualStyleBackColor = true;
             // 
             // modernButton13
             // 
@@ -198,23 +172,63 @@
             this.modernButton13.Text = "modernButton1";
             this.modernButton13.UseVisualStyleBackColor = true;
             // 
-            // modernButton14
+            // modernButton8
             // 
-            this.modernButton14.Location = new System.Drawing.Point(5, 227);
-            this.modernButton14.Name = "modernButton14";
-            this.modernButton14.Size = new System.Drawing.Size(100, 100);
-            this.modernButton14.TabIndex = 1;
-            this.modernButton14.Text = "modernButton1";
-            this.modernButton14.UseVisualStyleBackColor = true;
+            this.modernButton8.Location = new System.Drawing.Point(332, 116);
+            this.modernButton8.Name = "modernButton8";
+            this.modernButton8.Size = new System.Drawing.Size(100, 100);
+            this.modernButton8.TabIndex = 1;
+            this.modernButton8.Text = "modernButton1";
+            this.modernButton8.UseVisualStyleBackColor = true;
             // 
-            // modernButton15
+            // modernButton12
             // 
-            this.modernButton15.Location = new System.Drawing.Point(441, 227);
-            this.modernButton15.Name = "modernButton15";
-            this.modernButton15.Size = new System.Drawing.Size(100, 100);
-            this.modernButton15.TabIndex = 1;
-            this.modernButton15.Text = "modernButton1";
-            this.modernButton15.UseVisualStyleBackColor = true;
+            this.modernButton12.Location = new System.Drawing.Point(114, 227);
+            this.modernButton12.Name = "modernButton12";
+            this.modernButton12.Size = new System.Drawing.Size(100, 100);
+            this.modernButton12.TabIndex = 1;
+            this.modernButton12.Text = "modernButton1";
+            this.modernButton12.UseVisualStyleBackColor = true;
+            // 
+            // modernButton7
+            // 
+            this.modernButton7.Location = new System.Drawing.Point(114, 116);
+            this.modernButton7.Name = "modernButton7";
+            this.modernButton7.Size = new System.Drawing.Size(100, 100);
+            this.modernButton7.TabIndex = 1;
+            this.modernButton7.Text = "modernButton1";
+            this.modernButton7.UseVisualStyleBackColor = true;
+            // 
+            // modernButton11
+            // 
+            this.modernButton11.Location = new System.Drawing.Point(223, 227);
+            this.modernButton11.Name = "modernButton11";
+            this.modernButton11.Size = new System.Drawing.Size(100, 100);
+            this.modernButton11.TabIndex = 1;
+            this.modernButton11.Text = "modernButton1";
+            this.modernButton11.UseVisualStyleBackColor = true;
+            // 
+            // modernButton6
+            // 
+            this.modernButton6.Location = new System.Drawing.Point(223, 116);
+            this.modernButton6.Name = "modernButton6";
+            this.modernButton6.Size = new System.Drawing.Size(100, 100);
+            this.modernButton6.TabIndex = 1;
+            this.modernButton6.Text = "modernButton1";
+            this.modernButton6.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(173, 196);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(424, 69);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "The buttons will appear after you connect the device.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Visible = false;
             // 
             // MainForm
             // 
@@ -223,6 +237,7 @@
             this.ClientSize = new System.Drawing.Size(771, 460);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.appBar1);
             this.Location = new System.Drawing.Point(0, 0);
@@ -252,5 +267,6 @@
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton7;
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton11;
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton6;
+        private System.Windows.Forms.Label label1;
     }
 }

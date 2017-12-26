@@ -20,4 +20,15 @@ namespace NickAc.Backend.Networking.Attributes
             get { return architecture; }
         }
     }
+
+    [System.AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
+    sealed class ServerOnlyAttribute : Attribute
+    {
+    }
+
+    [System.AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
+    sealed class ClientOnlyAttribute : Attribute
+    {
+    }
+
 }

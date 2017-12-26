@@ -54,6 +54,10 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ShadedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Misc\DevicesTitlebarButton.cs" />
     <Compile Include="Misc\ServerThread.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

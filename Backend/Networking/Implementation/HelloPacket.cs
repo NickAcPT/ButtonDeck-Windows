@@ -16,6 +16,9 @@ namespace NickAc.Backend.Networking.Implementation
     {
         public int ProtocolVersion { get; set; }
 
+        private bool HasDeviceGuid { get; set; }
+        public Guid DeviceGuid { get; set; }
+
         public override long GetPacketNumber() => 1;
 
 
@@ -23,6 +26,8 @@ namespace NickAc.Backend.Networking.Implementation
         {
             if (ProtocolVersion != Constants.PROTOCOL_VERSION) {
                 state.EndConnection();
+            } else {
+                state.SendPacket(new TestPacket());
             }
         }
 
@@ -34,11 +39,15 @@ namespace NickAc.Backend.Networking.Implementation
         public override void FromInputStream(DataInputStream reader)
         {
             ProtocolVersion = reader.ReadInt();
+            HasDeviceGuid = reader.ReadBoolean();
+            if (HasDeviceGuid) {
+                //We have a device GUID
+                DeviceGuid = Guid.Parse(reader.ReadUTF());
+            }
         }
 
         public override void ToOutputStream(DataOutputStream writer)
         {
-            writer.WriteInt(ProtocolVersion);
         }
     }
 }

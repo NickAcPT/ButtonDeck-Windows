@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NickAc.Backend.Utils
+namespace NickAc.Backend.Objects
 {
-    public class Constants
+    public interface IDeckItem
     {
-        public static int PROTOCOL_VERSION = 5;
+        
     }
 }

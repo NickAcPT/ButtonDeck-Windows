@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace NickAc.Backend.Networking.Attributes
 {
+    [Flags]
     enum PacketArchitecture
     {
         ClientToServer = 2,
