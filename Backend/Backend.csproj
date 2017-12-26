@@ -46,9 +46,9 @@
     <Compile Include="Networking\Implementation\DataRequestPacket.cs" />
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
-    <Compile Include="Networking\TcpLib\DataInputStream.cs" />
-    <Compile Include="Networking\TcpLib\DataOutputStream.cs" />
-    <Compile Include="Networking\TcpLib\DeckPacketHandler.cs" />
+    <Compile Include="Networking\IO\DataInputStream.cs" />
+    <Compile Include="Networking\IO\DataOutputStream.cs" />
+    <Compile Include="Networking\TcpLib\DeckServiceProvider.cs" />
     <Compile Include="Networking\TcpLib\TcpLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constants.cs" />

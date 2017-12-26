@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NickAc.Backend.Networking.Implementation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace NickAc.Backend.Networking.TcpLib
     {
 
         private static List<INetworkPacket> networkPackets = new List<INetworkPacket>();
+
+
+        static DeckServiceProvider()
+        {
+            RegisterNetworkPacket(new HelloPacket());
+        }
 
         public static void RegisterNetworkPacket(INetworkPacket packet)
         {
@@ -30,7 +37,7 @@ namespace NickAc.Backend.Networking.TcpLib
         {
 
         }
-        
+
         public override void OnDropConnection(ConnectionState state)
         {
 
@@ -45,7 +52,12 @@ namespace NickAc.Backend.Networking.TcpLib
                 allData.AddRange(buffer);
             }
             var packet = state.ReadPacket(allData.ToArray());
-            
+
         }
+        public override object Clone()
+        {
+            return new DeckServiceProvider();
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Networking.Attributes;
+using NickAc.Backend.Networking.IO;
 using NickAc.Backend.Networking.TcpLib;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace NickAc.Backend.Networking
             }
             byte[] bytesToSend = null;
             using (var memoryStream = new MemoryStream()) {
-                using (var binaryWriter = new BinaryWriter(memoryStream)) {
+                using (var binaryWriter = new DataOutputStream(memoryStream)) {
                     binaryWriter.Write(packet.GetPacketNumber());
-                    packet.ToStreamWriter(binaryWriter);
+                    packet.ToOutputStream(binaryWriter);
                 }
                 bytesToSend = memoryStream.ToArray();
             }
@@ -45,10 +46,10 @@ namespace NickAc.Backend.Networking
         {
             INetworkPacket packet;
             using (var memoryStream = new MemoryStream(allData)) {
-                using (var binaryReader = new BinaryReader(memoryStream)) {
-                    long packetNumber = binaryReader.ReadInt64();
+                using (var binaryReader = new DataInputStream(memoryStream)) {
+                    long packetNumber = binaryReader.ReadLong();
                     packet = DeckServiceProvider.GetNewNetworkPacketById(packetNumber);
-                    packet.FromStreamReader(binaryReader);
+                    packet.FromInputStream(binaryReader);
                     packet.Execute(con);
                 }
             }
@@ -63,8 +64,8 @@ namespace NickAc.Backend.Networking
     {
 
         public abstract long GetPacketNumber();
-        public abstract void FromStreamReader(BinaryReader reader);
-        public abstract void ToStreamWriter(BinaryWriter writer);
+        public abstract void FromInputStream(DataInputStream reader);
+        public abstract void ToOutputStream(DataOutputStream writer);
         public virtual void Execute(ConnectionState state) { }
 
         public virtual object Clone()

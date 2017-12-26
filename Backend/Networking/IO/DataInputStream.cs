@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NickAc.Backend.Networking.TcpLib
+namespace NickAc.Backend.Networking.IO
 {
     /**
     * A data input stream lets an application read primitive Java data
@@ -18,7 +18,7 @@ namespace NickAc.Backend.Networking.TcpLib
     * @since   JDK1.0
     */
 
-    public class DataInputStream
+    public class DataInputStream : IDisposable
     {
         /**
         * Creates a DataInputStream that uses the specified
@@ -27,9 +27,9 @@ namespace NickAc.Backend.Networking.TcpLib
         * @param  in   the specified input stream
         */
 
-        public DataInputStream(BinaryReader @in)
+        public DataInputStream(MemoryStream @in)
         {
-            _in = @in;
+            _in = new BinaryReader(@in);
         }
 
         /**
@@ -560,6 +560,11 @@ namespace NickAc.Backend.Networking.TcpLib
             }
             // The number of chars produced may be less than utflen
             return new String(chararr, 0, chararr_count);
+        }
+
+        public void Dispose()
+        {
+            _in.Dispose();
         }
     }
 }

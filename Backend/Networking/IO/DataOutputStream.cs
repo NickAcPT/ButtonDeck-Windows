@@ -16,7 +16,7 @@ namespace NickAc.Backend.Networking.IO
     * @see     java.io.DataInputStream
     * @since   JDK1.0
     */
-    public class DataOutputStream
+    public class DataOutputStream : IDisposable
     {
         /**
         * The number of bytes written to the data output stream so far.
@@ -27,7 +27,7 @@ namespace NickAc.Backend.Networking.IO
         /**
         * bytearr is initialized on demand by writeUTF
         */
-        private byte[] bytearr = null;
+        private byte[] bytearr;
         private readonly BinaryWriter @out;
 
         /**
@@ -48,7 +48,7 @@ namespace NickAc.Backend.Networking.IO
         * Increases the written counter by the specified value
         * until it reaches Integer.MAX_VALUE.
         */
-        private void incCount(int value)
+        private void IncCount(int value)
         {
             int temp = written + value;
             if (temp < 0) {
@@ -72,7 +72,13 @@ namespace NickAc.Backend.Networking.IO
         public void Write(int b)
         {
             @out.Write(b);
-            incCount(1);
+            IncCount(1);
+        }
+
+
+        public void Write(long b)
+        {
+            WriteLong(b);
         }
 
         /**
@@ -90,7 +96,7 @@ namespace NickAc.Backend.Networking.IO
         public void Write(byte[] b, int off, int len)
         {
             @out.Write(b, off, len);
-            incCount(len);
+            IncCount(len);
         }
 
         /**
@@ -124,7 +130,7 @@ namespace NickAc.Backend.Networking.IO
         public void WriteBoolean(bool v)
         {
             @out.Write(v ? 1 : 0);
-            incCount(1);
+            IncCount(1);
         }
 
         /**
@@ -139,7 +145,7 @@ namespace NickAc.Backend.Networking.IO
         public void WriteByte(int v)
         {
             @out.Write(v);
-            incCount(1);
+            IncCount(1);
         }
 
         /**
@@ -155,7 +161,7 @@ namespace NickAc.Backend.Networking.IO
         {
             @out.Write((v >> 8) & 0xFF);
             @out.Write((v >> 0) & 0xFF);
-            incCount(2);
+            IncCount(2);
         }
 
         /**
@@ -171,7 +177,7 @@ namespace NickAc.Backend.Networking.IO
         {
             @out.Write((v >> 8) & 0xFF);
             @out.Write((v >> 0) & 0xFF);
-            incCount(2);
+            IncCount(2);
         }
 
         /**
@@ -189,7 +195,7 @@ namespace NickAc.Backend.Networking.IO
             @out.Write((v >> 16) & 0xFF);
             @out.Write((v >> 8) & 0xFF);
             @out.Write((v >> 0) & 0xFF);
-            incCount(4);
+            IncCount(4);
         }
 
         private byte[] writeBuffer = new byte[8];
@@ -214,7 +220,7 @@ namespace NickAc.Backend.Networking.IO
             writeBuffer[6] = (byte)(v >> 8);
             writeBuffer[7] = (byte)(v >> 0);
             @out.Write(writeBuffer, 0, 8);
-            incCount(8);
+            IncCount(8);
         }
 
         public unsafe static int FloatToUInt32Bits(float f)
@@ -275,7 +281,7 @@ namespace NickAc.Backend.Networking.IO
             for (int i = 0; i < len; i++) {
                 @out.Write((byte)s[(i)]);
             }
-            incCount(len);
+            IncCount(len);
         }
 
         /**
@@ -298,7 +304,7 @@ namespace NickAc.Backend.Networking.IO
                 @out.Write((v >> 8) & 0xFF);
                 @out.Write((v >> 0) & 0xFF);
             }
-            incCount(len * 2);
+            IncCount(len * 2);
         }
 
 
@@ -388,6 +394,11 @@ namespace NickAc.Backend.Networking.IO
         public int Size()
         {
             return written;
+        }
+
+        public void Dispose()
+        {
+            @out.Dispose();
         }
     }
 }
