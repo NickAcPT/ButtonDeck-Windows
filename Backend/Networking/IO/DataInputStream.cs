@@ -32,6 +32,11 @@ namespace NickAc.Backend.Networking.IO
             _in = new BinaryReader(@in);
         }
 
+        public void Flush()
+        {
+            _in.BaseStream.Flush();
+        }
+
         /**
         * working arrays initialized on demand by readUTF
         */
@@ -205,7 +210,7 @@ namespace NickAc.Backend.Networking.IO
 
         public bool ReadBoolean()
         {
-            int ch = _in.Read();
+            int ch = _in.ReadByte();
             if (ch < 0)
                 throw new Exception("EOF");
             return (ch != 0);
@@ -230,7 +235,7 @@ namespace NickAc.Backend.Networking.IO
 
         public byte ReadByte()
         {
-            int ch = _in.Read();
+            int ch = _in.ReadByte();
             if (ch < 0)
                 throw new Exception("EOF");
             return (byte)(ch);
@@ -255,7 +260,7 @@ namespace NickAc.Backend.Networking.IO
 
         public int ReadUnsignedByte()
         {
-            int ch = _in.Read();
+            int ch = _in.ReadByte();
             if (ch < 0)
                 throw new Exception("EOF");
             return ch;
@@ -281,8 +286,8 @@ namespace NickAc.Backend.Networking.IO
 
         public short ReadShort()
         {
-            int ch1 = _in.Read();
-            int ch2 = _in.Read();
+            int ch1 = _in.ReadByte();
+            int ch2 = _in.ReadByte();
             if ((ch1 | ch2) < 0)
                 throw new Exception("EOF");
             return (short)((ch1 << 8) + (ch2 << 0));
@@ -308,8 +313,8 @@ namespace NickAc.Backend.Networking.IO
 
         public int ReadUnsignedShort()
         {
-            int ch1 = _in.Read();
-            int ch2 = _in.Read();
+            int ch1 = _in.ReadByte();
+            int ch2 = _in.ReadByte();
             if ((ch1 | ch2) < 0)
                 throw new Exception("EOF");
             return (ch1 << 8) + (ch2 << 0);
@@ -335,8 +340,8 @@ namespace NickAc.Backend.Networking.IO
 
         public char ReadChar()
         {
-            int ch1 = _in.Read();
-            int ch2 = _in.Read();
+            int ch1 = _in.ReadByte();
+            int ch2 = _in.ReadByte();
             if ((ch1 | ch2) < 0)
                 throw new Exception("EOF");
             return (char)((ch1 << 8) + (ch2 << 0));
@@ -362,10 +367,10 @@ namespace NickAc.Backend.Networking.IO
 
         public int ReadInt()
         {
-            int ch1 = _in.Read();
-            int ch2 = _in.Read();
-            int ch3 = _in.Read();
-            int ch4 = _in.Read();
+            int ch1 = _in.ReadByte();
+            int ch2 = _in.ReadByte();
+            int ch3 = _in.ReadByte();
+            int ch4 = _in.ReadByte();
             if ((ch1 | ch2 | ch3 | ch4) < 0)
                 throw new Exception("EOF");
             return ((ch1 << 24) + (ch2 << 16) + (ch3 << 8) + (ch4 << 0));

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Objects
 {
-    public interface IDeckItem
+    public abstract class IDeckItem
     {
         
     }

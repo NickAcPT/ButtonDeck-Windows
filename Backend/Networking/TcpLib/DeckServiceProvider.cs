@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Networking.Implementation;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ namespace NickAc.Backend.Networking.TcpLib
         static DeckServiceProvider()
         {
             RegisterNetworkPacket(new HelloPacket());
+            RegisterNetworkPacket(new DeviceIdentityPacket());
         }
 
         public static void RegisterNetworkPacket(INetworkPacket packet)
@@ -39,14 +41,22 @@ namespace NickAc.Backend.Networking.TcpLib
 
         public override void OnDropConnection(ConnectionState state)
         {
-
+            DevicePersistManager.RemoveConnectionState(state);
         }
 
         public override void OnReceiveData(ConnectionState state)
         {
+            int countToWait = 0;
+            int countToFinal = 1000;
             List<byte> allData = new List<byte>();
-            byte[] buffer = new byte[1024];
+            byte[] buffer;
+            System.Diagnostics.Debug.WriteLine("AvailiableData: " + state.AvailableData);
+            while (++countToWait < countToFinal) {
+                continue;
+            }
+            System.Diagnostics.Debug.WriteLine("Waited - AvailiableData: " + state.AvailableData);
             while (state.AvailableData > 0) {
+                buffer = new byte[1024];
                 state.Read(buffer, 0, 1024);
                 allData.AddRange(buffer);
             }

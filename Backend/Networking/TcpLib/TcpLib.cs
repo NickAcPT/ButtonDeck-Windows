@@ -11,9 +11,17 @@ namespace NickAc.Backend.Networking.TcpLib
     /// This class holds useful information for keeping track of each client connected
     /// to the server, and provides the means for sending/receiving data to the remote
     /// host.
-    /// </summary>
+    /// </summary>f
     public class ConnectionState
     {
+        internal Guid connectionGuid = Guid.NewGuid();
+
+        public Guid ConnectionGuid {
+            get {
+                return connectionGuid;
+            }
+        }
+
         internal Socket _conn;
         internal TcpServer _server;
         internal TcpServiceProvider _provider;
@@ -121,6 +129,13 @@ namespace NickAc.Backend.Networking.TcpLib
         private Socket _listener;
         private TcpServiceProvider _provider;
         private readonly ArrayList _connections;
+
+        public ArrayList Connections {
+            get {
+                return _connections;
+            }
+        }
+
         private int _maxConnections = 100;
 
         private AsyncCallback ConnectionReady;
@@ -214,19 +229,22 @@ namespace NickAc.Backend.Networking.TcpLib
         /// </summary>
         private void ReceivedDataReady_Handler(IAsyncResult ar)
         {
-            ConnectionState st = ar.AsyncState as ConnectionState;
-            st._conn.EndReceive(ar);
-            //Im considering the following condition as a signal that the
-            //remote host droped the connection.
-            if (st._conn.Available == 0) DropConnection(st);
-            else {
-                try { st._provider.OnReceiveData(st); } catch {
-                    //report error in the provider
+            try {
+                ConnectionState st = ar.AsyncState as ConnectionState;
+                st._conn.EndReceive(ar);
+                //Im considering the following condition as a signal that the
+                //remote host droped the connection.
+                if (st._conn.Available == 0) DropConnection(st);
+                else {
+                    try { st._provider.OnReceiveData(st); } catch (Exception ex) {
+                        //report error in the provider
+                    }
+                    //Resume ReceivedData callback loop
+                    if (st._conn.Connected)
+                        st._conn.BeginReceive(st._buffer, 0, 0, SocketFlags.None,
+                          ReceivedDataReady, st);
                 }
-                //Resume ReceivedData callback loop
-                if (st._conn.Connected)
-                    st._conn.BeginReceive(st._buffer, 0, 0, SocketFlags.None,
-                      ReceivedDataReady, st);
+            } catch (Exception ex) {
             }
         }
 

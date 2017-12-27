@@ -223,16 +223,6 @@ namespace NickAc.Backend.Networking.IO
             IncCount(8);
         }
 
-        int rightMove(int value, int pos)
-        {
-            if (pos != 0) {
-                int mask = 0x7fffffff;
-                value >>= 1;
-                value &= mask;
-                value >>= pos - 1;
-            }
-            return value;
-        }
 
         public unsafe static int FloatToUInt32Bits(float f)
         {

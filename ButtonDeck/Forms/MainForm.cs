@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using NickAc.ModernUIDoneRight.Objects;
 using NickAc.ModernUIDoneRight.Controls;
 using ButtonDeck.Misc;
+using System.IO;
+using NickAc.Backend.Networking.IO;
 
 namespace ButtonDeck.Forms
 {
@@ -32,6 +34,24 @@ namespace ButtonDeck.Forms
             label1.ForeColor = ColorScheme.SecondaryColor;
 
             TitlebarButtons.Add(new DevicesTitlebarButton(this));
+            
+            /*byte[] x;
+            using (MemoryStream ms = new MemoryStream()) {
+                using (DataOutputStream writer = new DataOutputStream(ms)) {
+                    writer.WriteLong(2);
+                    writer.WriteUTF("-");
+                    writer.WriteUTF("Google Devicwiowfuhfwwiuf");
+                    x = ms.ToArray();
+                }
+            }
+            using (MemoryStream ms = new MemoryStream(x)) {
+                using (DataInputStream reader = new DataInputStream(ms)) {
+                    MessageBox.Show("" + reader.ReadLong());
+                    MessageBox.Show("" + reader.ReadUTF());
+                    MessageBox.Show("" + reader.ReadUTF());
+                }
+            }*/
+
 
         }
     }

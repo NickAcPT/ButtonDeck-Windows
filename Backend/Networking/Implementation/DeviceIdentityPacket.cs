@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NickAc.Backend.Networking.Attributes;
 using NickAc.Backend.Networking.IO;
+using NickAc.Backend.Networking.TcpLib;
+using NickAc.Backend.Objects;
+using NickAc.Backend.Utils;
 
 namespace NickAc.Backend.Networking.Implementation
 {
@@ -15,7 +18,7 @@ namespace NickAc.Backend.Networking.Implementation
         {
 
         }
-        private bool hasDeviceGuid;
+        private readonly bool hasDeviceGuid;
 
         public DeviceIdentityPacket(bool hasDeviceGuid)
         {
@@ -32,8 +35,19 @@ namespace NickAc.Backend.Networking.Implementation
 
         public override void FromInputStream(DataInputStream reader)
         {
-
+            string receivedGuid = reader.ReadUTF().ToUpperInvariant();
+            DeviceGuid = new Guid(receivedGuid);
+            DeviceName = reader.ReadUTF();
         }
+
+        public override void Execute(ConnectionState state)
+        {
+            IDeckDevice deckDevice = new IDeckDevice(DeviceGuid, DeviceName);
+
+            DevicePersistManager.PersistDevice(deckDevice);
+            DevicePersistManager.ChangeConnectedState(state, deckDevice);
+        }
+
 
         public override void ToOutputStream(DataOutputStream writer)
         {
@@ -44,6 +58,11 @@ namespace NickAc.Backend.Networking.Implementation
                 DeviceGuid = Guid.NewGuid();
                 writer.WriteUTF(DeviceGuid.ToString());
             }
+        }
+
+        public override object Clone()
+        {
+            return new DeviceIdentityPacket();
         }
     }
 }

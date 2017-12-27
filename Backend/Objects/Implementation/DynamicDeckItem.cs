@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Objects.Implementation
 {
-    public class DynamicDeckItem
+    [Serializable]
+    public class DynamicDeckItem : IDeckItem
     {
         enum DeckItemType
         {
-            Action,
-            Folder
+            Process,
+            HotkeyToggle,
+            HotKeyPress
         }
+
+        DeckItemType ItemType { get; set; }
     }
 }

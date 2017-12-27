@@ -42,7 +42,7 @@ namespace NickAc.Backend.Networking.Implementation
             HasDeviceGuid = reader.ReadBoolean();
             if (HasDeviceGuid) {
                 //We have a device GUID
-                DeviceGuid = Guid.Parse(reader.ReadUTF());
+                DeviceGuid = Guid.Parse(reader.ReadUTF().ToUpper());
             }
         }
 

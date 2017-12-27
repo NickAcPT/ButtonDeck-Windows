@@ -1,5 +1,6 @@
 ﻿using ButtonDeck.Forms;
 using ButtonDeck.Misc;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,14 @@ namespace ButtonDeck
         [STAThread]
         static void Main()
         {
+            DevicePersistManager.LoadDevices();
             ServerThread = new ServerThread();
             ServerThread.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+            DevicePersistManager.SaveDevices();
+            ServerThread.Stop();
         }
     }
 }

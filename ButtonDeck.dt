@@ -1,72 +1,119 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT1H50M36.3305392S" SolutionTotalViewTime="PT1H38M9.8668631S" SolutionTotalDebugTime="PT0S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT3H11M12.1828414S" SolutionTotalViewTime="PT3H52M36.9471127S" SolutionTotalDebugTime="PT18M52.7345167S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
   </FileVersion>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT8.6483614S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\ArchitectureAttribute.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-26T00:11:21.2435944+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3M24.355067S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DataRequestPacket.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-25T23:59:25.4160452+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4.7851607S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-26T00:11:24.6408877+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT5M44.8344699S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\INetworkPacket.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-26T00:11:37.3325269+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3M12.5384994S" EditActiveTime="PT1.0495787S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT58.4550536S" EditActiveTime="PT1M1.6757893S">
+      <ModifiedDate>2017-12-27T14:22:26.6011327+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\PacketArchitecture.cs</Item>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeckDeviceInformationControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:20:31.3975432+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.6240639S" EditActiveTime="PT13.5422181S">
+      <ModifiedDate>2017-12-27T14:19:57.273196+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeviceControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:19:44.7905374+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M21.6348118S" EditActiveTime="PT9M40.2228726S">
+      <ModifiedDate>2017-12-27T14:01:04.8087351+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentityPacket.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2017-12-26T00:11:20.4374093+00:00</CreatedDate>
+      <CreatedDate>2017-12-27T12:29:18.844319+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.4276988S" EditActiveTime="PT5.8165596S">
+      <ModifiedDate>2017-12-27T14:13:58.3205762+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:06:39.7276285+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT24.036237S" EditActiveTime="PT12.2163331S">
+      <ModifiedDate>2017-12-27T14:15:52.2500865+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:13:54.6110557+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M20.3857443S" EditActiveTime="PT4M11.039997S">
+      <ModifiedDate>2017-12-27T14:13:42.2258242+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckDevice.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:07:09.8636318+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT43.8591592S" EditActiveTime="PT5.8799247S">
+      <ModifiedDate>2017-12-27T14:15:39.0562547+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:15:23.7417384+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5.2447927S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\ShadedPanel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:01:23.5503633+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
   <TotalTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT38.6865554S" EditActiveTime="PT2M30.1491063S">
-      <ModifiedDate>2017-12-25T21:00:59.916979+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT43.6799453S" EditActiveTime="PT2M59.6860935S">
+      <ModifiedDate>2017-12-26T19:06:54.3317035+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\ArchitectureAttribute.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-25T20:52:55.2561605+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.3915208S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>BinaryWriter.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2017-12-26T23:20:52.782798+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT14.7767128S" EditActiveTime="PT0S">
@@ -100,22 +147,22 @@
       <CreatedDate>2017-12-25T22:30:56.1046767+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M32.4137659S" EditActiveTime="PT1M17.850063S">
-      <ModifiedDate>2017-12-24T18:40:32.4027819+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M47.5526528S" EditActiveTime="PT1M18.7544312S">
+      <ModifiedDate>2017-12-26T21:13:42.6401188+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\Constants.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-24T18:38:12.1353043+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT46.142153S" EditActiveTime="PT20.2264013S">
-      <ModifiedDate>2017-12-25T23:34:57.1028831+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M39.7577083S" EditActiveTime="PT33.2207182S">
+      <ModifiedDate>2017-12-27T00:37:23.0963606+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\IO\DataInputStream.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
@@ -133,65 +180,217 @@
       <CreatedDate>2017-12-25T23:01:11.7703769+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT46.6670446S" EditActiveTime="PT33.6144047S">
-      <ModifiedDate>2017-12-25T23:35:26.8910332+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT18M53.3886121S" EditActiveTime="PT7M39.6377337S">
+      <ModifiedDate>2017-12-27T00:45:09.0833925+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\IO\DataOutputStream.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-25T23:31:42.9560051+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4M23.6045404S" EditActiveTime="PT1M23.2651643S">
+    <DevTrackerDataItem ViewActiveTime="PT4M56.5001003S" EditActiveTime="PT1M24.5330274S">
       <ModifiedDate>2017-12-25T23:42:07.8449891+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DataRequestPacket.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-25T20:26:04.4569612+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT27M26.5953563S" EditActiveTime="PT16M58.1006469S">
+    <DevTrackerDataItem ViewActiveTime="PT18M52.7345167S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2017-12-26T15:39:08.0632191+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT58.4410334S" EditActiveTime="PT1M1.6757893S">
+      <ModifiedDate>2017-12-27T14:22:26.6011327+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeckDeviceInformationControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:20:31.3975432+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT27M34.4473598S" EditActiveTime="PT16M58.1006469S">
       <ModifiedDate>2017-12-25T23:00:53.2493287+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
       <EditedCount>4</EditedCount>
-      <ViewedCount>5</ViewedCount>
+      <ViewedCount>6</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-24T22:55:27.6331371+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6M20.2999851S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT11M8.1063869S" EditActiveTime="PT1M6.69696S">
+      <ModifiedDate>2017-12-27T00:48:13.2987683+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckServiceProvider.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T14:02:49.3627911+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M12.5331396S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\DecmF,.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:20:15.1950161+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.6240639S" EditActiveTime="PT13.5422181S">
+      <ModifiedDate>2017-12-27T14:19:57.273196+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeviceControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:19:44.7905374+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M39.4008388S" EditActiveTime="PT2M12.9560651S">
+      <ModifiedDate>2017-12-26T18:42:23.4210104+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentifyPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:40:02.0454249+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.8893559S" EditActiveTime="PT1M44.0325646S">
+      <ModifiedDate>2017-12-26T18:43:38.9294256+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\DeviceIdentityManager.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:42:52.2458576+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT12M45.1779851S" EditActiveTime="PT14M8.6332404S">
+      <ModifiedDate>2017-12-27T14:01:04.8087351+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentityPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:47:18.0430944+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M33.0105955S" EditActiveTime="PT4M10.0332029S">
+      <ModifiedDate>2017-12-26T18:30:04.0393953+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Misc\DevicesTitlebarButton.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T17:03:23.1373158+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M7.7121157S" EditActiveTime="PT5M5.5895412S">
+      <ModifiedDate>2017-12-27T14:13:58.3205762+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:25:57.4273295+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M19.1868109S" EditActiveTime="PT51.5006768S">
+      <ModifiedDate>2017-12-27T14:15:52.2500865+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:30:01.6657377+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9M25.0243791S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Form1.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
       <CreatedDate>2017-12-24T00:44:00.5647961+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT14M46.9111803S" EditActiveTime="PT5M32.5905039S">
-      <ModifiedDate>2017-12-25T23:37:22.2345949+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT32M44.2135253S" EditActiveTime="PT8M42.5738473S">
+      <ModifiedDate>2017-12-27T00:47:43.3295947+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>3</EditedCount>
-      <ViewedCount>4</ViewedCount>
+      <EditedCount>4</EditedCount>
+      <ViewedCount>5</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\HelloPacket.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-24T18:40:29.2285926+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT19M46.9131901S" EditActiveTime="PT17M24.5853864S">
-      <ModifiedDate>2017-12-25T23:36:16.973152+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT1M20.3857443S" EditActiveTime="PT4M11.039997S">
+      <ModifiedDate>2017-12-27T14:13:42.2258242+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>4</EditedCount>
-      <ViewedCount>5</ViewedCount>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckDevice.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:07:09.8636318+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT49.3449209S" EditActiveTime="PT2M21.819206S">
+      <ModifiedDate>2017-12-26T16:27:52.162182+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:21:27.7702161+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M0.9656639S" EditActiveTime="PT29.7896699S">
+      <ModifiedDate>2017-12-27T14:15:39.0562547+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:22:20.8704646+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT25M26.3298089S" EditActiveTime="PT20M43.7857822S">
+      <ModifiedDate>2017-12-26T23:40:51.8339899+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>5</EditedCount>
+      <ViewedCount>6</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\INetworkPacket.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
@@ -209,6 +408,39 @@
       <CreatedDate>2017-12-25T21:29:34.1597568+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT20M52.6839578S" EditActiveTime="PT10M41.7197257S">
+      <ModifiedDate>2017-12-27T00:47:57.3292776+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:19:12.8891591+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.0534979S" EditActiveTime="PT0.3906416S">
+      <ModifiedDate>2017-12-26T13:42:52.678102+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.Designer.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:20:31.6863312+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.238168S" EditActiveTime="PT0.3828015S">
+      <ModifiedDate>2017-12-26T13:42:01.5511654+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.resx</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:20:31.6394538+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT2M36.4031037S" EditActiveTime="PT16M5.6879094S">
       <ModifiedDate>2017-12-25T23:29:49.304688+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
@@ -220,15 +452,48 @@
       <CreatedDate>2017-12-25T23:04:27.530499+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT5M22.5115998S" EditActiveTime="PT9M16.1895396S">
-      <ModifiedDate>2017-12-25T21:30:25.8519117+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT9M56.4518719S" EditActiveTime="PT9M18.039271S">
+      <ModifiedDate>2017-12-26T19:03:16.6041552+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>2</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\PacketArchitecture.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-25T20:58:35.339054+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M40.8845533S" EditActiveTime="PT51.3926901S">
+      <ModifiedDate>2017-12-26T13:20:11.6365992+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:15:11.3661519+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M27.3398774S" EditActiveTime="PT13M37.3662428S">
+      <ModifiedDate>2017-12-26T13:17:08.4985893+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Misc\ServerThread.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T12:43:48.2026669+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M5.7527752S" EditActiveTime="PT2M15.1654081S">
+      <ModifiedDate>2017-12-26T18:20:57.5208057+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\ShadedPanel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:17:34.7666345+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT18.5443182S" EditActiveTime="PT16M4.6866308S">
@@ -253,19 +518,440 @@
       <CreatedDate>2017-12-24T22:25:44.2566272+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M40.2155602S" EditActiveTime="PT2M9.601202S">
+    <DevTrackerDataItem ViewActiveTime="PT3M56.7730914S" EditActiveTime="PT2M9.601202S">
       <ModifiedDate>2017-12-24T23:22:51.4822348+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\TcpLib.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
       <CreatedDate>2017-12-24T22:52:11.0610902+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M5.8021256S" EditActiveTime="PT1M10.3603201S">
+      <ModifiedDate>2017-12-26T23:04:48.3384257+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\TestPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T23:03:33.3156654+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT58.4450412S" EditActiveTime="PT1M1.6757893S">
+      <ModifiedDate>2017-12-27T14:22:26.6011327+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeckDeviceInformationControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:20:31.3975432+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.6240639S" EditActiveTime="PT13.5422181S">
+      <ModifiedDate>2017-12-27T14:19:57.273196+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\DeviceControl.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:19:44.7905374+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT43.8591592S" EditActiveTime="PT5.8799247S">
+      <ModifiedDate>2017-12-27T14:15:39.0562547+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:15:23.7417384+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT24.036237S" EditActiveTime="PT12.2163331S">
+      <ModifiedDate>2017-12-27T14:15:52.2500865+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:13:54.6110557+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M20.3857443S" EditActiveTime="PT4M11.039997S">
+      <ModifiedDate>2017-12-27T14:13:42.2258242+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckDevice.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:07:09.8636318+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M18.4276988S" EditActiveTime="PT5.8165596S">
+      <ModifiedDate>2017-12-27T14:13:58.3205762+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:06:39.7276285+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5.2447927S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\ShadedPanel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-27T14:01:23.5503633+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M21.6348118S" EditActiveTime="PT9M40.2228726S">
+      <ModifiedDate>2017-12-27T14:01:04.8087351+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentityPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-27T12:29:18.844319+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.3915208S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>BinaryWriter.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2017-12-26T23:20:52.782798+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M5.8021256S" EditActiveTime="PT1M10.3603201S">
+      <ModifiedDate>2017-12-26T23:04:48.3384257+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\TestPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T23:03:33.3156654+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT18M6.7215675S" EditActiveTime="PT7M6.023329S">
+      <ModifiedDate>2017-12-27T00:45:09.0833925+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\IO\DataOutputStream.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T21:59:40.8057682+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M15.1388869S" EditActiveTime="PT0.9043682S">
+      <ModifiedDate>2017-12-26T21:13:42.6401188+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\Constants.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T19:09:23.4957031+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9M23.5642047S" EditActiveTime="PT4M28.4103678S">
+      <ModifiedDate>2017-12-27T01:12:21.5401153+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentityPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:47:18.0430944+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.8893559S" EditActiveTime="PT1M44.0325646S">
+      <ModifiedDate>2017-12-26T18:43:38.9294256+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\DeviceIdentityManager.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:42:52.2458576+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M39.4008388S" EditActiveTime="PT2M12.9560651S">
+      <ModifiedDate>2017-12-26T18:42:23.4210104+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DeviceIdentifyPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:40:02.0454249+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M0.5079825S" EditActiveTime="PT2M15.1654081S">
+      <ModifiedDate>2017-12-26T18:20:57.5208057+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\ShadedPanel.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T18:17:34.7666345+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M33.0105955S" EditActiveTime="PT4M10.0332029S">
+      <ModifiedDate>2017-12-26T18:30:04.0393953+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Misc\DevicesTitlebarButton.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T17:03:23.1373158+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT55.1505739S" EditActiveTime="PT39.2843437S">
+      <ModifiedDate>2017-12-26T16:33:03.5280028+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:30:01.6657377+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT49.2844169S" EditActiveTime="PT4M59.7729816S">
+      <ModifiedDate>2017-12-26T16:32:31.6479357+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\Implementation\DynamicDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:25:57.4273295+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.1065047S" EditActiveTime="PT23.9097452S">
+      <ModifiedDate>2017-12-26T16:32:43.6296285+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckItem.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:22:20.8704646+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT49.3449209S" EditActiveTime="PT2M21.819206S">
+      <ModifiedDate>2017-12-26T16:27:52.162182+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\IDeckFolder.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:21:27.7702161+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M12.5331396S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Objects\DecmF,.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:20:15.1950161+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT32.8955599S" EditActiveTime="PT1.2678631S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\DataRequestPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:18:38.904863+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.9933899S" EditActiveTime="PT29.5369872S">
+      <ModifiedDate>2017-12-26T19:06:54.3317035+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\ArchitectureAttribute.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:10:11.934824+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5M39.4166188S" EditActiveTime="PT3M19.2003958S">
+      <ModifiedDate>2017-12-26T23:40:51.8339899+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\INetworkPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T16:09:03.9449824+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT18M52.7345167S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2017-12-26T15:39:08.0632191+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17M57.302345S" EditActiveTime="PT3M9.9833434S">
+      <ModifiedDate>2017-12-27T00:47:43.3295947+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Implementation\HelloPacket.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T15:38:09.4300721+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M16.5575312S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\TcpLib.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T15:38:07.4641813+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M53.6155553S" EditActiveTime="PT12.9943169S">
+      <ModifiedDate>2017-12-27T00:37:23.0963606+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\IO\DataInputStream.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T14:50:51.3615287+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT11M8.1063869S" EditActiveTime="PT1M6.69696S">
+      <ModifiedDate>2017-12-27T00:48:13.2987683+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckServiceProvider.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T14:02:49.3627911+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.8520035S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\TcpLib\DeckPacketHandler.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T14:02:40.8688087+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.0534979S" EditActiveTime="PT0.3906416S">
+      <ModifiedDate>2017-12-26T13:42:52.678102+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.Designer.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:20:31.6863312+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.238168S" EditActiveTime="PT0.3828015S">
+      <ModifiedDate>2017-12-26T13:42:01.5511654+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.resx</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:20:31.6394538+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT20M52.6839578S" EditActiveTime="PT10M41.7197257S">
+      <ModifiedDate>2017-12-27T00:47:57.3292776+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Forms\MainForm.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:19:12.8891591+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M40.8845533S" EditActiveTime="PT51.3926901S">
+      <ModifiedDate>2017-12-26T13:20:11.6365992+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T13:15:11.3661519+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M27.3398774S" EditActiveTime="PT13M37.3662428S">
+      <ModifiedDate>2017-12-26T13:17:08.4985893+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Misc\ServerThread.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T12:43:48.2026669+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M4.724394S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Form1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2017-12-26T12:40:43.4782729+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M33.9402721S" EditActiveTime="PT1.8497314S">
+      <ModifiedDate>2017-12-26T19:03:16.6041552+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Networking\Attributes\PacketArchitecture.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2017-12-26T12:26:00.6347929+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT5M44.8344699S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>

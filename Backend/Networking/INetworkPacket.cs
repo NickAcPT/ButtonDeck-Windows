@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Networking.Attributes;
+using NickAc.Backend.Networking.Implementation;
 using NickAc.Backend.Networking.IO;
 using NickAc.Backend.Networking.TcpLib;
 using System;
@@ -12,6 +13,15 @@ namespace NickAc.Backend.Networking
 {
     public static class NetworkPacketExtensions
     {
+        public static bool TryHeartbeat(this ConnectionState con)
+        {
+            try {
+                return con.SendPacket(new HeartbeatPacket());
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Sends Data to the remote host.
         /// </summary>
@@ -48,6 +58,8 @@ namespace NickAc.Backend.Networking
             using (var memoryStream = new MemoryStream(allData)) {
                 using (var binaryReader = new DataInputStream(memoryStream)) {
                     long packetNumber = binaryReader.ReadLong();
+                    binaryReader.Flush();
+                    System.Diagnostics.Debug.WriteLine($"Read packet with ID: {packetNumber}");
                     packet = DeckServiceProvider.GetNewNetworkPacketById(packetNumber);
                     packet.FromInputStream(binaryReader);
                     packet.Execute(con);
