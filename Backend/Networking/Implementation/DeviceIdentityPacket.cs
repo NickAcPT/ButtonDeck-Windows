@@ -39,10 +39,11 @@ namespace NickAc.Backend.Networking.Implementation
         {
             //From server to client
             //Tell the client if they are going to receive a device Guid
-            writer.WriteBoolean(true);
-            //if (!hasDeviceGuid) {
-            writer.WriteUTF(Guid.NewGuid().ToString());
-            //}
+            writer.WriteBoolean(!hasDeviceGuid);
+            if (!hasDeviceGuid) {
+                DeviceGuid = Guid.NewGuid();
+                writer.WriteUTF(DeviceGuid.ToString());
+            }
         }
     }
 }

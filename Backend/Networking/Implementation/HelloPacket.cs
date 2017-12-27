@@ -27,7 +27,7 @@ namespace NickAc.Backend.Networking.Implementation
             if (ProtocolVersion != Constants.PROTOCOL_VERSION) {
                 state.EndConnection();
             } else {
-                state.SendPacket(new TestPacket());
+                state.SendPacket(new DeviceIdentityPacket(HasDeviceGuid));
             }
         }
 

@@ -45,7 +45,6 @@
     <Compile Include="Networking\Attributes\PacketArchitecture.cs" />
     <Compile Include="Networking\Implementation\DeviceIdentityPacket.cs" />
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
-    <Compile Include="Networking\Implementation\TestPacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
     <Compile Include="Networking\IO\DataInputStream.cs" />
     <Compile Include="Networking\IO\DataOutputStream.cs" />

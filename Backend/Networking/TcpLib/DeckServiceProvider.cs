@@ -35,7 +35,6 @@ namespace NickAc.Backend.Networking.TcpLib
 
         public override void OnAcceptConnection(ConnectionState state)
         {
-
         }
 
         public override void OnDropConnection(ConnectionState state)

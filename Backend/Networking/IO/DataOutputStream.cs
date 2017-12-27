@@ -71,7 +71,7 @@ namespace NickAc.Backend.Networking.IO
         */
         public void Write(int b)
         {
-            @out.Write(b);
+            @out.Write((byte)b);
             IncCount(1);
         }
 
@@ -129,7 +129,7 @@ namespace NickAc.Backend.Networking.IO
         */
         public void WriteBoolean(bool v)
         {
-            @out.Write(v ? 1 : 0);
+            Write(v ? 1 : 0);
             IncCount(1);
         }
 
@@ -159,8 +159,8 @@ namespace NickAc.Backend.Networking.IO
         */
         public void WriteShort(int v)
         {
-            @out.Write((v >> 8) & 0xFF);
-            @out.Write((v >> 0) & 0xFF);
+            Write((v >> 8) & 0xFF);
+            Write((v >> 0) & 0xFF);
             IncCount(2);
         }
 
@@ -175,8 +175,8 @@ namespace NickAc.Backend.Networking.IO
         */
         public void WriteChar(int v)
         {
-            @out.Write((v >> 8) & 0xFF);
-            @out.Write((v >> 0) & 0xFF);
+            Write((v >> 8) & 0xFF);
+            Write((v >> 0) & 0xFF);
             IncCount(2);
         }
 
@@ -191,12 +191,13 @@ namespace NickAc.Backend.Networking.IO
         */
         public void WriteInt(int v)
         {
-            @out.Write((v >> 24) & 0xFF);
-            @out.Write((v >> 16) & 0xFF);
-            @out.Write((v >> 8) & 0xFF);
-            @out.Write((v >> 0) & 0xFF);
+            Write((byte)((v >> 24) & 0xFF));
+            Write((byte)((v >> 16) & 0xFF));
+            Write((byte)((v >> 8) & 0xFF));
+            Write((byte)((v >> 0) & 0xFF));
             IncCount(4);
         }
+
 
         private byte[] writeBuffer = new byte[8];
 
@@ -211,16 +212,26 @@ namespace NickAc.Backend.Networking.IO
         */
         public void WriteLong(long v)
         {
-            writeBuffer[0] = (byte)(v >> 56);
-            writeBuffer[1] = (byte)(v >> 48);
-            writeBuffer[2] = (byte)(v >> 40);
-            writeBuffer[3] = (byte)(v >> 32);
-            writeBuffer[4] = (byte)(v >> 24);
-            writeBuffer[5] = (byte)(v >> 16);
-            writeBuffer[6] = (byte)(v >> 8);
-            writeBuffer[7] = (byte)(v >> 0);
-            @out.Write(writeBuffer, 0, 8);
+            Write((byte)(((ulong)v) >> 56));
+            Write((byte)(((ulong)v) >> 48));
+            Write((byte)(((ulong)v) >> 40));
+            Write((byte)(((ulong)v) >> 32));
+            Write((byte)(((ulong)v) >> 24));
+            Write((byte)(((ulong)v) >> 16));
+            Write((byte)(((ulong)v) >> 8));
+            Write((byte)(((ulong)v) >> 0));
             IncCount(8);
+        }
+
+        int rightMove(int value, int pos)
+        {
+            if (pos != 0) {
+                int mask = 0x7fffffff;
+                value >>= 1;
+                value &= mask;
+                value >>= pos - 1;
+            }
+            return value;
         }
 
         public unsafe static int FloatToUInt32Bits(float f)

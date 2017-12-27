@@ -485,8 +485,6 @@ namespace NickAc.Backend.Networking.IO
         public String ReadUTF()
         {
             int utflen = ReadUnsignedShort();
-            bytearr = null;
-            chararr = null;
             if (bytearr.Length < utflen) {
                 bytearr = new byte[utflen * 2];
                 chararr = new char[utflen * 2];
