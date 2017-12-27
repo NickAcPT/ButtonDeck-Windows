@@ -8,6 +8,6 @@ namespace NickAc.Backend.Utils
 {
     public class Constants
     {
-        public static int PROTOCOL_VERSION = 5;
+        public static int PROTOCOL_VERSION = 6;
     }
 }

@@ -44,6 +44,8 @@ namespace ButtonDeck.Misc
             frm.Deactivate += (s, ee) => frm.Dispose();
             Size controlFinalSize = new Size(frm.DisplayRectangle.Width, controlSize);
 
+            if (CurrentConnections < 1) return;
+            /*
             //Remove any unnecessary connections.
             List<Guid> toRemove = new List<Guid>();
             var connections = Program.ServerThread.TcpServer.Connections.OfType<ConnectionState>();

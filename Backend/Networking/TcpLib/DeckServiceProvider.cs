@@ -2,6 +2,7 @@
 using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace NickAc.Backend.Networking.TcpLib
         {
             RegisterNetworkPacket(new HelloPacket());
             RegisterNetworkPacket(new DeviceIdentityPacket());
+            RegisterNetworkPacket(new HeartbeatPacket());
         }
 
         public static void RegisterNetworkPacket(INetworkPacket packet)
@@ -41,20 +43,24 @@ namespace NickAc.Backend.Networking.TcpLib
 
         public override void OnDropConnection(ConnectionState state)
         {
+            state.SendPacket(new DesktopDisconnectPacket());
             DevicePersistManager.RemoveConnectionState(state);
         }
 
         public override void OnReceiveData(ConnectionState state)
         {
             int countToWait = 0;
-            int countToFinal = 1000;
+            int countToFinal = 1500;
             List<byte> allData = new List<byte>();
             byte[] buffer;
             System.Diagnostics.Debug.WriteLine("AvailiableData: " + state.AvailableData);
+            /*Stopwatch sw = new Stopwatch();
+            sw.Start();
             while (++countToWait < countToFinal) {
                 continue;
             }
-            System.Diagnostics.Debug.WriteLine("Waited - AvailiableData: " + state.AvailableData);
+            sw.Stop();
+            System.Diagnostics.Debug.WriteLine($"Waited {sw.ElapsedMilliseconds}ms - AvailiableData: {state.AvailableData}");*/
             while (state.AvailableData > 0) {
                 buffer = new byte[1024];
                 state.Read(buffer, 0, 1024);

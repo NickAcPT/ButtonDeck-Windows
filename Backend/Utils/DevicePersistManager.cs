@@ -32,7 +32,7 @@ namespace NickAc.Backend.Utils
         {
             return deckDevicesFromConnection.FirstOrDefault(m => m.Value.DeviceGuid == device.DeviceGuid).Key;
         }
-        
+
 
         public static bool IsDeviceOnline(IDeckDevice device)
         {
@@ -52,6 +52,7 @@ namespace NickAc.Backend.Utils
         public static void PersistDevice(IDeckDevice device)
         {
             if (IsDevicePersisted(device)) {
+                device.DeviceName = PersistedDevices[device.DeviceGuid].DeviceName;
                 PersistedDevices.RemoveAll(m => m.DeviceGuid == device.DeviceGuid);
             }
             PersistedDevices.Add(device);
@@ -69,13 +70,9 @@ namespace NickAc.Backend.Utils
 
         public static void ChangeConnectedState(ConnectionState state, IDeckDevice device)
         {
-            if (!state.Connected) {
-                deckDevicesFromConnection.Remove(state.ConnectionGuid);
-            } else {
-                if (device == null) return;
-                if (!deckDevicesFromConnection.ContainsKey(state.ConnectionGuid)) {
-                    deckDevicesFromConnection.Add(state.ConnectionGuid, device);
-                }
+            if (device == null || state == null) return;
+            if (!deckDevicesFromConnection.ContainsKey(state.ConnectionGuid)) {
+                deckDevicesFromConnection.Add(state.ConnectionGuid, device);
             }
         }
 
