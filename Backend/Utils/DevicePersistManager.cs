@@ -52,7 +52,7 @@ namespace NickAc.Backend.Utils
         public static void PersistDevice(IDeckDevice device)
         {
             if (IsDevicePersisted(device)) {
-                device.DeviceName = PersistedDevices[device.DeviceGuid].DeviceName;
+                device.DeviceName = PersistedDevices.First(m => m.DeviceGuid == device.DeviceGuid).DeviceName;
                 PersistedDevices.RemoveAll(m => m.DeviceGuid == device.DeviceGuid);
             }
             PersistedDevices.Add(device);
