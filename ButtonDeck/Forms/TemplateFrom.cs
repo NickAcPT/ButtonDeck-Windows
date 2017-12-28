@@ -1,4 +1,5 @@
-﻿using NickAc.Backend.Utils;
+﻿using ButtonDeck.Misc;
+using NickAc.Backend.Utils;
 using NickAc.ModernUIDoneRight.Forms;
 using NickAc.ModernUIDoneRight.Objects;
 using System;
@@ -14,10 +15,25 @@ namespace ButtonDeck.Forms
 {
     public class TemplateForm : ModernForm
     {
+        private ApplicationColorScheme _applicationColorScheme;
+
+        private ApplicationColorScheme ApplicationColorScheme {
+            get { return _applicationColorScheme; }
+            set {
+                _applicationColorScheme = value;
+                ColorScheme = value;
+                BackColor = value.BackgroundColor;
+                Refresh();
+            }
+        }
         public TemplateForm()
         {
             if (ApplicationSettingsManager.Settings != null)
                 LoadTheme(ApplicationSettingsManager.Settings.Theme);
+
+            ColorSchemeCentral.ThemeChanged += (s, e) => {
+                LoadTheme(ApplicationSettingsManager.Settings.Theme);
+            };
         }
 
         protected override void OnLoad(EventArgs e)
@@ -46,12 +62,10 @@ namespace ButtonDeck.Forms
         {
             switch (theme) {
                 case AppTheme.Neptune:
-                    ColorScheme = DefaultColorSchemes.Blue;
-                    BackColor = Color.FromArgb(245, 245, 245);
+                    ApplicationColorScheme = ColorSchemeCentral.Neptune;
                     break;
                 case AppTheme.DarkSide:
-                    ColorScheme = new ColorScheme(Color.FromArgb(45, 45, 45), Color.FromArgb(28, 28, 28));
-                    BackColor = Color.FromArgb(75, 75, 75);
+                    ApplicationColorScheme = ColorSchemeCentral.DarkSide;
                     break;
                 default:
                     break;

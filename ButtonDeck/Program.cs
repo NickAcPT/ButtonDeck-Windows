@@ -33,11 +33,18 @@ namespace ButtonDeck
             ApplicationSettingsManager.LoadSettings();
             DevicePersistManager.LoadDevices();
 
-            ServerThread = new ServerThread();
-            ServerThread.Start();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (ApplicationSettingsManager.Settings.FirstRun) {
+                FirstSetupForm firstRunForm = new FirstSetupForm();
+                Application.Run(firstRunForm);
+                if (!firstRunForm.FinishedSetup) return;
+            }
+
+            ServerThread = new ServerThread();
+            ServerThread.Start();
+
             Application.Run(new MainForm());
             ServerThread.Stop();
             ApplicationSettingsManager.SaveSettings();

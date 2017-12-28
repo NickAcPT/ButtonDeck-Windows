@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ColorSchemePreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorSchemePreviewControl.Designer.cs">
+      <DependentUpon>ColorSchemePreviewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DeckDeviceInformationControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -56,6 +62,21 @@
     </Compile>
     <Compile Include="Forms\FirstSetupForm.Designer.cs">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\IntroPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\IntroPage.Designer.cs">
+      <DependentUpon>IntroPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\PageTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\ThemeSelectionPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\ThemeSelectionPage.Designer.cs">
+      <DependentUpon>ThemeSelectionPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -69,10 +90,24 @@
     <Compile Include="Forms\TemplateFrom.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Misc\ApplicationColorScheme.cs" />
+    <Compile Include="Misc\ColorSchemeCentral.cs" />
     <Compile Include="Misc\DevicesTitlebarButton.cs" />
     <Compile Include="Misc\ServerThread.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ColorSchemePreviewControl.resx">
+      <DependentUpon>ColorSchemePreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirstSetupForm.resx">
+      <DependentUpon>FirstSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirstSetup\IntroPage.resx">
+      <DependentUpon>IntroPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirstSetup\ThemeSelectionPage.resx">
+      <DependentUpon>ThemeSelectionPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
