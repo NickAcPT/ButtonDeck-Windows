@@ -11,6 +11,13 @@ namespace NickAc.Backend.Utils
     public static class ApplicationSettingsManager
     {
         private static AppSettings settings;
+
+        public static AppSettings Settings {
+            get {
+                return settings;
+            }
+        }
+
         private const string SETTINGS_FILE = "settings.xml";
 
         public static void LoadSettings()
@@ -46,6 +53,18 @@ namespace NickAc.Backend.Utils
     [Serializable]
     public class AppSettings
     {
+
+        /// <summary>
+        /// Called to signal to subscribers that the theme was changed.
+        /// </summary>
+        public event EventHandler ColorSchemeChanged;
+        protected virtual void OnColorSchemeChanged(EventArgs e)
+        {
+            EventHandler eh = ColorSchemeChanged;
+
+            eh?.Invoke(this, e);
+        }
+
         public enum AppTheme
         {
             Neptune,
@@ -56,10 +75,14 @@ namespace NickAc.Backend.Utils
         {
             Theme = AppTheme.Neptune;
             FirstRun = true;
+            DeviceName = "";
         }
 
         public AppTheme Theme { get; set; }
 
         public bool FirstRun { get; set; }
+
+        public string DeviceName { get; set; }
+
     }
 }

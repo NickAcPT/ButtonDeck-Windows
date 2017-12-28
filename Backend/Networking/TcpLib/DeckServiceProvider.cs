@@ -54,13 +54,7 @@ namespace NickAc.Backend.Networking.TcpLib
             List<byte> allData = new List<byte>();
             byte[] buffer;
             System.Diagnostics.Debug.WriteLine("AvailiableData: " + state.AvailableData);
-            /*Stopwatch sw = new Stopwatch();
-            sw.Start();
-            while (++countToWait < countToFinal) {
-                continue;
-            }
-            sw.Stop();
-            System.Diagnostics.Debug.WriteLine($"Waited {sw.ElapsedMilliseconds}ms - AvailiableData: {state.AvailableData}");*/
+            
             while (state.AvailableData > 0) {
                 buffer = new byte[1024];
                 state.Read(buffer, 0, 1024);

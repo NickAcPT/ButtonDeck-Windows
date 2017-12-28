@@ -48,8 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\DeckDeviceInformationControl.cs">
+    <Compile Include="Controls\DeckDeviceInformationControl.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetupForm.Designer.cs">
+      <DependentUpon>FirstSetupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -57,8 +63,11 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ShadedPanel.cs">
+    <Compile Include="Controls\ShadedPanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\TemplateFrom.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Misc\DevicesTitlebarButton.cs" />
     <Compile Include="Misc\ServerThread.cs" />

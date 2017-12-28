@@ -16,23 +16,13 @@ using NickAc.Backend.Networking.IO;
 
 namespace ButtonDeck.Forms
 {
-    public partial class MainForm : ModernForm
+    public partial class MainForm : TemplateForm
     {
         public int ConnectedDevices { get => Program.ServerThread.TcpServer.CurrentConnections; }
         public MainForm()
         {
             InitializeComponent();
-            ColorScheme = new ColorScheme(Color.FromArgb(45, 45, 45), Color.FromArgb(28, 28, 28));
-            BackColor = Color.FromArgb(75, 75, 75);
-            panel1.Controls.OfType<Control>().All((c) => {
-                if (c is ModernButton mb) {
-                    mb.Text = string.Empty;
-                    mb.ColorScheme = ColorScheme;
-                }
-                return true;
-            });
-            label1.ForeColor = ColorScheme.SecondaryColor;
-
+           
             TitlebarButtons.Add(new DevicesTitlebarButton(this));
             
             /*byte[] x;
@@ -53,6 +43,20 @@ namespace ButtonDeck.Forms
             }*/
 
 
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            panel1.Controls.OfType<Control>().All((c) => {
+                if (c is ModernButton mb) {
+                    mb.Text = string.Empty;
+                    mb.ColorScheme = ColorScheme;
+                }
+                return true;
+            });
+            label1.ForeColor = ColorScheme.SecondaryColor;
         }
     }
 }
