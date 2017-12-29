@@ -63,6 +63,12 @@
     <Compile Include="Forms\FirstSetupForm.Designer.cs">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FirstSetup\DeviceNamePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FirstSetup\DeviceNamePage.Designer.cs">
+      <DependentUpon>DeviceNamePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstSetup\IntroPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetupForm.resx">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FirstSetup\DeviceNamePage.resx">
+      <DependentUpon>DeviceNamePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetup\IntroPage.resx">
       <DependentUpon>IntroPage.cs</DependentUpon>

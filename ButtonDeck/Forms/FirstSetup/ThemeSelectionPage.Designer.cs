@@ -103,7 +103,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.colorSchemePreviewControl1);
             this.Controls.Add(this.colorSchemePreviewControl2);
             this.Controls.Add(this.label5);
@@ -112,7 +111,6 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "ThemeSelectionPage";
-            this.Size = new System.Drawing.Size(565, 242);
             this.ResumeLayout(false);
             this.PerformLayout();
 

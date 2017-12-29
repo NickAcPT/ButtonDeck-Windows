@@ -15,9 +15,11 @@ namespace ButtonDeck.Forms
     {
         public bool FinishedSetup { get; set; }
         private int currentPage;
+        private PageTemplate currentPageTemplate;
         private List<PageTemplate> setupPages = new List<PageTemplate>() {
             new IntroPage(),
-            new ThemeSelectionPage()
+            new ThemeSelectionPage(),
+            new DeviceNamePage()
         };
 
         public FirstSetupForm()
@@ -34,18 +36,20 @@ namespace ButtonDeck.Forms
 
         public void ChangePage(int pageNumber)
         {
+            if (currentPageTemplate != null && !currentPageTemplate.CanProgress) return;
             if (pageNumber < setupPages.Count) {
                 PageTemplate page = setupPages[pageNumber];
                 if (page != null) {
+                    if (currentPageTemplate != null) currentPageTemplate.SaveProgress();
                     panel1.Controls.Clear();
                     page.Dock = DockStyle.Fill;
                     page.ForeColor = ForeColor;
                     panel1.Controls.Add(page);
-
+                    currentPageTemplate = page;
                     currentPage = pageNumber;
                 }
             }
-            label1.Text = string.Format(label1.Tag.ToString(), currentPage +1, setupPages.Count);
+            label1.Text = string.Format(label1.Tag.ToString(), currentPage + 1, setupPages.Count);
             if (currentPage == setupPages.Count - 1)
                 modernButton1.Text = "Finish";
 
@@ -54,9 +58,10 @@ namespace ButtonDeck.Forms
         private void ModernButton1_Click(object sender, EventArgs e)
         {
 
-            if (currentPage < setupPages.Count - 1)
+            if (currentPage < setupPages.Count - 1) {
                 ChangePage(++currentPage);
-            else {
+                ModifyColorScheme(Controls.OfType<Control>());
+            } else {
                 Close();
             }
         }

@@ -14,12 +14,22 @@ namespace ButtonDeck.Controls
 {
     public partial class ColorSchemePreviewControl : UserControl
     {
-        private void ModifyColorScheme(IEnumerable<Control> cccc)
+        public ColorSchemePreviewControl()
+        {
+            InitializeComponent();
+            Text = "Window Title";
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
+        }
+
+        public void ModifyColorScheme(IEnumerable<Control> cccc)
         {
             cccc.All(c => {
                 ModifyColorScheme(c.Controls.OfType<Control>());
                 try {
                     dynamic cc = c;
+                    cc.Tag = "noColor";
                     cc.ForeColor = AppTheme.ForeColorShaded;
                     cc.ColorScheme = AppTheme;
                     return true;
@@ -27,9 +37,18 @@ namespace ButtonDeck.Controls
                     return true;
                 }
             });
-            Refresh();
+            //Refresh();
+        }
+        private void FixMyChild(IEnumerable<Control> cccc)
+        {
+            cccc.All(c => {
+                FixMyChild(c.Controls.OfType<Control>());
+                c.Tag = this;
+                return true;
+            });
         }
 
+        
         private void HandleClickEvent(IEnumerable<Control> cccc)
         {
             cccc.All(c => {
@@ -51,17 +70,43 @@ namespace ButtonDeck.Controls
         private ApplicationColorScheme _appTheme = ColorSchemeCentral.Neptune;
         private AppTheme _underlyingAppTheme = NickAc.Backend.Utils.AppSettings.AppTheme.Neptune;
 
-        public ColorSchemePreviewControl()
-        {
-            InitializeComponent();
-            Text = "Window Title";
-        }
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             AppTheme = _appTheme;
             HandleClickEvent(Controls.OfType<Control>());
+            FixMyTheme();
+        }
+
+        private void SetVisibility(IEnumerable<Control> ctrls, bool visible)
+        {
+            ctrls.All(c => {
+                SetVisibility(c.Controls.OfType<Control>(), visible);
+                c.Visible = visible;
+                return true; });
+        }
+
+        Image toRender;
+
+        private void FixMyTheme()
+        {
+            toRender = null;
+            SetVisibility(Controls.OfType<Control>(), true);
+            Refresh();
+            Bitmap b = new Bitmap(Width, Height);
+            DrawToBitmap(b, new Rectangle(0, 0, b.Width, b.Height));
+            SetVisibility(Controls.OfType<Control>(), false);
+            toRender = b;
+            Refresh();
+
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (toRender != null) {
+                e.Graphics.DrawImage(toRender, Point.Empty);
+            }
         }
 
         public string DescriptionText {
@@ -84,6 +129,7 @@ namespace ButtonDeck.Controls
                 ModifyColorScheme(Controls.OfType<Control>());
                 titlebarPanel.BackColor = value.PrimaryColor;
                 BackColor = value.BackgroundColor;
+                FixMyTheme();
             }
         }
 

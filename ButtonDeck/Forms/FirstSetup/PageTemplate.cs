@@ -12,6 +12,14 @@ namespace ButtonDeck.Forms.FirstSetup
 {
     public class PageTemplate : UserControl
     {
+
+        public virtual void SaveProgress()
+        {
+
+        }
+
+        public virtual bool CanProgress { get; set; } = true;
+
         public ApplicationColorScheme CurrentTheme {
             get {
                 return ColorSchemeCentral.FromAppTheme(ApplicationSettingsManager.Settings.Theme);
