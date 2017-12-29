@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ButtonDeck.Misc;
+using NickAc.Backend.Utils;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +12,15 @@ namespace ButtonDeck.Forms.FirstSetup
 {
     public class PageTemplate : UserControl
     {
-        public override Color ForeColor { get => base.ForeColor; set { base.ForeColor = value;
+        public ApplicationColorScheme CurrentTheme {
+            get {
+                return ColorSchemeCentral.FromAppTheme(ApplicationSettingsManager.Settings.Theme);
+            }
+        }
+
+        public override Color ForeColor {
+            get => base.ForeColor; set {
+                base.ForeColor = value;
                 FixForeColor(Controls.OfType<Control>());
             }
         }

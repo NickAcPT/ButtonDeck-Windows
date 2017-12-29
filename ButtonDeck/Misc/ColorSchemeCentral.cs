@@ -5,10 +5,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static NickAc.Backend.Utils.AppSettings;
 
 namespace ButtonDeck.Misc
 {
-    public class ColorSchemeCentral
+    public static class ColorSchemeCentral
     {
 
         /// <summary>
@@ -20,6 +21,22 @@ namespace ButtonDeck.Misc
             EventHandler eh = ThemeChanged;
 
             eh?.Invoke(e, EventArgs.Empty);
+        }
+
+        public static ApplicationColorScheme FromAppTheme(AppTheme th)
+        {
+            switch (th) {
+                case AppTheme.Neptune:
+                    return Neptune;
+                    break;
+                case AppTheme.DarkSide:
+                    return DarkSide;
+                    break;
+                default:
+                    //Return Neptune as a fallback theme.
+                    return Neptune;
+                    break;
+            }
         }
 
         public static ApplicationColorScheme Neptune = new ApplicationColorScheme(DefaultColorSchemes.Blue, Color.FromArgb(245, 245, 245));

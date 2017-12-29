@@ -30,6 +30,15 @@ namespace ButtonDeck.Controls
             Refresh();
         }
 
+        private void HandleClickEvent(IEnumerable<Control> cccc)
+        {
+            cccc.All(c => {
+                HandleClickEvent(c.Controls.OfType<Control>());
+                c.Click += (s, e) => InvokeOnClick(this, e);
+                return true;
+            });
+        }
+
         public void Recenter(Control c, bool horizontal = true, bool vertical = true)
         {
             if (c == null) return;
@@ -40,6 +49,7 @@ namespace ButtonDeck.Controls
         }
 
         private ApplicationColorScheme _appTheme = ColorSchemeCentral.Neptune;
+        private AppTheme _underlyingAppTheme = NickAc.Backend.Utils.AppSettings.AppTheme.Neptune;
 
         public ColorSchemePreviewControl()
         {
@@ -51,6 +61,7 @@ namespace ButtonDeck.Controls
         {
             base.OnLoad(e);
             AppTheme = _appTheme;
+            HandleClickEvent(Controls.OfType<Control>());
         }
 
         public string DescriptionText {
@@ -59,6 +70,11 @@ namespace ButtonDeck.Controls
                 label1.Text = value;
                 Recenter(label1, vertical: false);
             }
+        }
+
+        public AppTheme UnderlyingAppTheme {
+            get { return _underlyingAppTheme; }
+            set { _underlyingAppTheme = value; }
         }
 
         public ApplicationColorScheme AppTheme {
