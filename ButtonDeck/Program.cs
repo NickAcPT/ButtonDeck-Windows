@@ -36,6 +36,7 @@ namespace ButtonDeck
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             if (ApplicationSettingsManager.Settings.FirstRun) {
                 FirstSetupForm firstRunForm = new FirstSetupForm();
                 Application.Run(firstRunForm);

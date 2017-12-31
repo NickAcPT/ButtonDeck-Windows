@@ -1,4 +1,5 @@
 ﻿using ButtonDeck.Forms.FirstSetup;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,7 @@ namespace ButtonDeck.Forms
             if (currentPage == setupPages.Count - 1)
                 modernButton1.Text = "Finish";
 
+
         }
 
         private void ModernButton1_Click(object sender, EventArgs e)
@@ -62,6 +64,8 @@ namespace ButtonDeck.Forms
                 ChangePage(++currentPage);
                 ModifyColorScheme(Controls.OfType<Control>());
             } else {
+                if (currentPageTemplate != null) currentPageTemplate.SaveProgress();
+                FinishedSetup = true;
                 Close();
             }
         }

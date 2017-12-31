@@ -263,7 +263,10 @@ namespace NickAc.Backend.Networking.TcpLib
                     try { st._provider.OnDropConnection(st); } catch {
                         //some error in the provider
                     }
-                    st._conn.Shutdown(SocketShutdown.Both);
+                    try {
+                        st._conn.Shutdown(SocketShutdown.Both);
+                    } catch (Exception) {
+                    }
                     st._conn.Close();
                 }
                 _connections.Clear();

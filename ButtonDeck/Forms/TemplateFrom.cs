@@ -24,7 +24,7 @@ namespace ButtonDeck.Forms
             get { return _applicationColorScheme; }
             set {
                 _applicationColorScheme = value;
-                ColorScheme = value;
+                ColorScheme = new ColorScheme(value.PrimaryColor, value.SecondaryColor);
                 BackColor = value.BackgroundColor;
                 Refresh();
             }
@@ -43,12 +43,18 @@ namespace ButtonDeck.Forms
 
         protected override void OnLoad(EventArgs e)
         {
-            if (ApplicationSettingsManager.Settings != null)
+            if (ApplicationSettingsManager.Settings != null) {
                 LoadTheme(ApplicationSettingsManager.Settings.Theme);
+            }
             base.OnLoad(e);
             ModifyColorScheme(Controls.OfType<Control>());
+
         }
-        
+
+        private static Color GetReadableForeColor(Color c)
+        {
+            return (((c.R + c.B + c.G) / 3) > 128) ? Color.Black : Color.White;
+        }
 
         public void ModifyColorScheme(IEnumerable<Control> cccc)
         {
@@ -58,6 +64,10 @@ namespace ButtonDeck.Forms
                 ModifyColorScheme(c.Controls.OfType<Control>());
                 try {
                     dynamic cc = c;
+                    if (c is TextBox) {
+                        cc.BackColor = _applicationColorScheme.BackgroundColor;
+                        cc.ForeColor = GetReadableForeColor(_applicationColorScheme.BackgroundColor);
+                    }
                     cc.ForeColor = _applicationColorScheme.ForeColorShaded;
                     cc.ColorScheme = ColorScheme;
                     return true;

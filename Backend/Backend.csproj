@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,15 +44,18 @@
   <ItemGroup>
     <Compile Include="Networking\Attributes\ArchitectureAttribute.cs" />
     <Compile Include="Networking\Attributes\PacketArchitecture.cs" />
+    <Compile Include="Networking\Implementation\AlternativeHello.cs" />
     <Compile Include="Networking\Implementation\DesktopDisconnectPacket.cs" />
     <Compile Include="Networking\Implementation\DeviceIdentityPacket.cs" />
     <Compile Include="Networking\Implementation\HeathbeatPacket.cs" />
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
+    <Compile Include="Networking\Implementation\SingleSlotImageChangePacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
     <Compile Include="Networking\IO\DataInputStream.cs" />
     <Compile Include="Networking\IO\DataOutputStream.cs" />
     <Compile Include="Networking\TcpLib\DeckServiceProvider.cs" />
     <Compile Include="Networking\TcpLib\TcpLib.cs" />
+    <Compile Include="Objects\DeckImage.cs" />
     <Compile Include="Objects\IDeckDevice.cs" />
     <Compile Include="Objects\IDeckFolder.cs" />
     <Compile Include="Objects\IDeckItem.cs" />

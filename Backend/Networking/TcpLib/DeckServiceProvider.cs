@@ -21,6 +21,8 @@ namespace NickAc.Backend.Networking.TcpLib
             RegisterNetworkPacket(new HelloPacket());
             RegisterNetworkPacket(new DeviceIdentityPacket());
             RegisterNetworkPacket(new HeartbeatPacket());
+            RegisterNetworkPacket(new DesktopDisconnectPacket());
+            RegisterNetworkPacket(new AlternativeHello());
         }
 
         public static void RegisterNetworkPacket(INetworkPacket packet)

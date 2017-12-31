@@ -78,7 +78,11 @@ namespace ButtonDeck.Misc
 
         }
 
-        public int CurrentConnections { get => Program.ServerThread.TcpServer?.CurrentConnections ?? 0; }
+        public int CurrentConnections {
+            get {
+                return Program.ServerThread.TcpServer?.Connections.OfType<ConnectionState>().Select(m=>m.ConnectionGuid).Where(DevicePersistManager.IsDeviceOnline).Count() ?? 0;
+            }
+        }
         public override string Text {
             get {
                 Control control2 = _frm.Controls["label1"];

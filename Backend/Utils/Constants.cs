@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Utils
 {
-    public class Constants
+    public static class Constants
     {
-        public static int PROTOCOL_VERSION = 6;
+        public static int PROTOCOL_VERSION = 8;
     }
 }

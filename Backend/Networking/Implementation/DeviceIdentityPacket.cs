@@ -46,6 +46,8 @@ namespace NickAc.Backend.Networking.Implementation
 
             DevicePersistManager.PersistDevice(deckDevice);
             DevicePersistManager.ChangeConnectedState(state, deckDevice);
+
+            state.SendPacket(new SingleSlotImageChangePacket(new DeckImage(new System.Drawing.Bitmap("streamdeck_key.png"))) { ImageSlot = 1 });
         }
 
 

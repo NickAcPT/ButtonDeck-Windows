@@ -99,6 +99,13 @@ namespace NickAc.Backend.Networking.IO
             IncCount(len);
         }
 
+
+        public void Write(byte[] b)
+        {
+            @out.Write(b);
+            IncCount(b.Length);
+        }
+
         /**
         * Flushes this data output stream. This forces any buffered output
         * bytes to be written out to the stream.
