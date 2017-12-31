@@ -45,6 +45,11 @@ namespace NickAc.Backend.Utils
             return deckDevicesFromConnection.Values.Any(m => m.DeviceGuid == device);
         }
 
+        public static bool IsDeviceConnected(Guid device)
+        {
+            return deckDevicesFromConnection.Keys.Contains(device);
+        }
+
         public static bool IsDevicePersisted(IDeckDevice device)
         {
             return IsDevicePersisted(device.DeviceGuid);

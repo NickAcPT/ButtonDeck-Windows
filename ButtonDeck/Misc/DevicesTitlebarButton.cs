@@ -63,7 +63,7 @@ namespace ButtonDeck.Misc
                     {
                         DeckDevice = device,
                         Size = controlFinalSize,
-                        ForeColor = _frm.ColorScheme.ForegroundColor,
+                        ForeColor = _frm.ColorScheme.SecondaryColor,
                         Dock = DockStyle.Top
                     };
                     frm.Controls.Add(ctrl);
@@ -80,7 +80,7 @@ namespace ButtonDeck.Misc
 
         public int CurrentConnections {
             get {
-                return Program.ServerThread.TcpServer?.Connections.OfType<ConnectionState>().Select(m=>m.ConnectionGuid).Where(DevicePersistManager.IsDeviceOnline).Count() ?? 0;
+                return Program.ServerThread.TcpServer?.Connections.OfType<ConnectionState>().Select(m => m.ConnectionGuid).Count(DevicePersistManager.IsDeviceConnected) ?? 0;
             }
         }
         public override string Text {
