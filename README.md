@@ -1,5 +1,5 @@
 # ButtonDeck-Windows
-A cheap replacement for the StreamDeck by Elgato.
+An open-source replacement for the StreamDeck by Elgato.
 
 This project uses [TcpLib](https://www.codeproject.com/Articles/13232/A-very-basic-TCP-server-written-in-C) by [edrazy](https://www.codeproject.com/Members/edrazy) 
 
