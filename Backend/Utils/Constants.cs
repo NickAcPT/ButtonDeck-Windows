@@ -8,6 +8,7 @@ namespace NickAc.Backend.Utils
 {
     public static class Constants
     {
-        public static int PROTOCOL_VERSION = 8;
+        public const int PORT_NUMBER = 5080;
+        public const int PROTOCOL_VERSION = 9;
     }
 }

@@ -45,6 +45,7 @@
             this.modernButton11 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.modernButton6 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.shadedPanel1 = new ButtonDeck.Forms.ShadedPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.appBar1.IconVisible = false;
             this.appBar1.Location = new System.Drawing.Point(1, 33);
             this.appBar1.Name = "appBar1";
-            this.appBar1.Size = new System.Drawing.Size(769, 50);
+            this.appBar1.Size = new System.Drawing.Size(875, 50);
             this.appBar1.TabIndex = 0;
             this.appBar1.Text = "appBar1";
             this.appBar1.TextFont = new System.Drawing.Font("Segoe UI", 14F);
@@ -106,7 +107,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panel1.Controls.Add(this.modernButton15);
             this.panel1.Controls.Add(this.modernButton10);
             this.panel1.Controls.Add(this.modernButton14);
@@ -122,7 +123,7 @@
             this.panel1.Controls.Add(this.modernButton6);
             this.panel1.Controls.Add(this.modernButton2);
             this.panel1.Controls.Add(this.modernButton3);
-            this.panel1.Location = new System.Drawing.Point(112, 103);
+            this.panel1.Location = new System.Drawing.Point(51, 98);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(546, 333);
             this.panel1.TabIndex = 2;
@@ -222,7 +223,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 196);
+            this.label1.Location = new System.Drawing.Point(226, 191);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(424, 69);
             this.label1.TabIndex = 3;
@@ -230,17 +231,27 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Visible = false;
             // 
+            // shadedPanel1
+            // 
+            this.shadedPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.shadedPanel1.Location = new System.Drawing.Point(620, 83);
+            this.shadedPanel1.Name = "shadedPanel1";
+            this.shadedPanel1.Size = new System.Drawing.Size(256, 366);
+            this.shadedPanel1.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 460);
+            this.ClientSize = new System.Drawing.Size(877, 450);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
+            this.Controls.Add(this.shadedPanel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.appBar1);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MinimumSize = new System.Drawing.Size(770, 450);
             this.Name = "MainForm";
             this.Text = "ButtonDeck";
             this.panel1.ResumeLayout(false);
@@ -268,5 +279,6 @@
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton11;
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton6;
         private System.Windows.Forms.Label label1;
+        private ShadedPanel shadedPanel1;
     }
 }

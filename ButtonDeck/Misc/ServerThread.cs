@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Networking.TcpLib;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace ButtonDeck.Misc
 {
     public class ServerThread
     {
-        const int PORT_NUMBER = 5080;
         readonly Thread baseThread;
 
         public Thread BaseThread {
@@ -39,7 +39,7 @@ namespace ButtonDeck.Misc
 
         private void RunServer()
         {
-            tcpServer = new TcpServer(new DeckServiceProvider(), PORT_NUMBER);
+            tcpServer = new TcpServer(new DeckServiceProvider(), Constants.PORT_NUMBER);
             tcpServer.Start();
         }
 

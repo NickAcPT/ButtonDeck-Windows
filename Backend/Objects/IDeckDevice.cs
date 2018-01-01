@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace NickAc.Backend.Objects
 {
@@ -23,5 +24,7 @@ namespace NickAc.Backend.Objects
         public Guid DeviceGuid { get; set; }
         public String DeviceName { get; set; }
         public IDeckFolder MainFolder { get; set; }
+        [XmlIgnore]
+        public IDeckFolder CurrentFolder { get; set; }
     }
 }

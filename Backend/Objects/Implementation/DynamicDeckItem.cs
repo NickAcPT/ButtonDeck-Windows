@@ -9,13 +9,6 @@ namespace NickAc.Backend.Objects.Implementation
     [Serializable]
     public class DynamicDeckItem : IDeckItem
     {
-        enum DeckItemType
-        {
-            Process,
-            HotkeyToggle,
-            HotKeyPress
-        }
-
-        DeckItemType ItemType { get; set; }
+        public AbstractDeckAction DeckAction { get; set; }
     }
 }

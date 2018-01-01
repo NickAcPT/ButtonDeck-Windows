@@ -73,9 +73,6 @@ namespace ButtonDeck.Misc
             }
 
             frm.Show();
-
-
-
         }
 
         public int CurrentConnections {
