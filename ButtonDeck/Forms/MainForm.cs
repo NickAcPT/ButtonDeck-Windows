@@ -17,34 +17,20 @@ using NickAc.Backend.Utils;
 using ButtonDeck.Properties;
 using NickAc.Backend.Objects;
 using static NickAc.Backend.Objects.AbstractDeckAction;
+using ButtonDeck.Controls;
 
 namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
     {
+        public IDeckDevice CurrentDevice { get; set; }
         public int ConnectedDevices { get => Program.ServerThread.TcpServer.CurrentConnections; }
         public MainForm()
         {
             InitializeComponent();
 
             TitlebarButtons.Add(new DevicesTitlebarButton(this));
-
-            /*byte[] x;
-            using (MemoryStream ms = new MemoryStream()) {
-                using (DataOutputStream writer = new DataOutputStream(ms)) {
-                    writer.WriteLong(2);
-                    writer.WriteUTF("-");
-                    writer.WriteUTF("Google Devicwiowfuhfwwiuf");
-                    x = ms.ToArray();
-                }
-            }
-            using (MemoryStream ms = new MemoryStream(x)) {
-                using (DataInputStream reader = new DataInputStream(ms)) {
-                    MessageBox.Show("" + reader.ReadLong());
-                    MessageBox.Show("" + reader.ReadUTF());
-                    MessageBox.Show("" + reader.ReadUTF());
-                }
-            }*/
+            
 
 
         }
@@ -52,6 +38,8 @@ namespace ButtonDeck.Forms
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            DevicePersistManager.DeviceConnected += DevicePersistManager_DeviceConnected;
+
             var image = ColorScheme.ForegroundColor == Color.White ? Resources.ic_settings_white_48dp_2x : Resources.ic_settings_black_48dp_2x;
             AppAction item = new AppAction()
             {
@@ -66,6 +54,13 @@ namespace ButtonDeck.Forms
             GenerateSidebar(shadedPanel1);
             ApplySidebarTheme(shadedPanel1);
             label1.ForeColor = ColorScheme.SecondaryColor;
+        }
+
+        private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
+        {
+            if (CurrentDevice == null) {
+                CurrentDevice = e.Device;
+            }
         }
 
         private void GenerateSidebar(Control parent)
@@ -93,7 +88,7 @@ namespace ButtonDeck.Forms
                         Height = TextRenderer.MeasureText(enumItem.ToString(), categoryFont).Height
                     });
                     foreach (var i2 in enumItems) {
-                        toAdd.Add(new Label()
+                        Label item = new Label()
                         {
                             Padding = itemPadding,
                             TextAlign = ContentAlignment.MiddleLeft,
@@ -102,7 +97,14 @@ namespace ButtonDeck.Forms
                             Text = i2.GetActionName(),
                             Height = TextRenderer.MeasureText(i2.GetActionName(), itemFont).Height,
                             Tag = i2,
-                        });
+                        };
+
+                        item.MouseDown += (s, ee) => {
+                            if (item.Tag is AbstractDeckAction act)
+                                item.DoDragDrop(new DeckActionHelper(act), DragDropEffects.Copy);
+                        };
+                        toAdd.Add(item);
+
                     }
                 }
 
@@ -118,7 +120,21 @@ namespace ButtonDeck.Forms
         {
             ApplicationColorScheme appTheme = ColorSchemeCentral.FromAppTheme(ApplicationSettingsManager.Settings.Theme);
             parent.Controls.OfType<Control>().All((c) => {
-                if (c is ModernButton mb) {
+                if (c is ImageModernButton mb) {
+                    mb.AllowDrop = true;
+                    mb.DragEnter += (s, ee) => {
+                        if (ee.Data.GetDataPresent(typeof(DeckActionHelper)))
+                            ee.Effect = DragDropEffects.Copy;
+                    };
+                    mb.DragDrop += (s, ee) => {
+                        if (ee.Effect == DragDropEffects.Copy) {
+                            if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
+                                mb.Tag = action.DeckAction;
+                                mb.Image = Resources.img_item_default;
+                            }
+                        }
+
+                    };
                     mb.Text = string.Empty;
                     mb.ColorScheme = ColorScheme;
                 }

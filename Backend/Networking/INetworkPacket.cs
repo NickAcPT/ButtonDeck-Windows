@@ -14,6 +14,17 @@ namespace NickAc.Backend.Networking
 {
     public static class NetworkPacketExtensions
     {
+
+        public static bool IsStillFunctioning(this ConnectionState con)
+        {
+            try {
+                var rep = con.RemoteEndPoint;
+                return true;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         public static bool TryHeartbeat(this ConnectionState con)
         {
             try {

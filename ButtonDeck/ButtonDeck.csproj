@@ -72,6 +72,9 @@
     <Compile Include="Controls\DeckDeviceInformationControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ImageModernButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\FirstSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +184,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_default.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

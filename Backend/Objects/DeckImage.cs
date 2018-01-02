@@ -11,6 +11,8 @@ namespace NickAc.Backend.Objects
 {
     public class DeckImage
     {
+        private const int MAX_IMAGE_SIZE = 350;
+
         public static byte[] ImageToByte(Image img)
         {
             byte[] byteArray = null;
@@ -27,7 +29,7 @@ namespace NickAc.Backend.Objects
         public DeckImage(Bitmap bmp)
         {
             Bitmap = bmp;
-            InternalBitmap = ImageToByte(bmp);
+            InternalBitmap = ImageToByte(bmp.Width > MAX_IMAGE_SIZE ? new Bitmap(bmp, MAX_IMAGE_SIZE, MAX_IMAGE_SIZE) : bmp);
         }
         public DeckImage(byte[] bmp)
         {

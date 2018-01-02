@@ -46,14 +46,15 @@ namespace NickAc.Backend.Networking.Implementation
 
             DevicePersistManager.PersistDevice(deckDevice);
             DevicePersistManager.ChangeConnectedState(state, deckDevice);
-
+            /*
             var deckImage = new DeckImage(new System.Drawing.Bitmap("streamdeck_key.png"));
             var packet = new SlotImageChangeChunkPacket();
             packet.AddToQueue(1, deckImage);
             packet.AddToQueue(3, deckImage);
             packet.AddToQueue(5, deckImage);
             packet.AddToQueue(15, deckImage);
-            state.SendPacket(packet);
+            state.SendPacket(packet);*/
+            DevicePersistManager.OnDeviceConnected(this, deckDevice);
         }
 
 

@@ -14,6 +14,45 @@ namespace NickAc.Backend.Utils
         private const string DEVICES_FILENAME = "devices.xml";
         private static IDictionary<Guid, IDeckDevice> deckDevicesFromConnection = new Dictionary<Guid, IDeckDevice>();
 
+        public static IDictionary<Guid, IDeckDevice> DeckDevicesFromConnection {
+            get {
+                return deckDevicesFromConnection;
+            }
+        }
+
+        public class DeviceEventArgs : EventArgs
+        {
+            public DeviceEventArgs(IDeckDevice device)
+            {
+                Device = device;
+            }
+
+            public IDeckDevice Device { get; set; }
+        }
+
+        /// <summary>
+        /// Called to signal to subscribers that a device was connected
+        /// </summary>
+        public static event EventHandler<DeviceEventArgs> DeviceConnected;
+        public static void OnDeviceConnected(object sender, IDeckDevice e)
+        {
+            var eh = DeviceConnected;
+
+            eh?.Invoke(sender, new DeviceEventArgs(e));
+        }
+
+        /// <summary>
+        /// Called to signal to subscribers that a device was disconnected
+        /// </summary>
+        public static event EventHandler<DeviceEventArgs> DeviceDisconnected;
+        public static void OnDeviceDisconnected(object sender, IDeckDevice e)
+        {
+            var eh = DeviceDisconnected;
+
+            eh?.Invoke(sender, new DeviceEventArgs(e));
+        }
+
+
         public static ICollection<Guid> GuidsFromConnections {
             get {
                 return deckDevicesFromConnection.Keys;
@@ -27,10 +66,15 @@ namespace NickAc.Backend.Utils
                 return persistedDevices;
             }
         }
-
+        
         public static Guid GetConnectionGuidFromDeckDevice(IDeckDevice device)
         {
             return deckDevicesFromConnection.FirstOrDefault(m => m.Value.DeviceGuid == device.DeviceGuid).Key;
+        }
+
+        public static IDeckDevice GetDeckDeviceFromConnectionGuid(Guid connection)
+        {
+            return deckDevicesFromConnection.FirstOrDefault(m => m.Key == connection).Value;
         }
 
 
@@ -71,6 +115,10 @@ namespace NickAc.Backend.Utils
 
         public static void RemoveConnectionState(ConnectionState state)
         {
+            if (deckDevicesFromConnection.Keys.Contains(state.ConnectionGuid)) {
+                var device = GetDeckDeviceFromConnectionGuid(state.ConnectionGuid);
+                OnDeviceDisconnected(new object(), device);
+            }
             deckDevicesFromConnection.Remove(state.ConnectionGuid);
         }
 
