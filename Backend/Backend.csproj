@@ -70,6 +70,7 @@
     <Compile Include="Utils\DeckActionHelper.cs" />
     <Compile Include="Utils\DevicePersistManager.cs" />
     <Compile Include="Utils\ReflectiveEnumerator.cs" />
+    <Compile Include="Utils\SerializableDictionary.cs" />
     <Compile Include="Utils\XMLUtils.cs" />
   </ItemGroup>
   <ItemGroup />

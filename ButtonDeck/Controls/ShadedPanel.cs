@@ -12,7 +12,7 @@ namespace ButtonDeck.Forms
 {
     class ShadedPanel : Panel
     {
-        bool hasPainted = false;
+        bool hasPainted;
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

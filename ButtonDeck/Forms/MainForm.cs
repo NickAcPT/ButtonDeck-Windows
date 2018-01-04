@@ -18,6 +18,10 @@ using ButtonDeck.Properties;
 using NickAc.Backend.Objects;
 using static NickAc.Backend.Objects.AbstractDeckAction;
 using ButtonDeck.Controls;
+using NickAc.Backend.Networking.Implementation;
+using NickAc.Backend.Networking;
+using NickAc.Backend.Objects.Implementation;
+using System.Drawing.Imaging;
 
 namespace ButtonDeck.Forms
 {
@@ -30,8 +34,6 @@ namespace ButtonDeck.Forms
             InitializeComponent();
 
             TitlebarButtons.Add(new DevicesTitlebarButton(this));
-            
-
 
         }
 
@@ -40,6 +42,7 @@ namespace ButtonDeck.Forms
             base.OnLoad(e);
             DevicePersistManager.DeviceConnected += DevicePersistManager_DeviceConnected;
 
+            DevicePersistManager.DeviceDisconnected += DevicePersistManager_DeviceDisconnected;
             var image = ColorScheme.ForegroundColor == Color.White ? Resources.ic_settings_white_48dp_2x : Resources.ic_settings_black_48dp_2x;
             AppAction item = new AppAction()
             {
@@ -53,15 +56,54 @@ namespace ButtonDeck.Forms
             ApplyTheme(panel1);
             GenerateSidebar(shadedPanel1);
             ApplySidebarTheme(shadedPanel1);
+            shadedPanel2.Hide();
+            shadedPanel1.Hide();
+
             label1.ForeColor = ColorScheme.SecondaryColor;
+        }
+
+        private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
+        {
+            shadedPanel2.Hide();
+            shadedPanel1.Hide();
         }
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
+            shadedPanel2.Hide();
+            shadedPanel1.Show();
             if (CurrentDevice == null) {
                 CurrentDevice = e.Device;
+                List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
+                foreach (var item in items) {
+                    //This is when it loads.
+                    //It will load from the persisted device.
+
+                    bool isFolder = item is IDeckFolder;
+                    ImageModernButton control = Controls.Find("modernButton" + e.Device.MainFolder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
+                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                    var seri = image.BitmapSerialized;
+                    control.NormalImage = image.Bitmap;
+                    //control.Refresh();
+                    if (item is DynamicDeckItem deckI)
+                        control.Tag = deckI;
+                }
+            }
+            var con = e.Device.GetConnection();
+            if (con != null) {
+                var packet = new SlotImageChangeChunkPacket();
+                List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
+                foreach (var item in items) {
+                    bool isFolder = item is IDeckFolder;
+                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                    var seri = image.BitmapSerialized;
+
+                    packet.AddToQueue(e.Device.MainFolder.GetItemIndex(item), image);
+                }
+                con.SendPacket(packet);
             }
         }
+
 
         private void GenerateSidebar(Control parent)
         {
@@ -116,6 +158,13 @@ namespace ButtonDeck.Forms
 
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            //Start saving stuff
+
+        }
+
         private void ApplyTheme(Control parent)
         {
             ApplicationColorScheme appTheme = ColorSchemeCentral.FromAppTheme(ApplicationSettingsManager.Settings.Theme);
@@ -129,7 +178,10 @@ namespace ButtonDeck.Forms
                     mb.DragDrop += (s, ee) => {
                         if (ee.Effect == DragDropEffects.Copy) {
                             if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
-                                mb.Tag = action.DeckAction;
+                                mb.Tag = new DynamicDeckItem
+                                {
+                                    DeckAction = action.DeckAction
+                                };
                                 mb.Image = Resources.img_item_default;
                             }
                         }
@@ -159,5 +211,59 @@ namespace ButtonDeck.Forms
             });
         }
 
+        private void ItemButton_Click(object sender, EventArgs e)
+        {
+            if (sender is ImageModernButton mb) {
+                if (mb.Tag != null && mb.Tag is IDeckItem item) {
+                    if (item is IDeckFolder) {
+                        //TODO: Require two clicks
+                        return;
+                    }
+                    imageModernButton1.Origin = mb;
+                    shadedPanel2.Show();
+                } else {
+                    Buttons_Unfocus(sender, e);
+                }
+            }
+        }
+
+
+        private void Buttons_Unfocus(object sender, EventArgs e)
+        {
+            shadedPanel2.Hide();
+        }
+
+        private void ImageModernButton1_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog dlg = new OpenFileDialog()
+            {
+                Filter = ""
+            };
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            string sep = string.Empty;
+
+            foreach (var c in codecs) {
+                string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                dlg.Filter = String.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, codecName, c.FilenameExtension.ToLower());
+                sep = "|";
+            }
+
+            dlg.Filter = String.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, "All Files", "*.*");
+
+            dlg.DefaultExt = "png"; // Default file extension 
+
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                //We have an image file.
+                //Load as bitmap and replace DeckImage
+                try {
+                    Bitmap bmp = new Bitmap(dlg.FileName);
+                    imageModernButton1.Image = bmp;
+                } catch (Exception) {
+                }
+            }
+
+        }
     }
 }

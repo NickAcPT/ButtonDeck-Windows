@@ -108,6 +108,7 @@ namespace NickAc.Backend.Utils
         {
             if (IsDevicePersisted(device)) {
                 device.DeviceName = PersistedDevices.First(m => m.DeviceGuid == device.DeviceGuid).DeviceName;
+                device.MainFolder = PersistedDevices.First(m => m.DeviceGuid == device.DeviceGuid).MainFolder;
                 PersistedDevices.RemoveAll(m => m.DeviceGuid == device.DeviceGuid);
             }
             PersistedDevices.Add(device);

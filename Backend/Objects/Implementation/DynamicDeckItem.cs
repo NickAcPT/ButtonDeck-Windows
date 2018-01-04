@@ -9,6 +9,12 @@ namespace NickAc.Backend.Objects.Implementation
     [Serializable]
     public class DynamicDeckItem : IDeckItem
     {
+        public DeckImage DeckImage { get; set; }
         public AbstractDeckAction DeckAction { get; set; }
+
+        public override DeckImage GetItemImage()
+        {
+            return DeckImage;
+        }
     }
 }

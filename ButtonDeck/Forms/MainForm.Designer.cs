@@ -38,17 +38,21 @@ namespace ButtonDeck.Forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.modernButton15 = new ButtonDeck.Controls.ImageModernButton();
             this.modernButton10 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton14 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton9 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton13 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton8 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton12 = new ButtonDeck.Controls.ImageModernButton();
-            this.modernButton7 = new ButtonDeck.Controls.ImageModernButton();
             this.modernButton11 = new ButtonDeck.Controls.ImageModernButton();
             this.modernButton6 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton14 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton9 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton12 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton7 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton13 = new ButtonDeck.Controls.ImageModernButton();
+            this.modernButton8 = new ButtonDeck.Controls.ImageModernButton();
             this.label1 = new System.Windows.Forms.Label();
             this.shadedPanel1 = new ButtonDeck.Forms.ShadedPanel();
+            this.shadedPanel2 = new ButtonDeck.Forms.ShadedPanel();
+            this.imageModernButton1 = new ButtonDeck.Controls.ImageModernButton();
             this.panel1.SuspendLayout();
+            this.shadedPanel1.SuspendLayout();
+            this.shadedPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // appBar1
@@ -64,168 +68,229 @@ namespace ButtonDeck.Forms
             // 
             // modernButton1
             // 
+            this.modernButton1.Image = null;
             this.modernButton1.Location = new System.Drawing.Point(5, 5);
             this.modernButton1.Name = "modernButton1";
+            this.modernButton1.NormalImage = null;
+            this.modernButton1.Origin = null;
             this.modernButton1.Size = new System.Drawing.Size(100, 100);
             this.modernButton1.TabIndex = 1;
             this.modernButton1.Text = "modernButton1";
             this.modernButton1.UseVisualStyleBackColor = true;
+            this.modernButton1.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton2
             // 
+            this.modernButton2.Image = null;
             this.modernButton2.Location = new System.Drawing.Point(114, 5);
             this.modernButton2.Name = "modernButton2";
+            this.modernButton2.NormalImage = null;
+            this.modernButton2.Origin = null;
             this.modernButton2.Size = new System.Drawing.Size(100, 100);
             this.modernButton2.TabIndex = 1;
             this.modernButton2.Text = "modernButton1";
             this.modernButton2.UseVisualStyleBackColor = true;
+            this.modernButton2.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton3
             // 
+            this.modernButton3.Image = null;
             this.modernButton3.Location = new System.Drawing.Point(223, 5);
             this.modernButton3.Name = "modernButton3";
+            this.modernButton3.NormalImage = null;
+            this.modernButton3.Origin = null;
             this.modernButton3.Size = new System.Drawing.Size(100, 100);
             this.modernButton3.TabIndex = 1;
             this.modernButton3.Text = "modernButton1";
             this.modernButton3.UseVisualStyleBackColor = true;
+            this.modernButton3.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton4
             // 
+            this.modernButton4.Image = null;
             this.modernButton4.Location = new System.Drawing.Point(332, 5);
             this.modernButton4.Name = "modernButton4";
+            this.modernButton4.NormalImage = null;
+            this.modernButton4.Origin = null;
             this.modernButton4.Size = new System.Drawing.Size(100, 100);
             this.modernButton4.TabIndex = 1;
             this.modernButton4.Text = "modernButton1";
             this.modernButton4.UseVisualStyleBackColor = true;
+            this.modernButton4.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton5
             // 
+            this.modernButton5.Image = null;
             this.modernButton5.Location = new System.Drawing.Point(441, 5);
             this.modernButton5.Name = "modernButton5";
+            this.modernButton5.NormalImage = null;
+            this.modernButton5.Origin = null;
             this.modernButton5.Size = new System.Drawing.Size(100, 100);
             this.modernButton5.TabIndex = 1;
             this.modernButton5.Text = "modernButton1";
             this.modernButton5.UseVisualStyleBackColor = true;
+            this.modernButton5.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panel1.Controls.Add(this.modernButton15);
             this.panel1.Controls.Add(this.modernButton10);
+            this.panel1.Controls.Add(this.modernButton11);
+            this.panel1.Controls.Add(this.modernButton6);
             this.panel1.Controls.Add(this.modernButton14);
-            this.panel1.Controls.Add(this.modernButton9);
-            this.panel1.Controls.Add(this.modernButton13);
             this.panel1.Controls.Add(this.modernButton5);
-            this.panel1.Controls.Add(this.modernButton8);
+            this.panel1.Controls.Add(this.modernButton9);
             this.panel1.Controls.Add(this.modernButton12);
             this.panel1.Controls.Add(this.modernButton1);
             this.panel1.Controls.Add(this.modernButton7);
-            this.panel1.Controls.Add(this.modernButton11);
+            this.panel1.Controls.Add(this.modernButton13);
             this.panel1.Controls.Add(this.modernButton4);
-            this.panel1.Controls.Add(this.modernButton6);
+            this.panel1.Controls.Add(this.modernButton8);
             this.panel1.Controls.Add(this.modernButton2);
             this.panel1.Controls.Add(this.modernButton3);
-            this.panel1.Location = new System.Drawing.Point(51, 126);
+            this.panel1.Location = new System.Drawing.Point(34, 123);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(546, 333);
             this.panel1.TabIndex = 2;
+            this.panel1.Click += new System.EventHandler(this.Buttons_Unfocus);
             // 
             // modernButton15
             // 
+            this.modernButton15.Image = null;
             this.modernButton15.Location = new System.Drawing.Point(441, 227);
             this.modernButton15.Name = "modernButton15";
+            this.modernButton15.NormalImage = null;
+            this.modernButton15.Origin = null;
             this.modernButton15.Size = new System.Drawing.Size(100, 100);
             this.modernButton15.TabIndex = 1;
             this.modernButton15.Text = "modernButton1";
             this.modernButton15.UseVisualStyleBackColor = true;
+            this.modernButton15.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton10
             // 
+            this.modernButton10.Image = null;
             this.modernButton10.Location = new System.Drawing.Point(441, 116);
             this.modernButton10.Name = "modernButton10";
+            this.modernButton10.NormalImage = null;
+            this.modernButton10.Origin = null;
             this.modernButton10.Size = new System.Drawing.Size(100, 100);
             this.modernButton10.TabIndex = 1;
             this.modernButton10.Text = "modernButton1";
             this.modernButton10.UseVisualStyleBackColor = true;
-            // 
-            // modernButton14
-            // 
-            this.modernButton14.Location = new System.Drawing.Point(5, 227);
-            this.modernButton14.Name = "modernButton14";
-            this.modernButton14.Size = new System.Drawing.Size(100, 100);
-            this.modernButton14.TabIndex = 1;
-            this.modernButton14.Text = "modernButton1";
-            this.modernButton14.UseVisualStyleBackColor = true;
-            // 
-            // modernButton9
-            // 
-            this.modernButton9.Location = new System.Drawing.Point(5, 116);
-            this.modernButton9.Name = "modernButton9";
-            this.modernButton9.Size = new System.Drawing.Size(100, 100);
-            this.modernButton9.TabIndex = 1;
-            this.modernButton9.Text = "modernButton1";
-            this.modernButton9.UseVisualStyleBackColor = true;
-            // 
-            // modernButton13
-            // 
-            this.modernButton13.Location = new System.Drawing.Point(332, 227);
-            this.modernButton13.Name = "modernButton13";
-            this.modernButton13.Size = new System.Drawing.Size(100, 100);
-            this.modernButton13.TabIndex = 1;
-            this.modernButton13.Text = "modernButton1";
-            this.modernButton13.UseVisualStyleBackColor = true;
-            // 
-            // modernButton8
-            // 
-            this.modernButton8.Location = new System.Drawing.Point(332, 116);
-            this.modernButton8.Name = "modernButton8";
-            this.modernButton8.Size = new System.Drawing.Size(100, 100);
-            this.modernButton8.TabIndex = 1;
-            this.modernButton8.Text = "modernButton1";
-            this.modernButton8.UseVisualStyleBackColor = true;
-            // 
-            // modernButton12
-            // 
-            this.modernButton12.Location = new System.Drawing.Point(114, 227);
-            this.modernButton12.Name = "modernButton12";
-            this.modernButton12.Size = new System.Drawing.Size(100, 100);
-            this.modernButton12.TabIndex = 1;
-            this.modernButton12.Text = "modernButton1";
-            this.modernButton12.UseVisualStyleBackColor = true;
-            // 
-            // modernButton7
-            // 
-            this.modernButton7.Location = new System.Drawing.Point(114, 116);
-            this.modernButton7.Name = "modernButton7";
-            this.modernButton7.Size = new System.Drawing.Size(100, 100);
-            this.modernButton7.TabIndex = 1;
-            this.modernButton7.Text = "modernButton1";
-            this.modernButton7.UseVisualStyleBackColor = true;
+            this.modernButton10.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton11
             // 
-            this.modernButton11.Location = new System.Drawing.Point(223, 227);
+            this.modernButton11.Image = null;
+            this.modernButton11.Location = new System.Drawing.Point(5, 227);
             this.modernButton11.Name = "modernButton11";
+            this.modernButton11.NormalImage = null;
+            this.modernButton11.Origin = null;
             this.modernButton11.Size = new System.Drawing.Size(100, 100);
             this.modernButton11.TabIndex = 1;
             this.modernButton11.Text = "modernButton1";
             this.modernButton11.UseVisualStyleBackColor = true;
+            this.modernButton11.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // modernButton6
             // 
-            this.modernButton6.Location = new System.Drawing.Point(223, 116);
+            this.modernButton6.Image = null;
+            this.modernButton6.Location = new System.Drawing.Point(5, 116);
             this.modernButton6.Name = "modernButton6";
+            this.modernButton6.NormalImage = null;
+            this.modernButton6.Origin = null;
             this.modernButton6.Size = new System.Drawing.Size(100, 100);
             this.modernButton6.TabIndex = 1;
             this.modernButton6.Text = "modernButton1";
             this.modernButton6.UseVisualStyleBackColor = true;
+            this.modernButton6.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton14
+            // 
+            this.modernButton14.Image = null;
+            this.modernButton14.Location = new System.Drawing.Point(332, 227);
+            this.modernButton14.Name = "modernButton14";
+            this.modernButton14.NormalImage = null;
+            this.modernButton14.Origin = null;
+            this.modernButton14.Size = new System.Drawing.Size(100, 100);
+            this.modernButton14.TabIndex = 1;
+            this.modernButton14.Text = "modernButton1";
+            this.modernButton14.UseVisualStyleBackColor = true;
+            this.modernButton14.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton9
+            // 
+            this.modernButton9.Image = null;
+            this.modernButton9.Location = new System.Drawing.Point(332, 116);
+            this.modernButton9.Name = "modernButton9";
+            this.modernButton9.NormalImage = null;
+            this.modernButton9.Origin = null;
+            this.modernButton9.Size = new System.Drawing.Size(100, 100);
+            this.modernButton9.TabIndex = 1;
+            this.modernButton9.Text = "modernButton1";
+            this.modernButton9.UseVisualStyleBackColor = true;
+            this.modernButton9.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton12
+            // 
+            this.modernButton12.Image = null;
+            this.modernButton12.Location = new System.Drawing.Point(114, 227);
+            this.modernButton12.Name = "modernButton12";
+            this.modernButton12.NormalImage = null;
+            this.modernButton12.Origin = null;
+            this.modernButton12.Size = new System.Drawing.Size(100, 100);
+            this.modernButton12.TabIndex = 1;
+            this.modernButton12.Text = "modernButton1";
+            this.modernButton12.UseVisualStyleBackColor = true;
+            this.modernButton12.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton7
+            // 
+            this.modernButton7.Image = null;
+            this.modernButton7.Location = new System.Drawing.Point(114, 116);
+            this.modernButton7.Name = "modernButton7";
+            this.modernButton7.NormalImage = null;
+            this.modernButton7.Origin = null;
+            this.modernButton7.Size = new System.Drawing.Size(100, 100);
+            this.modernButton7.TabIndex = 1;
+            this.modernButton7.Text = "modernButton1";
+            this.modernButton7.UseVisualStyleBackColor = true;
+            this.modernButton7.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton13
+            // 
+            this.modernButton13.Image = null;
+            this.modernButton13.Location = new System.Drawing.Point(223, 227);
+            this.modernButton13.Name = "modernButton13";
+            this.modernButton13.NormalImage = null;
+            this.modernButton13.Origin = null;
+            this.modernButton13.Size = new System.Drawing.Size(100, 100);
+            this.modernButton13.TabIndex = 1;
+            this.modernButton13.Text = "modernButton1";
+            this.modernButton13.UseVisualStyleBackColor = true;
+            this.modernButton13.Click += new System.EventHandler(this.ItemButton_Click);
+            // 
+            // modernButton8
+            // 
+            this.modernButton8.Image = null;
+            this.modernButton8.Location = new System.Drawing.Point(223, 116);
+            this.modernButton8.Name = "modernButton8";
+            this.modernButton8.NormalImage = null;
+            this.modernButton8.Origin = null;
+            this.modernButton8.Size = new System.Drawing.Size(100, 100);
+            this.modernButton8.TabIndex = 1;
+            this.modernButton8.Text = "modernButton1";
+            this.modernButton8.UseVisualStyleBackColor = true;
+            this.modernButton8.Click += new System.EventHandler(this.ItemButton_Click);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 219);
+            this.label1.Location = new System.Drawing.Point(226, 214);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(424, 69);
             this.label1.TabIndex = 3;
@@ -235,17 +300,43 @@ namespace ButtonDeck.Forms
             // 
             // shadedPanel1
             // 
+            this.shadedPanel1.Controls.Add(this.shadedPanel2);
             this.shadedPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.shadedPanel1.Location = new System.Drawing.Point(620, 83);
             this.shadedPanel1.Name = "shadedPanel1";
-            this.shadedPanel1.Size = new System.Drawing.Size(256, 423);
+            this.shadedPanel1.Size = new System.Drawing.Size(256, 413);
             this.shadedPanel1.TabIndex = 4;
+            this.shadedPanel1.Click += new System.EventHandler(this.Buttons_Unfocus);
+            // 
+            // shadedPanel2
+            // 
+            this.shadedPanel2.ColorScheme = null;
+            this.shadedPanel2.Controls.Add(this.imageModernButton1);
+            this.shadedPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.shadedPanel2.Location = new System.Drawing.Point(0, 151);
+            this.shadedPanel2.Name = "shadedPanel2";
+            this.shadedPanel2.Size = new System.Drawing.Size(256, 262);
+            this.shadedPanel2.TabIndex = 0;
+            this.shadedPanel2.Visible = false;
+            // 
+            // imageModernButton1
+            // 
+            this.imageModernButton1.Image = null;
+            this.imageModernButton1.Location = new System.Drawing.Point(15, 13);
+            this.imageModernButton1.Name = "imageModernButton1";
+            this.imageModernButton1.NormalImage = null;
+            this.imageModernButton1.Origin = null;
+            this.imageModernButton1.Size = new System.Drawing.Size(80, 80);
+            this.imageModernButton1.TabIndex = 2;
+            this.imageModernButton1.Text = "imageModernButton1";
+            this.imageModernButton1.UseVisualStyleBackColor = true;
+            this.imageModernButton1.Click += new System.EventHandler(this.ImageModernButton1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 507);
+            this.ClientSize = new System.Drawing.Size(877, 497);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
             this.Controls.Add(this.shadedPanel1);
@@ -256,7 +347,10 @@ namespace ButtonDeck.Forms
             this.MinimumSize = new System.Drawing.Size(770, 450);
             this.Name = "MainForm";
             this.Text = "ButtonDeck";
+            this.Click += new System.EventHandler(this.Buttons_Unfocus);
             this.panel1.ResumeLayout(false);
+            this.shadedPanel1.ResumeLayout(false);
+            this.shadedPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -272,15 +366,17 @@ namespace ButtonDeck.Forms
         private System.Windows.Forms.Panel panel1;
         private ImageModernButton modernButton15;
         private ImageModernButton modernButton10;
-        private ImageModernButton modernButton14;
-        private ImageModernButton modernButton9;
-        private ImageModernButton modernButton13;
-        private ImageModernButton modernButton8;
-        private ImageModernButton modernButton12;
-        private ImageModernButton modernButton7;
         private ImageModernButton modernButton11;
         private ImageModernButton modernButton6;
+        private ImageModernButton modernButton14;
+        private ImageModernButton modernButton9;
+        private ImageModernButton modernButton12;
+        private ImageModernButton modernButton7;
+        private ImageModernButton modernButton13;
+        private ImageModernButton modernButton8;
         private System.Windows.Forms.Label label1;
         private ShadedPanel shadedPanel1;
+        private ShadedPanel shadedPanel2;
+        private ImageModernButton imageModernButton1;
     }
 }

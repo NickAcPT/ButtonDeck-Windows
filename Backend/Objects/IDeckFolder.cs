@@ -13,5 +13,8 @@ namespace NickAc.Backend.Objects
     {
         public abstract List<IDeckFolder> GetSubFolders();
         public abstract List<IDeckItem> GetDeckItems();
+
+        public abstract void Add(int slot, IDeckItem item);
+        public abstract int GetItemIndex(IDeckItem item);
     }
 }

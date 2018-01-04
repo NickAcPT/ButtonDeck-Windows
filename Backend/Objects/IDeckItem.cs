@@ -8,9 +8,11 @@ using System.Xml.Serialization;
 
 namespace NickAc.Backend.Objects
 {
+    [XmlInclude(typeof(DynamicDeckFolder))]
     [XmlInclude(typeof(DynamicDeckItem))]
     public abstract class IDeckItem
     {
-        
+
+        public abstract DeckImage GetItemImage();
     }
 }

@@ -26,5 +26,11 @@ namespace NickAc.Backend.Objects
         public IDeckFolder MainFolder { get; set; }
         [XmlIgnore]
         public IDeckFolder CurrentFolder { get; set; }
+
+        public virtual void CheckCurrentFolder()
+        {
+            if (MainFolder != null && CurrentFolder == null)
+                CurrentFolder = MainFolder;
+        }
     }
 }

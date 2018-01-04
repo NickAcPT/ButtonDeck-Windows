@@ -117,6 +117,7 @@
     <Compile Include="Misc\ApplicationColorScheme.cs" />
     <Compile Include="Misc\ColorSchemeCentral.cs" />
     <Compile Include="Misc\DevicesTitlebarButton.cs" />
+    <Compile Include="Misc\IDeckDeviceExtensions.cs" />
     <Compile Include="Misc\ServerThread.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
