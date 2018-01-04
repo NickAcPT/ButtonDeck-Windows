@@ -50,6 +50,7 @@ namespace ButtonDeck.Forms
             this.shadedPanel1 = new ButtonDeck.Forms.ShadedPanel();
             this.shadedPanel2 = new ButtonDeck.Forms.ShadedPanel();
             this.imageModernButton1 = new ButtonDeck.Controls.ImageModernButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.shadedPanel1.SuspendLayout();
             this.shadedPanel2.SuspendLayout();
@@ -311,6 +312,7 @@ namespace ButtonDeck.Forms
             // shadedPanel2
             // 
             this.shadedPanel2.ColorScheme = null;
+            this.shadedPanel2.Controls.Add(this.label2);
             this.shadedPanel2.Controls.Add(this.imageModernButton1);
             this.shadedPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.shadedPanel2.Location = new System.Drawing.Point(0, 151);
@@ -331,6 +333,15 @@ namespace ButtonDeck.Forms
             this.imageModernButton1.Text = "imageModernButton1";
             this.imageModernButton1.UseVisualStyleBackColor = true;
             this.imageModernButton1.Click += new System.EventHandler(this.ImageModernButton1_Click);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label2.Location = new System.Drawing.Point(102, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(142, 36);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Action Text";
             // 
             // MainForm
             // 
@@ -378,5 +389,6 @@ namespace ButtonDeck.Forms
         private ShadedPanel shadedPanel1;
         private ShadedPanel shadedPanel2;
         private ImageModernButton imageModernButton1;
+        private System.Windows.Forms.Label label2;
     }
 }
