@@ -75,6 +75,9 @@
     <Compile Include="Controls\ImageModernButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\PlaceHolderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\FirstSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>

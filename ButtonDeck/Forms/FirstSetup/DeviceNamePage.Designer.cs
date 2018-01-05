@@ -61,9 +61,9 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(3, 212);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(337, 21);
+            this.label3.Size = new System.Drawing.Size(346, 21);
             this.label3.TabIndex = 0;
-            this.label3.Text = "After you\'ve entered a device name, press Next.";
+            this.label3.Text = "After you\'ve entered a device name, press Finish.";
             // 
             // textBox1
             // 

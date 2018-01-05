@@ -9,10 +9,12 @@ using NickAc.Backend.Utils;
 using NickAc.ModernUIDoneRight.Objects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using static NickAc.Backend.Objects.AbstractDeckAction;
 
@@ -67,6 +69,7 @@ namespace ButtonDeck.Forms
             ApplySidebarTheme(shadedPanel1);
             shadedPanel2.Hide();
             shadedPanel1.Hide();
+            Refresh();
 
             label1.ForeColor = ColorScheme.SecondaryColor;
         }
@@ -123,44 +126,50 @@ namespace ButtonDeck.Forms
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
-            shadedPanel2.Hide();
-            shadedPanel1.Show();
-            if (CurrentDevice == null) {
-                CurrentDevice = e.Device;
-                List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
-                foreach (var item in items) {
-                    //This is when it loads.
-                    //It will load from the persisted device.
+            Invoke(new Action(() => {
+                shadedPanel1.Show();
+                shadedPanel2.Hide();
+                Refresh();
+                if (CurrentDevice == null) {
+                    CurrentDevice = e.Device;
+                    List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
+                    foreach (var item in items) {
+                        //This is when it loads.
+                        //It will load from the persisted device.
 
-                    bool isFolder = item is IDeckFolder;
-                    ImageModernButton control = Controls.Find("modernButton" + e.Device.MainFolder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
-                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
-                    var seri = image.BitmapSerialized;
-                    control.NormalImage = image.Bitmap;
-                    //control.Refresh();
-                    if (item is DynamicDeckItem deckI)
-                        control.Tag = deckI;
+                        bool isFolder = item is IDeckFolder;
+                        ImageModernButton control = Controls.Find("modernButton" + e.Device.MainFolder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
+                        var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                        var seri = image.BitmapSerialized;
+                        control.NormalImage = image.Bitmap;
+                        //control.Refresh();
+                        if (item is DynamicDeckItem deckI)
+                            control.Tag = deckI;
+                    }
                 }
-            }
-            var con = e.Device.GetConnection();
-            if (con != null) {
-                var packet = new SlotImageChangeChunkPacket();
-                List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
-                foreach (var item in items) {
-                    bool isFolder = item is IDeckFolder;
-                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
-                    var seri = image.BitmapSerialized;
+                var con = e.Device.GetConnection();
+                if (con != null) {
+                    var packet = new SlotImageChangeChunkPacket();
+                    List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
+                    foreach (var item in items) {
+                        bool isFolder = item is IDeckFolder;
+                        var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                        var seri = image.BitmapSerialized;
 
-                    packet.AddToQueue(e.Device.MainFolder.GetItemIndex(item), image);
+                        packet.AddToQueue(e.Device.MainFolder.GetItemIndex(item), image);
+                    }
+                    con.SendPacket(packet);
                 }
-                con.SendPacket(packet);
-            }
+            }));
         }
 
         private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
-            shadedPanel2.Hide();
-            shadedPanel1.Hide();
+            Invoke(new Action(() => {
+                shadedPanel2.Hide();
+                shadedPanel1.Hide();
+                Refresh();
+            }));
         }
         private void GenerateSidebar(Control parent)
         {
@@ -249,12 +258,64 @@ namespace ButtonDeck.Forms
                         //TODO: Require two clicks
                         return;
                     }
+                    //Show button panel with settable properties
+                    flowLayoutPanel1.Controls.OfType<Control>().All(c => {
+                        c.Dispose();
+                        return true;
+                    });
+
+                    flowLayoutPanel1.Controls.Clear();
+                    if (item is DynamicDeckItem dI) {
+                        label2.Text = dI.DeckAction.GetActionName();
+
+                        LoadProperties(dI, flowLayoutPanel1);
+                    }
                     imageModernButton1.Origin = mb;
                     shadedPanel2.Show();
+
+
                 } else {
                     Buttons_Unfocus(sender, e);
                 }
             }
+        }
+
+        private void LoadProperties(DynamicDeckItem item, FlowLayoutPanel panel)
+        {
+            var props = item.DeckAction.GetType().GetProperties().Where(
+                prop => Attribute.IsDefined(prop, typeof(ActionPropertyIncludeAttribute)) && TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
+                (typeof(string)));
+            foreach (var prop in props) {
+                panel.Controls.Add(new Label()
+                {
+                    Text = GetPropertyDescription(prop)
+                });
+
+                var txt = new TextBox
+                {
+                    Text = (string)TypeDescriptor.GetConverter(prop.PropertyType).ConvertTo(prop.GetValue(item.DeckAction), typeof(string))
+                };
+                txt.LostFocus += (sender, e) => {
+                    try {
+                        //After loosing focus, convert type to thingy.
+                        prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
+                    } catch (Exception ex) {
+                        //Ignore all errors
+                    }
+                };
+                txt.Width = panel.DisplayRectangle.Width - 16;
+                panel.Controls.Add(txt);
+            }
+
+        }
+
+        private string GetPropertyDescription(PropertyInfo prop)
+        {
+            if (Attribute.IsDefined(prop, typeof(ActionPropertyDescriptionAttribute))) {
+                var attrib = prop.GetCustomAttribute(typeof(ActionPropertyDescriptionAttribute)) as ActionPropertyDescriptionAttribute;
+                return attrib.Description;
+            }
+            return prop.Name;
         }
 
         #endregion

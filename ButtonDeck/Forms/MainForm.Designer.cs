@@ -49,8 +49,9 @@ namespace ButtonDeck.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.shadedPanel1 = new ButtonDeck.Forms.ShadedPanel();
             this.shadedPanel2 = new ButtonDeck.Forms.ShadedPanel();
-            this.imageModernButton1 = new ButtonDeck.Controls.ImageModernButton();
             this.label2 = new System.Windows.Forms.Label();
+            this.imageModernButton1 = new ButtonDeck.Controls.ImageModernButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.shadedPanel1.SuspendLayout();
             this.shadedPanel2.SuspendLayout();
@@ -312,6 +313,7 @@ namespace ButtonDeck.Forms
             // shadedPanel2
             // 
             this.shadedPanel2.ColorScheme = null;
+            this.shadedPanel2.Controls.Add(this.flowLayoutPanel1);
             this.shadedPanel2.Controls.Add(this.label2);
             this.shadedPanel2.Controls.Add(this.imageModernButton1);
             this.shadedPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -320,6 +322,15 @@ namespace ButtonDeck.Forms
             this.shadedPanel2.Size = new System.Drawing.Size(256, 262);
             this.shadedPanel2.TabIndex = 0;
             this.shadedPanel2.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label2.Location = new System.Drawing.Point(102, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(142, 36);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Action Text";
             // 
             // imageModernButton1
             // 
@@ -334,14 +345,14 @@ namespace ButtonDeck.Forms
             this.imageModernButton1.UseVisualStyleBackColor = true;
             this.imageModernButton1.Click += new System.EventHandler(this.ImageModernButton1_Click);
             // 
-            // label2
+            // flowLayoutPanel1
             // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label2.Location = new System.Drawing.Point(102, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 36);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Action Text";
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 100);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 150);
+            this.flowLayoutPanel1.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -390,5 +401,6 @@ namespace ButtonDeck.Forms
         private ShadedPanel shadedPanel2;
         private ImageModernButton imageModernButton1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

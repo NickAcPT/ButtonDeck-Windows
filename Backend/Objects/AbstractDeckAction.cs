@@ -9,8 +9,25 @@ using System.Xml.Serialization;
 namespace NickAc.Backend.Objects
 {
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-    sealed class ActionPropertyIncludeAttribute : Attribute
+    public class ActionPropertyIncludeAttribute : Attribute
     { }
+
+    [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    public class ActionPropertyDescriptionAttribute : Attribute
+    {
+        readonly string description;
+
+        public string Description {
+            get {
+                return description;
+            }
+        }
+
+        public ActionPropertyDescriptionAttribute(string description)
+        {
+            this.description = description;
+        }
+    }
 
     [XmlInclude(typeof(ExecutableRunAction))]
     public abstract class AbstractDeckAction

@@ -87,6 +87,8 @@ namespace ButtonDeck.Misc
 
                 Control control = _frm.Controls["panel1"];
                 if (control != null) control.Visible = CurrentConnections > 0;
+                Control control3 = _frm.Controls["shadedPanel1"];
+                if (control3 != null) control3.Visible = CurrentConnections > 0;
                 return $"{CurrentConnections} Connected Device{(CurrentConnections != 1 ? "s" : "")}";
             }
             set => base.Text = value;
