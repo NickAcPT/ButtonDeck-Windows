@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NickAc.Backend.Networking.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,39 @@ using System.Xml.Serialization;
 namespace NickAc.Backend.Objects
 {
     [Serializable]
-    public class IDeckDevice
+    public class DeckDevice
     {
-        public IDeckDevice()
+
+        public class ButtonInteractionEventArgs : EventArgs
         {
+            public ButtonInteractionEventArgs(int slotID, ButtonInteractPacket.ButtonAction performedAction)
+            {
+                SlotID = slotID;
+                PerformedAction = performedAction;
+            }
+
+            public int SlotID { get; set; }
+            public ButtonInteractPacket.ButtonAction PerformedAction { get; set; }
+        }
+
+
+        /// <summary>
+        /// Called to signal to subscribers that a button was interacted with
+        /// </summary>
+        public event EventHandler<ButtonInteractionEventArgs> ButtonInteraction;
+        public virtual void OnButtonInteraction(ButtonInteractPacket.ButtonAction performedAction, int slotID)
+        {
+            var eh = ButtonInteraction;
+
+            eh?.Invoke(this, new ButtonInteractionEventArgs(slotID,
+                performedAction));
 
         }
-        public IDeckDevice(Guid deviceGuid, string deviceName)
+
+        public DeckDevice()
+        {}
+
+        public DeckDevice(Guid deviceGuid, string deviceName)
         {
             DeviceGuid = deviceGuid;
             DeviceName = deviceName;

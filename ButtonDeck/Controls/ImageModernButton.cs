@@ -22,7 +22,7 @@ namespace ButtonDeck.Controls
         public ImageModernButton Origin { get; set; }
 
 
-        public static Guid GetConnectionGuidFromDeckDevice(IDeckDevice device)
+        public static Guid GetConnectionGuidFromDeckDevice(DeckDevice device)
         {
             var connections = Program.ServerThread.TcpServer?.Connections.OfType<ConnectionState>().Where(c => c.IsStillFunctioning());
             return DevicePersistManager.DeckDevicesFromConnection.Where(m => connections.Select(c => c.ConnectionGuid).Contains(m.Key)).FirstOrDefault(m => m.Value.DeviceGuid == device.DeviceGuid).Key;

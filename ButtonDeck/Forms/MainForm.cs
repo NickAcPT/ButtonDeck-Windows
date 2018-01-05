@@ -36,7 +36,7 @@ namespace ButtonDeck.Forms
         #region Properties
 
         public int ConnectedDevices { get => Program.ServerThread.TcpServer.CurrentConnections; }
-        public IDeckDevice CurrentDevice { get; set; }
+        public DeckDevice CurrentDevice { get; set; }
 
         #endregion
 

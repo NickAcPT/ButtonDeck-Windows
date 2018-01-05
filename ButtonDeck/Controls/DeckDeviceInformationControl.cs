@@ -11,7 +11,7 @@ namespace ButtonDeck.Forms
 {
     class DeckDeviceInformationControl : Control
     {
-        public IDeckDevice DeckDevice { get; set; }
+        public DeckDevice DeckDevice { get; set; }
 
         public new Padding Padding = new Padding(5);
 

@@ -12,9 +12,9 @@ namespace NickAc.Backend.Utils
     public static class DevicePersistManager
     {
         private const string DEVICES_FILENAME = "devices.xml";
-        private static IDictionary<Guid, IDeckDevice> deckDevicesFromConnection = new Dictionary<Guid, IDeckDevice>();
+        private static IDictionary<Guid, DeckDevice> deckDevicesFromConnection = new Dictionary<Guid, DeckDevice>();
 
-        public static IDictionary<Guid, IDeckDevice> DeckDevicesFromConnection {
+        public static IDictionary<Guid, DeckDevice> DeckDevicesFromConnection {
             get {
                 return deckDevicesFromConnection;
             }
@@ -22,19 +22,19 @@ namespace NickAc.Backend.Utils
 
         public class DeviceEventArgs : EventArgs
         {
-            public DeviceEventArgs(IDeckDevice device)
+            public DeviceEventArgs(DeckDevice device)
             {
                 Device = device;
             }
 
-            public IDeckDevice Device { get; set; }
+            public DeckDevice Device { get; set; }
         }
 
         /// <summary>
         /// Called to signal to subscribers that a device was connected
         /// </summary>
         public static event EventHandler<DeviceEventArgs> DeviceConnected;
-        public static void OnDeviceConnected(object sender, IDeckDevice e)
+        public static void OnDeviceConnected(object sender, DeckDevice e)
         {
             var eh = DeviceConnected;
 
@@ -45,7 +45,7 @@ namespace NickAc.Backend.Utils
         /// Called to signal to subscribers that a device was disconnected
         /// </summary>
         public static event EventHandler<DeviceEventArgs> DeviceDisconnected;
-        public static void OnDeviceDisconnected(object sender, IDeckDevice e)
+        public static void OnDeviceDisconnected(object sender, DeckDevice e)
         {
             var eh = DeviceDisconnected;
 
@@ -59,26 +59,26 @@ namespace NickAc.Backend.Utils
             }
         }
 
-        private static List<IDeckDevice> persistedDevices;
+        private static List<DeckDevice> persistedDevices;
 
-        public static List<IDeckDevice> PersistedDevices {
+        public static List<DeckDevice> PersistedDevices {
             get {
                 return persistedDevices;
             }
         }
         
-        public static Guid GetConnectionGuidFromDeckDevice(IDeckDevice device)
+        public static Guid GetConnectionGuidFromDeckDevice(DeckDevice device)
         {
             return deckDevicesFromConnection.FirstOrDefault(m => m.Value.DeviceGuid == device.DeviceGuid).Key;
         }
 
-        public static IDeckDevice GetDeckDeviceFromConnectionGuid(Guid connection)
+        public static DeckDevice GetDeckDeviceFromConnectionGuid(Guid connection)
         {
             return deckDevicesFromConnection.FirstOrDefault(m => m.Key == connection).Value;
         }
 
 
-        public static bool IsDeviceOnline(IDeckDevice device)
+        public static bool IsDeviceOnline(DeckDevice device)
         {
             return deckDevicesFromConnection.Values.Any(m => m.DeviceGuid == device.DeviceGuid);
         }
@@ -94,7 +94,7 @@ namespace NickAc.Backend.Utils
             return deckDevicesFromConnection.Keys.Contains(device);
         }
 
-        public static bool IsDevicePersisted(IDeckDevice device)
+        public static bool IsDevicePersisted(DeckDevice device)
         {
             return IsDevicePersisted(device.DeviceGuid);
         }
@@ -104,7 +104,7 @@ namespace NickAc.Backend.Utils
             return PersistedDevices.Any(w => w.DeviceGuid == deviceGuid);
         }
 
-        public static void PersistDevice(IDeckDevice device)
+        public static void PersistDevice(DeckDevice device)
         {
             if (IsDevicePersisted(device)) {
                 device.DeviceName = PersistedDevices.First(m => m.DeviceGuid == device.DeviceGuid).DeviceName;
@@ -128,7 +128,7 @@ namespace NickAc.Backend.Utils
             deckDevicesFromConnection.Remove(state);
         }
 
-        public static void ChangeConnectedState(ConnectionState state, IDeckDevice device)
+        public static void ChangeConnectedState(ConnectionState state, DeckDevice device)
         {
             if (device == null || state == null) return;
             if (!deckDevicesFromConnection.ContainsKey(state.ConnectionGuid)) {
@@ -139,11 +139,11 @@ namespace NickAc.Backend.Utils
         public static void LoadDevices()
         {
             if (File.Exists(DEVICES_FILENAME)) {
-                var newPersistedDevices = XMLUtils.FromXML<List<IDeckDevice>>(File.ReadAllText(DEVICES_FILENAME));
-                if (persistedDevices == null) persistedDevices = new List<IDeckDevice>();
+                var newPersistedDevices = XMLUtils.FromXML<List<DeckDevice>>(File.ReadAllText(DEVICES_FILENAME));
+                if (persistedDevices == null) persistedDevices = new List<DeckDevice>();
                 persistedDevices.AddRange(newPersistedDevices.Where(m => !IsDevicePersisted(m.DeviceGuid)));
             } else {
-                persistedDevices = new List<IDeckDevice>();
+                persistedDevices = new List<DeckDevice>();
             }
         }
 

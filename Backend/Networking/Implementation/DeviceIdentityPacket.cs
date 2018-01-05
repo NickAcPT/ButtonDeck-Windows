@@ -42,7 +42,7 @@ namespace NickAc.Backend.Networking.Implementation
 
         public override void Execute(ConnectionState state)
         {
-            IDeckDevice deckDevice = new IDeckDevice(DeviceGuid, DeviceName);
+            DeckDevice deckDevice = new DeckDevice(DeviceGuid, DeviceName);
 
             DevicePersistManager.PersistDevice(deckDevice);
             DevicePersistManager.ChangeConnectedState(state, deckDevice);

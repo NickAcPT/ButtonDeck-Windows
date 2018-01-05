@@ -17,7 +17,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
 
         public override string GetActionName() => "Run Executable";
 
-        public override bool OnButtonClick(IDeckDevice deckDevice)
+        public override bool OnButtonClick(DeckDevice deckDevice)
         {
             var proc = new ProcessStartInfo("cmd.exe", "/c " + ToExecute)
             {
@@ -29,11 +29,11 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             return true;
         }
 
-        public override void OnButtonDown(IDeckDevice deckDevice)
+        public override void OnButtonDown(DeckDevice deckDevice)
         {
         }
 
-        public override void OnButtonUp(IDeckDevice deckDevice)
+        public override void OnButtonUp(DeckDevice deckDevice)
         {
         }
     }

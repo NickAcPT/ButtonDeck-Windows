@@ -45,6 +45,7 @@
     <Compile Include="Networking\Attributes\ArchitectureAttribute.cs" />
     <Compile Include="Networking\Attributes\PacketArchitecture.cs" />
     <Compile Include="Networking\Implementation\AlternativeHello.cs" />
+    <Compile Include="Networking\Implementation\ButtonInteractPacket.cs" />
     <Compile Include="Networking\Implementation\DesktopDisconnectPacket.cs" />
     <Compile Include="Networking\Implementation\DeviceIdentityPacket.cs" />
     <Compile Include="Networking\Implementation\HeathbeatPacket.cs" />
