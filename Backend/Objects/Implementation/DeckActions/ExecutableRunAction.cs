@@ -13,6 +13,11 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         [ActionPropertyDescription("To Execute")]
         public string ToExecute { get; set; } = "";
 
+        public override AbstractDeckAction CloneAction()
+        {
+            return new ExecutableRunAction();
+        }
+
         public override DeckActionCategory GetActionCategory() => DeckActionCategory.General;
 
         public override string GetActionName() => "Run Executable";
@@ -22,8 +27,8 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             var proc = new ProcessStartInfo("cmd.exe", "/c " + ToExecute)
             {
                 WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
                 UseShellExecute = false,
-                CreateNoWindow = true
             };
             Process.Start(proc);
             return true;

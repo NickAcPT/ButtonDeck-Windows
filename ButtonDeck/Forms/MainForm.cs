@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -22,13 +23,28 @@ namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
     {
+        private static MainForm instance;
+
+        public static MainForm Instance {
+            get {
+                return instance;
+            }
+        }
+
+        private const int CLIENT_ARRAY_LENGHT = 1024 * 50;
         #region Constructors
 
         public MainForm()
         {
+            instance = this;
             InitializeComponent();
 
             TitlebarButtons.Add(new DevicesTitlebarButton(this));
+        }
+
+        ~MainForm()
+        {
+            instance = null;
         }
 
         #endregion
@@ -103,11 +119,59 @@ namespace ButtonDeck.Forms
                     mb.DragDrop += (s, ee) => {
                         if (ee.Effect == DragDropEffects.Copy) {
                             if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
-                                mb.Tag = new DynamicDeckItem
-                                {
-                                    DeckAction = action.DeckAction
-                                };
-                                mb.Image = Resources.img_item_default;
+                                if (mb.Tag != null && mb.Tag is IDeckItem item) {
+                                    if (item is IDeckFolder deckFolder) {
+
+                                        mb.Tag = new DynamicDeckItem
+                                        {
+                                            DeckAction = action.DeckAction.CloneAction()
+                                        };
+                                        var id2 = deckFolder.Add(mb.Tag as IDeckItem);
+                                        mb.Image = Resources.img_item_default;
+
+                                        CurrentDevice.CurrentFolder = deckFolder;
+                                        RefreshAllButtons();
+
+                                        FocusItem(GetButtonControl(id2), mb.Tag as IDeckItem);
+
+                                        return;
+                                    }
+                                    var folder = new DynamicDeckFolder();
+                                    folder.DeckImage = new DeckImage(Resources.img_folder);
+                                    //Create a new folder instance
+                                    CurrentDevice.CheckCurrentFolder();
+                                    folder.ParentFolder = CurrentDevice.CurrentFolder;
+                                    folder.Add(1, folderUpItem);
+                                    folder.Add(item);
+
+
+                                    var newItem = new DynamicDeckItem
+                                    {
+                                        DeckAction = action.DeckAction.CloneAction(),
+                                        DeckImage = new DeckImage(Resources.img_item_default)
+                                    };
+
+                                    var id = folder.Add(newItem);
+
+
+                                    FocusItem(GetButtonControl(id), newItem);
+
+                                    CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, folder);
+
+                                    mb.Tag = folder;
+                                    mb.Image = Resources.img_folder;
+                                    CurrentDevice.CurrentFolder = folder;
+                                    RefreshAllButtons();
+
+                                } else {
+                                    mb.Tag = new DynamicDeckItem
+                                    {
+                                        DeckAction = action.DeckAction.CloneAction()
+                                    };
+                                    mb.Image = Resources.img_item_default;
+
+                                    FocusItem(mb, mb.Tag as IDeckItem);
+                                }
                             }
                         }
                     };
@@ -119,6 +183,39 @@ namespace ButtonDeck.Forms
             });
         }
 
+
+        private void RefreshAllButtons()
+        {
+            IDeckFolder folder = CurrentDevice.CurrentFolder;
+            Bitmap empty = new Bitmap(1, 1);
+            for (int j = 0; j < 15; j++) {
+                ImageModernButton control = GetButtonControl(j + 1);
+                control.NormalImage = null;
+                control.Tag = null;
+                control.Refresh();
+            }
+
+            for (int i = 0; i < folder.GetDeckItems().Count; i++) {
+                IDeckItem item = null;
+                item = folder.GetDeckItems()[i];
+                ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
+                if (item != null) {
+                    var ser = item.GetItemImage().BitmapSerialized;
+                    control.NormalImage = item?.GetItemImage().Bitmap;
+                    control.Tag = item;
+                    control.Refresh();
+                }
+
+            }
+            CurrentDevice.CheckCurrentFolder();
+            SendItemsToDevice(CurrentDevice, folder);
+        }
+
+        private ImageModernButton GetButtonControl(int id)
+        {
+            return Controls.Find("modernButton" + id, true).FirstOrDefault() as ImageModernButton;
+        }
+
         private void Buttons_Unfocus(object sender, EventArgs e)
         {
             shadedPanel2.Hide();
@@ -126,45 +223,138 @@ namespace ButtonDeck.Forms
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
+            e.Device.ButtonInteraction += Device_ButtonInteraction;
+
             Invoke(new Action(() => {
                 shadedPanel1.Show();
                 shadedPanel2.Hide();
                 Refresh();
+
+                e.Device.CheckCurrentFolder();
+                FixFolders(e.Device);
+
+
                 if (CurrentDevice == null) {
                     CurrentDevice = e.Device;
-                    List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
-                    foreach (var item in items) {
-                        //This is when it loads.
-                        //It will load from the persisted device.
-
-                        bool isFolder = item is IDeckFolder;
-                        ImageModernButton control = Controls.Find("modernButton" + e.Device.MainFolder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
-                        var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
-                        var seri = image.BitmapSerialized;
-                        control.NormalImage = image.Bitmap;
-                        //control.Refresh();
-                        if (item is DynamicDeckItem deckI)
-                            control.Tag = deckI;
-                    }
+                    LoadItems(CurrentDevice.CurrentFolder);
                 }
-                var con = e.Device.GetConnection();
-                if (con != null) {
-                    var packet = new SlotImageChangeChunkPacket();
-                    List<IDeckItem> items = e.Device.MainFolder.GetDeckItems();
-                    foreach (var item in items) {
-                        bool isFolder = item is IDeckFolder;
-                        var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
-                        var seri = image.BitmapSerialized;
-
-                        packet.AddToQueue(e.Device.MainFolder.GetItemIndex(item), image);
-                    }
-                    con.SendPacket(packet);
-                }
+                SendItemsToDevice(CurrentDevice);
             }));
+        }
+
+        private void Device_ButtonInteraction(object sender, DeckDevice.ButtonInteractionEventArgs e)
+        {
+            if (sender is DeckDevice device) {
+                var currentItems = device.CurrentFolder.GetDeckItems();
+                if (currentItems.Any(c => currentItems.IndexOf(c) == e.SlotID)) {
+                    var item = currentItems.FirstOrDefault(c => currentItems.IndexOf(c) == e.SlotID);
+                    if (item is DynamicDeckItem deckItem) {
+                        if (device.CurrentFolder.GetParent() != null) {
+                            if (device.CurrentFolder.GetItemIndex(item) == 1) {
+                                //Navigate one up!
+                                device.CurrentFolder = device.CurrentFolder.GetParent();
+
+                                SendItemsToDevice(CurrentDevice, device.CurrentFolder);
+                            }
+                        }
+                        if (deckItem.DeckAction != null) {
+                            switch (e.PerformedAction) {
+                                case ButtonInteractPacket.ButtonAction.ButtonClick:
+                                    deckItem.DeckAction.OnButtonClick(device);
+                                    break;
+                                case ButtonInteractPacket.ButtonAction.ButtonDown:
+                                    deckItem.DeckAction.OnButtonDown(device);
+                                    break;
+                                case ButtonInteractPacket.ButtonAction.ButtonUp:
+                                    deckItem.DeckAction.OnButtonUp(device);
+                                    break;
+                            }
+                        }
+                    } else if (item is DynamicDeckFolder deckFolder) {
+                        device.CurrentFolder = deckFolder;
+                        SendItemsToDevice(CurrentDevice, deckFolder);
+                    }
+                }
+            }
+        }
+
+        private static void SendItemsToDevice(DeckDevice device)
+        {
+            device.CheckCurrentFolder();
+            SendItemsToDevice(device, device.CurrentFolder);
+        }
+
+        private static void SendItemsToDevice(DeckDevice device, IDeckFolder folder)
+        {
+            var con = device.GetConnection();
+            if (con != null) {
+                var packet = new SlotImageChangeChunkPacket();
+                List<IDeckItem> items = folder.GetDeckItems();
+                for (int i = 0; i < 15; i++) {
+                    var clearPacket = new SlotImageClearPacket(i + 1);
+                    con.SendPacket(clearPacket);
+                }
+
+                for (int i = 0; i < 15; i++) {
+                    IDeckItem item;
+                    if (items.ElementAtOrDefault(i) != null)
+                        item = items[i];
+                    else {
+                        var clearPacket = new SlotImageClearPacket(i + 1);
+                        con.SendPacket(clearPacket);
+                        continue;
+                    }
+                    bool isFolder = item is IDeckFolder;
+                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                    var seri = image.BitmapSerialized;
+
+                    packet.AddToQueue(folder.GetItemIndex(item), image);
+                }
+                con.SendPacket(packet);
+            }
+        }
+
+        private void LoadItems(IDeckFolder folder)
+        {
+            List<IDeckItem> items = folder.GetDeckItems();
+            foreach (var item in items) {
+                //This is when it loads.
+                //It will load from the persisted device.
+
+                bool isFolder = item is IDeckFolder;
+                ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
+                var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                var seri = image.BitmapSerialized;
+                control.NormalImage = image.Bitmap;
+                //control.Refresh();
+                control.Tag = item;
+            }
+        }
+
+        private void FixFolders(DeckDevice device)
+        {
+            FixFolders(device.MainFolder);
+        }
+
+        static DeckImage defaultDeckImage = new DeckImage(Resources.img_folder_up);
+        static DynamicDeckItem folderUpItem = new DynamicDeckItem() { DeckImage = defaultDeckImage };
+        private void FixFolders(IDeckFolder folder)
+        {
+            folder.GetSubFolders().All(c => {
+                FixFolders(c);
+                c.SetParent(folder);
+                if (c.GetParent() != null) {
+                    c.Add(1, folderUpItem);
+                }
+
+                return true;
+            });
         }
 
         private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
+            e.Device.ButtonInteraction -= Device_ButtonInteraction;
+
             Invoke(new Action(() => {
                 shadedPanel2.Hide();
                 shadedPanel1.Hide();
@@ -225,17 +415,16 @@ namespace ButtonDeck.Forms
             {
                 Filter = ""
             };
+            var herePath = Path.Combine(Directory.GetCurrentDirectory(), "Keys");
+            if (Directory.Exists(herePath))
+                dlg.InitialDirectory = herePath;
 
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
             string sep = string.Empty;
 
-            foreach (var c in codecs) {
-                string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
-                dlg.Filter = String.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, codecName, c.FilenameExtension.ToLower());
-                sep = "|";
-            }
+            dlg.Filter = string.Format("Images ({0})|{0}|All files|*.*",
+                string.Join(";", codecs.Select(codec => codec.FilenameExtension).ToArray()));
 
-            dlg.Filter = String.Format("{0}{1}{2} ({3})|{3}", dlg.Filter, sep, "All Files", "*.*");
 
             dlg.DefaultExt = "png"; // Default file extension
 
@@ -244,6 +433,11 @@ namespace ButtonDeck.Forms
                 //Load as bitmap and replace DeckImage
                 try {
                     Bitmap bmp = new Bitmap(dlg.FileName);
+                    if (DeckImage.ImageToByte(bmp).Length > CLIENT_ARRAY_LENGHT) {
+                        MessageBox.Show(this, "The selected image is too big to be sent to the device. Please choose another", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ImageModernButton1_Click(sender, e);
+                        return;
+                    }
                     imageModernButton1.Image = bmp;
                 } catch (Exception) {
                 }
@@ -254,29 +448,44 @@ namespace ButtonDeck.Forms
         {
             if (sender is ImageModernButton mb) {
                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
-                    if (item is IDeckFolder) {
-                        //TODO: Require two clicks
+                    if (item is IDeckFolder folder) {
+                        //Navigate to the folder
+                        CurrentDevice.CurrentFolder = folder;
+                        RefreshAllButtons();
                         return;
                     }
-                    //Show button panel with settable properties
-                    flowLayoutPanel1.Controls.OfType<Control>().All(c => {
-                        c.Dispose();
-                        return true;
-                    });
-
-                    flowLayoutPanel1.Controls.Clear();
-                    if (item is DynamicDeckItem dI) {
-                        label2.Text = dI.DeckAction.GetActionName();
-
-                        LoadProperties(dI, flowLayoutPanel1);
+                    if (CurrentDevice.CurrentFolder.GetParent() != null) {
+                        //Not on the main folder
+                        if (mb.CurrentSlot == 1) {
+                            CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
+                            RefreshAllButtons();
+                        }
                     }
-                    imageModernButton1.Origin = mb;
-                    shadedPanel2.Show();
+                    //Show button panel with settable properties
+
+                    FocusItem(mb, item);
 
 
                 } else {
                     Buttons_Unfocus(sender, e);
                 }
+            }
+        }
+
+        private void FocusItem(ImageModernButton mb, IDeckItem item)
+        {
+            if (item is DynamicDeckItem dI && dI.DeckAction != null) {
+                flowLayoutPanel1.Controls.OfType<Control>().All(c => {
+                    c.Dispose();
+                    return true;
+                });
+
+                flowLayoutPanel1.Controls.Clear();
+                label2.Text = dI.DeckAction.GetActionName();
+                LoadProperties(dI, flowLayoutPanel1);
+                imageModernButton1.Origin = mb;
+                imageModernButton1.Refresh();
+                shadedPanel2.Show();
             }
         }
 
@@ -297,8 +506,10 @@ namespace ButtonDeck.Forms
                 };
                 txt.LostFocus += (sender, e) => {
                     try {
+                        if (txt.Text == string.Empty) return;
                         //After loosing focus, convert type to thingy.
                         prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
+                        txt.Text = string.Empty;
                     } catch (Exception ex) {
                         //Ignore all errors
                     }

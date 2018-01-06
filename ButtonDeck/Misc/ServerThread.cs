@@ -40,7 +40,7 @@ namespace ButtonDeck.Misc
         private void RunServer()
         {
             tcpServer = new TcpServer(new DeckServiceProvider(), Constants.PORT_NUMBER);
-            tcpServer.Start();
+            var result = tcpServer.Start();
         }
 
         public void Stop()

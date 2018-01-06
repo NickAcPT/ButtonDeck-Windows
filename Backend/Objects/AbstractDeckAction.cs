@@ -40,13 +40,9 @@ namespace NickAc.Backend.Objects
         }
         public abstract DeckActionCategory GetActionCategory();
         public abstract string GetActionName();
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="deckDevice"></param>
-        /// <returns>True if the button down and button up must be suppressed</returns>
         public abstract bool OnButtonClick(DeckDevice deckDevice);
         public abstract void OnButtonDown(DeckDevice deckDevice);
         public abstract void OnButtonUp(DeckDevice deckDevice);
+        public abstract AbstractDeckAction CloneAction();
     }
 }

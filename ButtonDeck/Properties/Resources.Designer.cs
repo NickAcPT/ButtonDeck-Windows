@@ -93,6 +93,16 @@ namespace ButtonDeck.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap img_folder_up {
+            get {
+                object obj = ResourceManager.GetObject("img_folder_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img_item_default {
             get {
                 object obj = ResourceManager.GetObject("img_item_default", resourceCulture);

@@ -163,13 +163,13 @@ namespace NickAc.Backend.Networking.TcpLib
         /// A false return value tell you that the port is not available.
         /// </summary>
         public bool Start()
-        {
+        {   
             try {
                 _listener.Bind(new IPEndPoint(IPAddress.Any, _port));
                 _listener.Listen(100);
                 _listener.BeginAccept(ConnectionReady, null);
                 return true;
-            } catch {
+            } catch (Exception ex) {
                 return false;
             }
         }

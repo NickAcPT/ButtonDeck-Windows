@@ -19,6 +19,16 @@ namespace ButtonDeck.Controls
 {
     public class ImageModernButton : ModernButton
     {
+
+        public int CurrentSlot {
+            get {
+                try {
+                    return int.Parse(ExtractNumber(Name));
+                } catch (Exception) {
+                    return -1;
+                }
+            }
+        }
         public ImageModernButton Origin { get; set; }
 
 

@@ -39,5 +39,32 @@ namespace NickAc.Backend.Objects.Implementation
             var key = items.First(c => c.Value == item);
             return key.Key;
         }
+
+        [XmlIgnore]
+        public IDeckFolder ParentFolder { get; set; }
+        public override IDeckFolder GetParent()
+        {
+            return ParentFolder;
+        }
+
+        public override void SetParent(IDeckFolder folder)
+        {
+            ParentFolder = folder;
+        }
+
+        public override int Add(IDeckItem item)
+        {
+            int addToSlot = -1;
+            for (int i = 15 - 1; i >= 0; i--) {
+                if (items.ContainsKey(i)) {
+                    addToSlot = i + 1;
+                    break;
+                }
+            }
+            if (addToSlot != -1) {
+                Add(addToSlot, item);
+            }
+            return addToSlot;
+        }
     }
 }
