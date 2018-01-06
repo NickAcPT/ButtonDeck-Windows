@@ -136,8 +136,10 @@ namespace ButtonDeck.Forms
 
                                         return;
                                     }
-                                    var folder = new DynamicDeckFolder();
-                                    folder.DeckImage = new DeckImage(Resources.img_folder);
+                                    var folder = new DynamicDeckFolder
+                                    {
+                                        DeckImage = new DeckImage(Resources.img_folder)
+                                    };
                                     //Create a new folder instance
                                     CurrentDevice.CheckCurrentFolder();
                                     folder.ParentFolder = CurrentDevice.CurrentFolder;
@@ -223,8 +225,6 @@ namespace ButtonDeck.Forms
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
-            e.Device.ButtonInteraction += Device_ButtonInteraction;
-
             Invoke(new Action(() => {
                 shadedPanel1.Show();
                 shadedPanel2.Hide();
@@ -238,8 +238,10 @@ namespace ButtonDeck.Forms
                     CurrentDevice = e.Device;
                     LoadItems(CurrentDevice.CurrentFolder);
                 }
-                SendItemsToDevice(CurrentDevice);
+                SendItemsToDevice(CurrentDevice, true);
             }));
+
+            e.Device.ButtonInteraction += Device_ButtonInteraction;
         }
 
         private void Device_ButtonInteraction(object sender, DeckDevice.ButtonInteractionEventArgs e)
@@ -251,10 +253,11 @@ namespace ButtonDeck.Forms
                     if (item is DynamicDeckItem deckItem) {
                         if (device.CurrentFolder.GetParent() != null) {
                             if (device.CurrentFolder.GetItemIndex(item) == 1) {
+                                if (e.PerformedAction != ButtonInteractPacket.ButtonAction.ButtonClick) return;
                                 //Navigate one up!
                                 device.CurrentFolder = device.CurrentFolder.GetParent();
-
                                 SendItemsToDevice(CurrentDevice, device.CurrentFolder);
+                                return;
                             }
                         }
                         if (deckItem.DeckAction != null) {
@@ -278,8 +281,9 @@ namespace ButtonDeck.Forms
             }
         }
 
-        private static void SendItemsToDevice(DeckDevice device)
+        private static void SendItemsToDevice(DeckDevice device, bool destroyCurrent = false)
         {
+            if (destroyCurrent) device.CurrentFolder = null;
             device.CheckCurrentFolder();
             SendItemsToDevice(device, device.CurrentFolder);
         }
@@ -290,19 +294,18 @@ namespace ButtonDeck.Forms
             if (con != null) {
                 var packet = new SlotImageChangeChunkPacket();
                 List<IDeckItem> items = folder.GetDeckItems();
-                var clearPacket = new SlotImageClearChunkPacket();
                 for (int i = 0; i < 15; i++) {
-                    clearPacket.AddToQueue(i + 1);
+                    var clearPacket = new SlotImageClearPacket(i + 1);
+                    con.SendPacket(clearPacket);
                 }
-                con.SendPacket(clearPacket);
 
-                var clearPacket2 = new SlotImageClearChunkPacket();
                 for (int i = 0; i < 15; i++) {
                     IDeckItem item;
                     if (items.ElementAtOrDefault(i) != null)
                         item = items[i];
                     else {
-                        clearPacket2.AddToQueue(i + 1);
+                        var clearPacket = new SlotImageClearPacket(i + 1);
+                        con.SendPacket(clearPacket);
                         continue;
                     }
                     bool isFolder = item is IDeckFolder;
@@ -311,8 +314,6 @@ namespace ButtonDeck.Forms
 
                     packet.AddToQueue(folder.GetItemIndex(item), image);
                 }
-
-                con.SendPacket(clearPacket2);
                 con.SendPacket(packet);
             }
         }
@@ -361,7 +362,7 @@ namespace ButtonDeck.Forms
             Invoke(new Action(() => {
                 shadedPanel2.Hide();
                 shadedPanel1.Hide();
-                Refresh();
+                Invalidate();
             }));
         }
         private void GenerateSidebar(Control parent)
@@ -498,27 +499,46 @@ namespace ButtonDeck.Forms
                 prop => Attribute.IsDefined(prop, typeof(ActionPropertyIncludeAttribute)) && TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
                 (typeof(string)));
             foreach (var prop in props) {
-                panel.Controls.Add(new Label()
-                {
-                    Text = GetPropertyDescription(prop)
-                });
+                MethodInfo helperMethod = item.DeckAction.GetType().GetMethod(prop.Name + "Helper");
+                if (helperMethod != null) {
+                    panel.Controls.Add(new Label()
+                    {
+                        Text = GetPropertyDescription(prop)
+                    });
 
-                var txt = new TextBox
-                {
-                    Text = (string)TypeDescriptor.GetConverter(prop.PropertyType).ConvertTo(prop.GetValue(item.DeckAction), typeof(string))
-                };
-                txt.LostFocus += (sender, e) => {
-                    try {
-                        if (txt.Text == string.Empty) return;
-                        //After loosing focus, convert type to thingy.
-                        prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
-                        txt.Text = string.Empty;
-                    } catch (Exception ex) {
-                        //Ignore all errors
-                    }
-                };
-                txt.Width = panel.DisplayRectangle.Width - 16;
-                panel.Controls.Add(txt);
+                    Button helperButton = new Button()
+                    {
+                        Text = "..."
+                    };
+
+                    helperButton.Click += (sender, e) => helperMethod.Invoke(item.DeckAction, new object[] { });
+
+                    helperButton.Width = panel.DisplayRectangle.Width - 16;
+                    panel.Controls.Add(helperButton);
+
+                } else {
+                    panel.Controls.Add(new Label()
+                    {
+                        Text = GetPropertyDescription(prop)
+                    });
+
+                    var txt = new TextBox
+                    {
+                        Text = (string)TypeDescriptor.GetConverter(prop.PropertyType).ConvertTo(prop.GetValue(item.DeckAction), typeof(string))
+                    };
+                    txt.LostFocus += (sender, e) => {
+                        try {
+                            if (txt.Text == string.Empty) return;
+                            //After loosing focus, convert type to thingy.
+                            prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
+                            txt.Text = string.Empty;
+                        } catch (Exception ex) {
+                            //Ignore all errors
+                        }
+                    };
+                    txt.Width = panel.DisplayRectangle.Width - 16;
+                    panel.Controls.Add(txt);
+                }
             }
 
         }

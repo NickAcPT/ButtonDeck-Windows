@@ -12,6 +12,17 @@ namespace NickAc.Backend.Objects
     public class ActionPropertyIncludeAttribute : Attribute
     { }
 
+
+    [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    public class ActionPropertyHelperAttribute : Attribute
+    {
+        readonly Action targetMethod;
+        public ActionPropertyHelperAttribute(Action targetMethod)
+        {
+            this.targetMethod = targetMethod;
+        }
+    }
+
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     public class ActionPropertyDescriptionAttribute : Attribute
     {
@@ -32,6 +43,15 @@ namespace NickAc.Backend.Objects
     [XmlInclude(typeof(ExecutableRunAction))]
     public abstract class AbstractDeckAction
     {
+        public static Type FindType(string fullName)
+        {
+            return
+                AppDomain.CurrentDomain.GetAssemblies()
+                    .Where(a => !a.IsDynamic)
+                    .SelectMany(a => a.GetTypes())
+                    .FirstOrDefault(t => t.FullName.Equals(fullName));
+        }
+
         public enum DeckActionCategory
         {
             General,

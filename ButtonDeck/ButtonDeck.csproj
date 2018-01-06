@@ -78,6 +78,12 @@
     <Compile Include="Controls\PlaceHolderTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\ActionHelperForms\ExecutableRunHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionHelperForms\ExecutableRunHelper.Designer.cs">
+      <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\ColorSchemePreviewControl.resx">
       <DependentUpon>ColorSchemePreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionHelperForms\ExecutableRunHelper.resx">
+      <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetupForm.resx">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>
@@ -199,4 +208,8 @@
     <None Include="Resources\img_folder_up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>libz add -l dependencies.libz -i *.dll --safe-load --move
+libz instrument -a $(TargetFileName) --libz-file dependencies.libz</PostBuildEvent>
+  </PropertyGroup>
 </Project>

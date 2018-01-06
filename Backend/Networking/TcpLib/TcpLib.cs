@@ -245,7 +245,6 @@ namespace NickAc.Backend.Networking.TcpLib
                           ReceivedDataReady, st);
                 }
             } catch (Exception ex) {
-                throw ex;
             }
         }
 
