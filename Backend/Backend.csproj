@@ -52,6 +52,7 @@
     <Compile Include="Networking\Implementation\HelloPacket.cs" />
     <Compile Include="Networking\Implementation\SingleSlotImageChangePacket.cs" />
     <Compile Include="Networking\Implementation\SlotImageChangeChunkPacket.cs" />
+    <Compile Include="Networking\Implementation\SlotImageClearChunkPacket.cs" />
     <Compile Include="Networking\Implementation\SlotImageClearPacket.cs" />
     <Compile Include="Networking\INetworkPacket.cs" />
     <Compile Include="Networking\IO\DataInputStream.cs" />

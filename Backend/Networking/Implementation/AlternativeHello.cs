@@ -16,7 +16,7 @@ namespace NickAc.Backend.Networking.Implementation
         public override void Execute(ConnectionState state)
         {
             state.SendPacket(new AlternativeHello());
-            state.EndConnection();
+            //state.EndConnection();
         }
 
         public override void FromInputStream(DataInputStream reader)

@@ -290,18 +290,19 @@ namespace ButtonDeck.Forms
             if (con != null) {
                 var packet = new SlotImageChangeChunkPacket();
                 List<IDeckItem> items = folder.GetDeckItems();
+                var clearPacket = new SlotImageClearChunkPacket();
                 for (int i = 0; i < 15; i++) {
-                    //var clearPacket = new SlotImageClearPacket(i + 1);
-                    //con.SendPacket(clearPacket);
+                    clearPacket.AddToQueue(i + 1);
                 }
+                con.SendPacket(clearPacket);
 
+                var clearPacket2 = new SlotImageClearChunkPacket();
                 for (int i = 0; i < 15; i++) {
                     IDeckItem item;
                     if (items.ElementAtOrDefault(i) != null)
                         item = items[i];
                     else {
-                        //var clearPacket = new SlotImageClearPacket(i + 1);
-                        //con.SendPacket(clearPacket);
+                        clearPacket2.AddToQueue(i + 1);
                         continue;
                     }
                     bool isFolder = item is IDeckFolder;
@@ -310,6 +311,8 @@ namespace ButtonDeck.Forms
 
                     packet.AddToQueue(folder.GetItemIndex(item), image);
                 }
+
+                con.SendPacket(clearPacket2);
                 con.SendPacket(packet);
             }
         }
