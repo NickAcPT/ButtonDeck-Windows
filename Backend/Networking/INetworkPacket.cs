@@ -58,7 +58,7 @@ namespace NickAc.Backend.Networking
             byte[] bytesToSend = null;
             using (var memoryStream = new MemoryStream()) {
                 using (var binaryWriter = new DataOutputStream(memoryStream)) {
-                    Debug.WriteLine($"Sending packet[ID:{packet.GetPacketNumber()}] to client!");
+                    Debug.WriteLine($"Sending packet {packet.GetType().Name}[ID:{packet.GetPacketNumber()}] to client!");
                     binaryWriter.Write(packet.GetPacketNumber());
                     Debug.WriteLine($"Sending data to output stream of packet[ID:{packet.GetPacketNumber()}]!");
                     packet.ToOutputStream(binaryWriter);
@@ -82,8 +82,8 @@ namespace NickAc.Backend.Networking
                     System.Diagnostics.Debug.WriteLine($"Read packet with ID: {packetNumber}");
                     Debug.WriteLine("Getting new packet by id!");
                     packet = DeckServiceProvider.GetNewNetworkPacketById(packetNumber);
-                    Debug.WriteLine("Getting new packet by id - Success!");
-                    Debug.WriteLine($"Getting data from stream[ID:{packetNumber}]!");
+                    Debug.WriteLine($"Getting new packet by id [{packet.GetType().Name}] - Success!");
+                    Debug.WriteLine($"Getting data from stream [ID:{packetNumber}]!");
                     packet.FromInputStream(binaryReader);
                     Debug.WriteLine($"Getting data from stream[ID:{packetNumber}] - Success!");
                     packet.Execute(con);

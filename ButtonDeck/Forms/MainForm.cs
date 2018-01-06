@@ -291,8 +291,8 @@ namespace ButtonDeck.Forms
                 var packet = new SlotImageChangeChunkPacket();
                 List<IDeckItem> items = folder.GetDeckItems();
                 for (int i = 0; i < 15; i++) {
-                    var clearPacket = new SlotImageClearPacket(i + 1);
-                    con.SendPacket(clearPacket);
+                    //var clearPacket = new SlotImageClearPacket(i + 1);
+                    //con.SendPacket(clearPacket);
                 }
 
                 for (int i = 0; i < 15; i++) {
@@ -300,8 +300,8 @@ namespace ButtonDeck.Forms
                     if (items.ElementAtOrDefault(i) != null)
                         item = items[i];
                     else {
-                        var clearPacket = new SlotImageClearPacket(i + 1);
-                        con.SendPacket(clearPacket);
+                        //var clearPacket = new SlotImageClearPacket(i + 1);
+                        //con.SendPacket(clearPacket);
                         continue;
                     }
                     bool isFolder = item is IDeckFolder;
