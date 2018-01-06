@@ -212,4 +212,7 @@
     <PostBuildEvent>libz add -l dependencies.libz -i *.dll --safe-load --move
 libz instrument -a $(TargetFileName) --libz-file dependencies.libz</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>del "dependencies.libz" &gt;nul 2&gt;&amp;1</PreBuildEvent>
+  </PropertyGroup>
 </Project>

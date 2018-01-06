@@ -6,6 +6,7 @@ using NickAc.Backend.Networking.Implementation;
 using NickAc.Backend.Objects;
 using NickAc.Backend.Objects.Implementation;
 using NickAc.Backend.Utils;
+using NickAc.ModernUIDoneRight.Controls;
 using NickAc.ModernUIDoneRight.Objects;
 using System;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ namespace ButtonDeck.Forms
             item.Click += (s, ee) => {
                 //TODO: Settings
             };
-            appBar1.Actions.Add(item);
+            //appBar1.Actions.Add(item);
 
             ApplyTheme(panel1);
             GenerateSidebar(shadedPanel1);
@@ -506,7 +507,7 @@ namespace ButtonDeck.Forms
                         Text = GetPropertyDescription(prop)
                     });
 
-                    Button helperButton = new Button()
+                    Button helperButton = new ModernButton()
                     {
                         Text = "..."
                     };
@@ -540,6 +541,8 @@ namespace ButtonDeck.Forms
                     panel.Controls.Add(txt);
                 }
             }
+
+            ModifyColorScheme(flowLayoutPanel1.Controls.OfType<Control>());
 
         }
 

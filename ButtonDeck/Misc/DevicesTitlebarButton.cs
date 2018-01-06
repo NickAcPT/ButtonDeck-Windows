@@ -30,6 +30,7 @@ namespace ButtonDeck.Misc
             ModernForm frm = new ModernForm()
             {
                 Sizable = false,
+                ShowInTaskbar = false,
                 BackColor = _frm.BackColor,
                 ForeColor = _frm.ColorScheme.ForegroundColor,
                 ColorScheme = _frm.ColorScheme,
