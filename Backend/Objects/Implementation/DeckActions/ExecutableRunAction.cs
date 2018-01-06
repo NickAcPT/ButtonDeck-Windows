@@ -54,7 +54,11 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
 
         public override bool OnButtonClick(DeckDevice deckDevice)
         {
+            return false;
+        }
 
+        public override void OnButtonDown(DeckDevice deckDevice)
+        {
             string exec = GetExecutable(ToExecute);
             var proc = new ProcessStartInfo(exec, ToExecute.Substring(exec.Length).Trim())
             {
@@ -63,11 +67,6 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
                 UseShellExecute = false,
             };
             Process.Start(proc);
-            return true;
-        }
-
-        public override void OnButtonDown(DeckDevice deckDevice)
-        {
         }
 
         public override void OnButtonUp(DeckDevice deckDevice)
