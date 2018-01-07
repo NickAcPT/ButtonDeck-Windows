@@ -1,4 +1,6 @@
 ﻿using ButtonDeck.Controls;
+using System;
+using System.Windows.Forms;
 
 namespace ButtonDeck.Forms
 {
@@ -49,9 +51,9 @@ namespace ButtonDeck.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.shadedPanel1 = new ButtonDeck.Forms.ShadedPanel();
             this.shadedPanel2 = new ButtonDeck.Forms.ShadedPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.imageModernButton1 = new ButtonDeck.Controls.ImageModernButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.shadedPanel1.SuspendLayout();
             this.shadedPanel2.SuspendLayout();
@@ -79,7 +81,8 @@ namespace ButtonDeck.Forms
             this.modernButton1.TabIndex = 1;
             this.modernButton1.Text = "modernButton1";
             this.modernButton1.UseVisualStyleBackColor = true;
-            this.modernButton1.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton1.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton2
             // 
@@ -92,7 +95,8 @@ namespace ButtonDeck.Forms
             this.modernButton2.TabIndex = 1;
             this.modernButton2.Text = "modernButton1";
             this.modernButton2.UseVisualStyleBackColor = true;
-            this.modernButton2.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton2.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton3
             // 
@@ -105,7 +109,8 @@ namespace ButtonDeck.Forms
             this.modernButton3.TabIndex = 1;
             this.modernButton3.Text = "modernButton1";
             this.modernButton3.UseVisualStyleBackColor = true;
-            this.modernButton3.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton3.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton4
             // 
@@ -118,7 +123,8 @@ namespace ButtonDeck.Forms
             this.modernButton4.TabIndex = 1;
             this.modernButton4.Text = "modernButton1";
             this.modernButton4.UseVisualStyleBackColor = true;
-            this.modernButton4.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton4.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton5
             // 
@@ -131,7 +137,8 @@ namespace ButtonDeck.Forms
             this.modernButton5.TabIndex = 1;
             this.modernButton5.Text = "modernButton1";
             this.modernButton5.UseVisualStyleBackColor = true;
-            this.modernButton5.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton5.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // panel1
             // 
@@ -168,7 +175,8 @@ namespace ButtonDeck.Forms
             this.modernButton15.TabIndex = 1;
             this.modernButton15.Text = "modernButton1";
             this.modernButton15.UseVisualStyleBackColor = true;
-            this.modernButton15.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton15.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton10
             // 
@@ -181,7 +189,8 @@ namespace ButtonDeck.Forms
             this.modernButton10.TabIndex = 1;
             this.modernButton10.Text = "modernButton1";
             this.modernButton10.UseVisualStyleBackColor = true;
-            this.modernButton10.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton10.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton11
             // 
@@ -194,7 +203,8 @@ namespace ButtonDeck.Forms
             this.modernButton11.TabIndex = 1;
             this.modernButton11.Text = "modernButton1";
             this.modernButton11.UseVisualStyleBackColor = true;
-            this.modernButton11.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton11.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton6
             // 
@@ -207,7 +217,8 @@ namespace ButtonDeck.Forms
             this.modernButton6.TabIndex = 1;
             this.modernButton6.Text = "modernButton1";
             this.modernButton6.UseVisualStyleBackColor = true;
-            this.modernButton6.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton6.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton14
             // 
@@ -220,7 +231,8 @@ namespace ButtonDeck.Forms
             this.modernButton14.TabIndex = 1;
             this.modernButton14.Text = "modernButton1";
             this.modernButton14.UseVisualStyleBackColor = true;
-            this.modernButton14.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton14.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton9
             // 
@@ -233,7 +245,8 @@ namespace ButtonDeck.Forms
             this.modernButton9.TabIndex = 1;
             this.modernButton9.Text = "modernButton1";
             this.modernButton9.UseVisualStyleBackColor = true;
-            this.modernButton9.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton9.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton12
             // 
@@ -246,7 +259,8 @@ namespace ButtonDeck.Forms
             this.modernButton12.TabIndex = 1;
             this.modernButton12.Text = "modernButton1";
             this.modernButton12.UseVisualStyleBackColor = true;
-            this.modernButton12.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton12.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton7
             // 
@@ -259,7 +273,8 @@ namespace ButtonDeck.Forms
             this.modernButton7.TabIndex = 1;
             this.modernButton7.Text = "modernButton1";
             this.modernButton7.UseVisualStyleBackColor = true;
-            this.modernButton7.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton7.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton13
             // 
@@ -272,7 +287,8 @@ namespace ButtonDeck.Forms
             this.modernButton13.TabIndex = 1;
             this.modernButton13.Text = "modernButton1";
             this.modernButton13.UseVisualStyleBackColor = true;
-            this.modernButton13.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton13.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton8
             // 
@@ -285,7 +301,8 @@ namespace ButtonDeck.Forms
             this.modernButton8.TabIndex = 1;
             this.modernButton8.Text = "modernButton1";
             this.modernButton8.UseVisualStyleBackColor = true;
-            this.modernButton8.Click += new System.EventHandler(this.ItemButton_Click);
+            this.modernButton8.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // label1
             // 
@@ -323,6 +340,15 @@ namespace ButtonDeck.Forms
             this.shadedPanel2.TabIndex = 0;
             this.shadedPanel2.Visible = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 100);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 150);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -343,16 +369,7 @@ namespace ButtonDeck.Forms
             this.imageModernButton1.TabIndex = 2;
             this.imageModernButton1.Text = "imageModernButton1";
             this.imageModernButton1.UseVisualStyleBackColor = true;
-            this.imageModernButton1.Click += new System.EventHandler(this.ImageModernButton1_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 100);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 150);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.imageModernButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ImageModernButton1_MouseClick);
             // 
             // MainForm
             // 

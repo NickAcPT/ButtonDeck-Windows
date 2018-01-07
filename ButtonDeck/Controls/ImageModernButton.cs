@@ -74,6 +74,11 @@ namespace ButtonDeck.Controls
                         var connections = Program.ServerThread.TcpServer?.Connections.OfType<ConnectionState>().Where(c => c.IsStillFunctioning());
                         var stateID = GetConnectionGuidFromDeckDevice(frm.CurrentDevice);
                         var state = connections.FirstOrDefault(m => m.ConnectionGuid == stateID);
+                        if (value == null) {
+                            //Send clear packet
+                            state.SendPacket(new SlotImageClearPacket(slot));
+                            return;
+                        }
                         if (state != null) {
                             Bitmap bmp = new Bitmap(value);
                             var deckImage = new DeckImage(bmp);

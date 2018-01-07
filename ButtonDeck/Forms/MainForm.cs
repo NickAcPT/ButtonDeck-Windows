@@ -414,7 +414,7 @@ namespace ButtonDeck.Forms
                 return true;
             });
         }
-        private void ImageModernButton1_Click(object sender, EventArgs e)
+        private void ImageModernButton1_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog()
             {
@@ -440,7 +440,7 @@ namespace ButtonDeck.Forms
                     Bitmap bmp = new Bitmap(dlg.FileName);
                     if (DeckImage.ImageToByte(bmp).Length > CLIENT_ARRAY_LENGHT) {
                         MessageBox.Show(this, "The selected image is too big to be sent to the device. Please choose another", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        ImageModernButton1_Click(sender, e);
+                        ImageModernButton1_MouseClick(sender, new MouseEventArgs(MouseButtons.None, 0, 0, 0, 0));
                         return;
                     }
                     imageModernButton1.Image = bmp;
@@ -449,7 +449,7 @@ namespace ButtonDeck.Forms
             }
         }
 
-        private void ItemButton_Click(object sender, EventArgs e)
+        private void ItemButton_MouseClick(object sender, EventArgs e)
         {
             if (sender is ImageModernButton mb) {
                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
@@ -474,6 +474,41 @@ namespace ButtonDeck.Forms
                 } else {
                     Buttons_Unfocus(sender, e);
                 }
+            }
+        }
+
+        private void ItemButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (sender is ImageModernButton senderB) {
+                if (!senderB.DisplayRectangle.Contains(e.Location)) return;
+                if (e.Button == MouseButtons.Right) {
+                    var popupMenu = new ContextMenuStrip();
+
+                    popupMenu.Items.Add("Clear image").Click += (s, ee) => {
+                        if (senderB.Image != null && senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
+                            senderB.Image.Dispose();
+                            if (senderB != null && senderB.Tag != null && senderB.Tag is IDeckItem deckItem) {
+                                bool isFolder = deckItem is IDeckFolder;
+                                senderB.Image = isFolder ? Resources.img_folder : Resources.img_item_default;
+                            }
+                        }
+                    };
+
+                    popupMenu.Items.Add("Remove item").Click += (s, ee) => {
+                        if (senderB != null) {
+                            if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
+                                senderB.Image.Dispose();
+                            }
+                            senderB.Image = null;
+                            Buttons_Unfocus(sender, e);
+                            CurrentDevice.CurrentFolder.Remove(senderB.CurrentSlot);
+
+                        }
+                    };
+
+                    popupMenu.Show(sender as Control, e.Location);
+                }
+                return;
             }
         }
 

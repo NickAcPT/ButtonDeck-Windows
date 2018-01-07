@@ -18,6 +18,7 @@ namespace NickAc.Backend.Objects
 
         public abstract void Add(int slot, IDeckItem item);
         public abstract int Add(IDeckItem item);
+        public abstract void Remove(int slot);
         public abstract int GetItemIndex(IDeckItem item);
 
     }

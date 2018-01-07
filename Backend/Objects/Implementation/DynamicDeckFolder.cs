@@ -66,5 +66,10 @@ namespace NickAc.Backend.Objects.Implementation
             }
             return addToSlot;
         }
+
+        public override void Remove(int slot)
+        {
+            items.Remove(slot);
+        }
     }
 }
