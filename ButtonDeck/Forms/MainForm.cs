@@ -44,9 +44,11 @@ namespace ButtonDeck.Forms
             if (Program.Silent) {
                 //Right now, we use the window redraw for device discovery purposes.
                 //We need to simulate that with a timer.
-                Timer t = new Timer();
-                //We should run it every half-second.
-                t.Interval = 500;
+                Timer t = new Timer
+                {
+                    //We should run it every half-second.
+                    Interval = 500
+                };
                 t.Tick += (s, e) => {
                     //The discovery works by reading the Text from the button
                     var itemText = item.Text.Trim();
@@ -61,9 +63,11 @@ namespace ButtonDeck.Forms
 
                 Shown += handler;
                 t.Start();
-                NotifyIcon icon = new NotifyIcon();
-                icon.Icon = Icon;
-                icon.Text = Text;
+                NotifyIcon icon = new NotifyIcon
+                {
+                    Icon = Icon,
+                    Text = Text
+                };
                 icon.DoubleClick += (sender, e) => {
                     Show();
                 };
@@ -303,19 +307,25 @@ namespace ButtonDeck.Forms
             e.Device.ButtonInteraction += Device_ButtonInteraction;
         }
 
+        List<Tuple<Guid, int>> ignoreOnce = new List<Tuple<Guid, int>>();
         private void Device_ButtonInteraction(object sender, DeckDevice.ButtonInteractionEventArgs e)
         {
             if (sender is DeckDevice device) {
+                if (ignoreOnce.Any(c=>c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID)) {
+                    ignoreOnce.Remove(ignoreOnce.First(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID));
+                    return;
+                }
                 var currentItems = device.CurrentFolder.GetDeckItems();
                 if (currentItems.Any(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1)) {
                     var item = currentItems.FirstOrDefault(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1);
-                    if (item is DynamicDeckItem deckItem) {
+                    if (item is DynamicDeckItem deckItem && !(item is IDeckFolder)) {
                         if (device.CurrentFolder.GetParent() != null) {
                             if (device.CurrentFolder.GetItemIndex(item) == 1) {
                                 if (e.PerformedAction != ButtonInteractPacket.ButtonAction.ButtonUp) return;
                                 //Navigate one up!
                                 device.CurrentFolder = device.CurrentFolder.GetParent();
                                 SendItemsToDevice(CurrentDevice, device.CurrentFolder);
+                                RefreshAllButtons(false);
                                 return;
                             }
                         }
@@ -332,7 +342,9 @@ namespace ButtonDeck.Forms
                         }
                     } else if (item is DynamicDeckFolder deckFolder) {
                         device.CurrentFolder = deckFolder;
+                        ignoreOnce.Add(new Tuple<Guid, int>(device.DeviceGuid, e.SlotID));
                         SendItemsToDevice(CurrentDevice, deckFolder);
+                        RefreshAllButtons(false);
                     }
                 }
             }
@@ -351,20 +363,17 @@ namespace ButtonDeck.Forms
             if (con != null) {
                 var packet = new SlotImageChangeChunkPacket();
                 List<IDeckItem> items = folder.GetDeckItems();
-                for (int i = 0; i < 15; i++) {
-                    var clearPacket = new SlotImageClearPacket(i + 1);
-                    con.SendPacket(clearPacket);
-                }
+
+                List<int> addedItems = new List<int>();
 
                 for (int i = 0; i < 15; i++) {
-                    IDeckItem item;
-                    if (items.ElementAtOrDefault(i) != null)
+                    IDeckItem item = null;
+                    if (items.ElementAtOrDefault(i) != null) {
                         item = items[i];
-                    else {
-                        var clearPacket = new SlotImageClearPacket(i + 1);
-                        con.SendPacket(clearPacket);
-                        continue;
+                        addedItems.Add(folder.GetItemIndex(item));
                     }
+                    if (item == null) continue;
+
                     bool isFolder = item is IDeckFolder;
                     var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
                     var seri = image.BitmapSerialized;
@@ -372,6 +381,15 @@ namespace ButtonDeck.Forms
                     packet.AddToQueue(folder.GetItemIndex(item), image);
                 }
                 con.SendPacket(packet);
+
+                var clearPacket = new SlotImageClearChunkPacket();
+                for (int i = 1; i < 16; i++) {
+                    if (addedItems.Contains(i)) continue;
+                    clearPacket.AddToQueue(i);
+                }
+
+                con.SendPacket(clearPacket);
+
             }
         }
 

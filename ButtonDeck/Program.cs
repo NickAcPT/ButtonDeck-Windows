@@ -16,6 +16,7 @@ namespace ButtonDeck
         private static string errorText = "";
         private const string errorFileName = "errors.log";
         public static ServerThread ServerThread { get; set; }
+        public static bool SuccessfulServerStart { get; set; } = false;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -48,6 +49,12 @@ namespace ButtonDeck
 
             ServerThread = new ServerThread();
             ServerThread.Start();
+            /*
+            if (!SuccessfulServerStart) {
+                MessageBox.Show("Unable to start the deck server!" + Environment.NewLine
+                    + "Do you have another instance running?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }*/
 
             Application.Run(new MainForm());
             ServerThread.Stop();
@@ -67,7 +74,7 @@ namespace ButtonDeck
                 Trace.WriteLine("Exception:");
                 Trace.WriteLine("==================");
                 Trace.Indent();
-                ex.ToString();
+                Trace.TraceError(ex.ToString());
                 Trace.Unindent();
                 Trace.WriteLine("==================");
                 Trace.WriteLine("");
@@ -80,12 +87,12 @@ namespace ButtonDeck
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             MessageBox.Show(errorText);
-            Trace.WriteLine("An error occured.");
+            Trace.WriteLine("An error occured. (Thread exception)");
             Trace.WriteLine($"Timestamp: [Local:{DateTime.Now}; UTC: {DateTime.UtcNow}].");
             Trace.WriteLine("Exception:");
             Trace.WriteLine("==================");
             Trace.Indent();
-            e.Exception.ToString();
+            Trace.TraceError(e.Exception.ToString());
             Trace.Unindent();
             Trace.WriteLine("==================");
             Trace.WriteLine("");
