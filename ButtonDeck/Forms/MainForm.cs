@@ -59,12 +59,6 @@ namespace ButtonDeck.Forms
 
         #region Methods
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            //Start saving stuff
-        }
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -249,12 +243,12 @@ namespace ButtonDeck.Forms
         {
             if (sender is DeckDevice device) {
                 var currentItems = device.CurrentFolder.GetDeckItems();
-                if (currentItems.Any(c => currentItems.IndexOf(c) == e.SlotID)) {
-                    var item = currentItems.FirstOrDefault(c => currentItems.IndexOf(c) == e.SlotID);
+                if (currentItems.Any(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1)) {
+                    var item = currentItems.FirstOrDefault(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1);
                     if (item is DynamicDeckItem deckItem) {
                         if (device.CurrentFolder.GetParent() != null) {
                             if (device.CurrentFolder.GetItemIndex(item) == 1) {
-                                if (e.PerformedAction != ButtonInteractPacket.ButtonAction.ButtonClick) return;
+                                if (e.PerformedAction != ButtonInteractPacket.ButtonAction.ButtonUp) return;
                                 //Navigate one up!
                                 device.CurrentFolder = device.CurrentFolder.GetParent();
                                 SendItemsToDevice(CurrentDevice, device.CurrentFolder);
@@ -263,14 +257,12 @@ namespace ButtonDeck.Forms
                         }
                         if (deckItem.DeckAction != null) {
                             switch (e.PerformedAction) {
-                                case ButtonInteractPacket.ButtonAction.ButtonClick:
-                                    deckItem.DeckAction.OnButtonClick(device);
-                                    break;
                                 case ButtonInteractPacket.ButtonAction.ButtonDown:
                                     deckItem.DeckAction.OnButtonDown(device);
                                     break;
                                 case ButtonInteractPacket.ButtonAction.ButtonUp:
                                     deckItem.DeckAction.OnButtonUp(device);
+                                    deckItem.DeckAction.OnButtonClick(device);
                                     break;
                             }
                         }
@@ -330,6 +322,8 @@ namespace ButtonDeck.Forms
                 ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
                 var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
                 var seri = image.BitmapSerialized;
+
+                //TODO: ALLOW FOR SMALL BITMAP
                 control.NormalImage = image.Bitmap;
                 //control.Refresh();
                 control.Tag = item;
@@ -356,15 +350,28 @@ namespace ButtonDeck.Forms
             });
         }
 
+        private void UnfixFolders(IDeckFolder folder)
+        {
+            folder.GetSubFolders().All(c => {
+                UnfixFolders(c);
+                c.SetParent(folder);
+                if (c.GetParent() != null) {
+                    c.Remove(1);
+                }
+
+                return true;
+            });
+        }
+
         private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
-            e.Device.ButtonInteraction -= Device_ButtonInteraction;
-
             Invoke(new Action(() => {
                 shadedPanel2.Hide();
                 shadedPanel1.Hide();
-                Invalidate();
+                Refresh();
             }));
+
+            e.Device.ButtonInteraction -= Device_ButtonInteraction;
         }
         private void GenerateSidebar(Control parent)
         {

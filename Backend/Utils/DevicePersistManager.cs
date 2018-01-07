@@ -147,8 +147,25 @@ namespace NickAc.Backend.Utils
             }
         }
 
+
+        private static void CompressFolders(IDeckFolder folder)
+        {
+            folder.GetSubFolders().All(c => {
+                CompressFolders(c);
+                c.SetParent(folder);
+                if (c.GetParent() != null) {
+                    c.Remove(1);
+                }
+
+                return true;
+            });
+        }
+
         public static void SaveDevices()
         {
+            foreach (var device in persistedDevices) {
+                CompressFolders(device.MainFolder);
+            }
             if (persistedDevices != null) {
                 File.WriteAllText(DEVICES_FILENAME, XMLUtils.ToXML(persistedDevices));
             } else {

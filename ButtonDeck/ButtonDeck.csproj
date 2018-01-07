@@ -207,6 +207,12 @@
   <ItemGroup>
     <None Include="Resources\img_folder_up.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_delete_white_48dp_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_delete_black_48dp_2x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF "$(ConfigurationName)" EQU "Debug" (
