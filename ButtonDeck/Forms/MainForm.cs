@@ -66,14 +66,28 @@ namespace ButtonDeck.Forms
 
             DevicePersistManager.DeviceDisconnected += DevicePersistManager_DeviceDisconnected;
             var image = ColorScheme.ForegroundColor == Color.White ? Resources.ic_settings_white_48dp_2x : Resources.ic_settings_black_48dp_2x;
+                var imageTrash = ColorScheme.ForegroundColor == Color.White ? Resources.ic_delete_white_48dp_2x : Resources.ic_delete_black_48dp_2x;
             AppAction item = new AppAction()
             {
-                Image = Resources.ic_settings_white_48dp_2x
+                Image = image
             };
             item.Click += (s, ee) => {
                 //TODO: Settings
             };
             //appBar1.Actions.Add(item);
+
+            AppAction itemTrash = new AppAction()
+            {
+                Image = imageTrash
+            };
+            itemTrash.Click += (s, ee) => {
+                if (MessageBox.Show("Are you sure you  want to clear everything?" + Environment.NewLine + "All items will be lost!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+                    CurrentDevice.MainFolder = new DynamicDeckFolder();
+                    SendItemsToDevice(CurrentDevice, true);
+                    RefreshAllButtons(false);
+                }
+            };
+            appBar1.Actions.Add(itemTrash);
 
             ApplyTheme(panel1);
             GenerateSidebar(shadedPanel1);
@@ -181,7 +195,7 @@ namespace ButtonDeck.Forms
         }
 
 
-        private void RefreshAllButtons()
+        private void RefreshAllButtons( bool sendToDevice = true)
         {
             IDeckFolder folder = CurrentDevice.CurrentFolder;
             Bitmap empty = new Bitmap(1, 1);
@@ -205,7 +219,8 @@ namespace ButtonDeck.Forms
 
             }
             CurrentDevice.CheckCurrentFolder();
-            SendItemsToDevice(CurrentDevice, folder);
+            if (sendToDevice)
+                SendItemsToDevice(CurrentDevice, folder);
         }
 
         private ImageModernButton GetButtonControl(int id)
@@ -506,6 +521,7 @@ namespace ButtonDeck.Forms
                             if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
                                 senderB.Image.Dispose();
                             }
+                            senderB.Tag = null;
                             senderB.Image = null;
                             Buttons_Unfocus(sender, e);
                             CurrentDevice.CurrentFolder.Remove(senderB.CurrentSlot);
