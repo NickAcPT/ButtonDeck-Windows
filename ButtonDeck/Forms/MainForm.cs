@@ -184,18 +184,17 @@ namespace ButtonDeck.Forms
                                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
                                     if (CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1) return; 
                                     if (item is IDeckFolder deckFolder) {
-
-                                        mb.Tag = new DynamicDeckItem
+                                        var deckItemToAdd = new DynamicDeckItem
                                         {
                                             DeckAction = action.DeckAction.CloneAction()
                                         };
-                                        var id2 = deckFolder.Add(mb.Tag as IDeckItem);
-                                        mb.Image = Resources.img_item_default;
+                                        var id2 = deckFolder.Add(deckItemToAdd);
+                                        deckItemToAdd.DeckImage = new DeckImage(Resources.img_item_default);
 
                                         CurrentDevice.CurrentFolder = deckFolder;
                                         RefreshAllButtons();
 
-                                        FocusItem(GetButtonControl(id2), mb.Tag as IDeckItem);
+                                        FocusItem(GetButtonControl(id2), deckItemToAdd);
 
                                         return;
                                     }
