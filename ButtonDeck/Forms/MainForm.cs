@@ -182,6 +182,7 @@ namespace ButtonDeck.Forms
                         if (ee.Effect == DragDropEffects.Copy) {
                             if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
                                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
+                                    if (CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1) return; 
                                     if (item is IDeckFolder deckFolder) {
 
                                         mb.Tag = new DynamicDeckItem
