@@ -39,8 +39,57 @@ namespace ButtonDeck.Forms
         {
             instance = this;
             InitializeComponent();
+            DevicesTitlebarButton item = new DevicesTitlebarButton(this);
+            TitlebarButtons.Add(item);
+            if (Program.Silent) {
+                //Right now, we use the window redraw for device discovery purposes.
+                //We need to simulate that with a timer.
+                Timer t = new Timer();
+                //We should run it every half-second.
+                t.Interval = 500;
+                t.Tick += (s, e) => {
+                    //The discovery works by reading the Text from the button
+                    var itemText = item.Text.Trim();
+                };
 
-            TitlebarButtons.Add(new DevicesTitlebarButton(this));
+                void handler(object s, EventArgs e)
+                {
+                    Hide();
+                    Shown -= handler;
+
+                }
+
+                Shown += handler;
+                t.Start();
+                NotifyIcon icon = new NotifyIcon();
+                icon.Icon = Icon;
+                icon.Text = Text;
+                icon.DoubleClick += (sender, e) => {
+                    Show();
+                };
+                ContextMenuStrip menu = new ContextMenuStrip();
+                menu.Items.Add("Open application").Click += (s, e) => {
+                    Show();
+                };
+                menu.Items.Add("-");
+                menu.Items.Add("Exit application").Click += (s, e) => {
+                    Application.Exit();
+                };
+                FormClosing += (s, e) => {
+                    if (e.CloseReason == CloseReason.UserClosing) {
+                        Hide();
+                        e.Cancel = true;
+                    } else if (e.CloseReason == CloseReason.ApplicationExitCall) {
+                        icon.Visible = false;
+                        icon.Dispose();
+                    }
+                };
+                menu.Opening += (s, e) => {
+                    menu.Items[0].Select();
+                };
+                icon.ContextMenuStrip = menu;
+                icon.Visible = true;
+            }
         }
 
         ~MainForm()

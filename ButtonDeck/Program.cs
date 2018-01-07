@@ -12,6 +12,7 @@ namespace ButtonDeck
 {
     static class Program
     {
+        public static bool Silent { get; set; } = false;
         private static string errorText = "";
         private const string errorFileName = "errors.log";
         public static ServerThread ServerThread { get; set; }
@@ -19,8 +20,10 @@ namespace ButtonDeck
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+
+            Silent = args.Any(c => c.ToLower() == "/s");
 
             Trace.Listeners.Add(new TextWriterTraceListener(errorFileName));
             Trace.AutoFlush = true;
