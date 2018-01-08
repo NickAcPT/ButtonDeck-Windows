@@ -295,7 +295,7 @@ namespace ButtonDeck.Forms
         private void Buttons_Unfocus(object sender, EventArgs e)
         {
             shadedPanel2.Hide();
-            Refresh();
+            shadedPanel1.Refresh();
         }
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
@@ -628,6 +628,7 @@ namespace ButtonDeck.Forms
                 imageModernButton1.Origin = mb;
                 imageModernButton1.Refresh();
                 shadedPanel2.Show();
+                shadedPanel1.Refresh();
             }
         }
 

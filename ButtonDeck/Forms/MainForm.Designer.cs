@@ -383,8 +383,9 @@ namespace ButtonDeck.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.appBar1);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MinimumSize = new System.Drawing.Size(770, 450);
+            this.MinimumSize = new System.Drawing.Size(846, 450);
             this.Name = "MainForm";
+            this.Tag = "";
             this.Text = "ButtonDeck";
             this.Click += new System.EventHandler(this.Buttons_Unfocus);
             this.panel1.ResumeLayout(false);
