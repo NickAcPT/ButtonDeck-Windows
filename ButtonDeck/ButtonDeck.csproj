@@ -84,6 +84,12 @@
     <Compile Include="Forms\ActionHelperForms\ExecutableRunHelper.Designer.cs">
       <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ActionHelperForms\KeyInfoHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionHelperForms\KeyInfoHelper.Designer.cs">
+      <DependentUpon>KeyInfoHelper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ActionHelperForms\ExecutableRunHelper.resx">
       <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionHelperForms\KeyInfoHelper.resx">
+      <DependentUpon>KeyInfoHelper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetupForm.resx">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>

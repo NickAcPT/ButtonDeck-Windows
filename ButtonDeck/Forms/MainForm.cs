@@ -20,6 +20,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using static NickAc.Backend.Objects.AbstractDeckAction;
 
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
 namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
@@ -622,8 +623,7 @@ namespace ButtonDeck.Forms
         private void LoadProperties(DynamicDeckItem item, FlowLayoutPanel panel)
         {
             var props = item.DeckAction.GetType().GetProperties().Where(
-                prop => Attribute.IsDefined(prop, typeof(ActionPropertyIncludeAttribute)) && TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
-                (typeof(string)));
+                prop => Attribute.IsDefined(prop, typeof(ActionPropertyIncludeAttribute)));
             foreach (var prop in props) {
                 MethodInfo helperMethod = item.DeckAction.GetType().GetMethod(prop.Name + "Helper");
                 if (helperMethod != null) {
@@ -643,6 +643,8 @@ namespace ButtonDeck.Forms
                     panel.Controls.Add(helperButton);
 
                 } else {
+                    if (TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
+                (typeof(string))) continue;
                     panel.Controls.Add(new Label()
                     {
                         Text = GetPropertyDescription(prop)
@@ -658,7 +660,7 @@ namespace ButtonDeck.Forms
                             //After loosing focus, convert type to thingy.
                             prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
                             txt.Text = string.Empty;
-                        } catch (Exception ex) {
+                        } catch (Exception) {
                             //Ignore all errors
                         }
                     };
@@ -683,3 +685,4 @@ namespace ButtonDeck.Forms
         #endregion
     }
 }
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body

@@ -21,7 +21,6 @@ namespace NickAc.Backend.Utils
                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(T)))) {
                 objects.Add((T)Activator.CreateInstance(type, constructorArgs));
             }
-            objects.Sort();
             return objects;
         }
     }

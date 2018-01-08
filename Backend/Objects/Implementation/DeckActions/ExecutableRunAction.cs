@@ -62,9 +62,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             string exec = GetExecutable(ToExecute);
             var proc = new ProcessStartInfo(exec, ToExecute.Substring(exec.Length).Trim())
             {
-                WindowStyle = ProcessWindowStyle.Hidden,
-                CreateNoWindow = true,
-                UseShellExecute = false,
+                UseShellExecute = true,
             };
             Process.Start(proc);
         }

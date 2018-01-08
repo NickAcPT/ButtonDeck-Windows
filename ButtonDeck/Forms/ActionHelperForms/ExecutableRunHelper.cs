@@ -67,7 +67,7 @@ namespace ButtonDeck.Forms.ActionHelperForms
             }
         }
 
-        private void modernButton1_Click(object sender, EventArgs e)
+        private void ModernButton1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog
             {
@@ -79,7 +79,7 @@ namespace ButtonDeck.Forms.ActionHelperForms
 
         }
 
-        private void modernButton2_Click(object sender, EventArgs e)
+        private void ModernButton2_Click(object sender, EventArgs e)
         {
             _toExecuteFileName = textBox1.Text;
             ToExecuteArguments = textBox2.Text;
@@ -92,7 +92,7 @@ namespace ButtonDeck.Forms.ActionHelperForms
             Close();
         }
 
-        private void modernButton3_Click(object sender, EventArgs e)
+        private void ModernButton3_Click(object sender, EventArgs e)
         {
             _toExecuteFileName = textBox1.Text;
             ToExecuteArguments = textBox2.Text;

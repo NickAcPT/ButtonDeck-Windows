@@ -78,7 +78,7 @@
             this.modernButton1.TabIndex = 3;
             this.modernButton1.Text = "...";
             this.modernButton1.UseVisualStyleBackColor = true;
-            this.modernButton1.Click += new System.EventHandler(this.modernButton1_Click);
+            this.modernButton1.Click += new System.EventHandler(this.ModernButton1_Click);
             // 
             // modernButton2
             // 
@@ -89,7 +89,7 @@
             this.modernButton2.TabIndex = 7;
             this.modernButton2.Text = "OK";
             this.modernButton2.UseVisualStyleBackColor = true;
-            this.modernButton2.Click += new System.EventHandler(this.modernButton2_Click);
+            this.modernButton2.Click += new System.EventHandler(this.ModernButton2_Click);
             // 
             // modernButton3
             // 
@@ -101,7 +101,7 @@
             this.modernButton3.TabIndex = 6;
             this.modernButton3.Text = "Cancel";
             this.modernButton3.UseVisualStyleBackColor = true;
-            this.modernButton3.Click += new System.EventHandler(this.modernButton3_Click);
+            this.modernButton3.Click += new System.EventHandler(this.ModernButton3_Click);
             // 
             // label2
             // 

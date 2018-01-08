@@ -67,12 +67,7 @@
     <Compile Include="Objects\IDeckFolder.cs" />
     <Compile Include="Objects\IDeckItem.cs" />
     <Compile Include="Objects\Implementation\DeckActions\ExecutableRunAction.cs" />
-    <Compile Include="Objects\Implementation\DeckActions\Helpers\ExecutableRunHelper.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Objects\Implementation\DeckActions\Helpers\ExecutableRunHelper.Designer.cs">
-      <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Objects\Implementation\DeckActions\KeyPressAction.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckFolder.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,14 +75,10 @@
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\DeckActionHelper.cs" />
     <Compile Include="Utils\DevicePersistManager.cs" />
+    <Compile Include="Utils\Native\NativeKeyHandler.cs" />
     <Compile Include="Utils\ReflectiveEnumerator.cs" />
     <Compile Include="Utils\SerializableDictionary.cs" />
     <Compile Include="Utils\XMLUtils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Objects\Implementation\DeckActions\Helpers\ExecutableRunHelper.resx">
-      <DependentUpon>ExecutableRunHelper.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

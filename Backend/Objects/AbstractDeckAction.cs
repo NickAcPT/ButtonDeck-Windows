@@ -41,6 +41,7 @@ namespace NickAc.Backend.Objects
     }
 
     [XmlInclude(typeof(ExecutableRunAction))]
+    [XmlInclude(typeof(KeyPressAction))]
     public abstract class AbstractDeckAction
     {
         public static Type FindType(string fullName)
