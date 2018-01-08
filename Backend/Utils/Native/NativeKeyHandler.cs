@@ -10,9 +10,10 @@ namespace NickAc.Backend.Utils.Native
 {
     class NativeKeyHandler
     {
+#pragma warning disable IDE1006 // Naming Styles
         [DllImport("user32.dll")]
-        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags,
-  UIntPtr dwExtraInfo);
+        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+#pragma warning restore IDE1006 // Naming Styles
 
 
         const int VK_LSHIFT = 0xA0;
@@ -53,6 +54,7 @@ namespace NickAc.Backend.Utils.Native
                 case Keys.RShiftKey:
                     return VK_RSHIFT;
 
+                case Keys.Alt:
                 case Keys.LMenu:
                 case Keys.Menu:
                     return VK_LMENU;

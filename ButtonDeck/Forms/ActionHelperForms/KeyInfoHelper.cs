@@ -83,13 +83,13 @@ namespace ButtonDeck.Forms.ActionHelperForms
             ListenToKeys = false;
         }
 
-        private void modernButton2_Click(object sender, EventArgs e)
+        private void ModernButton2_Click(object sender, EventArgs e)
         {
             _modifiableAction.KeyInfoValue = new KeyPressAction.KeyInfo(modifierKeys.Where(c=>c != Keys.None).ToArray(), nonModifierKeys.Where(c => c != Keys.None).ToArray());
             CloseWithResult(DialogResult.OK);
         }
 
-        private void modernButton3_Click(object sender, EventArgs e)
+        private void ModernButton3_Click(object sender, EventArgs e)
         {
             CloseWithResult(DialogResult.Cancel);
         }

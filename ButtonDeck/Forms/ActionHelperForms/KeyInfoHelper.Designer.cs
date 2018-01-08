@@ -77,7 +77,7 @@
             this.modernButton3.TabIndex = 8;
             this.modernButton3.Text = "Cancel";
             this.modernButton3.UseVisualStyleBackColor = true;
-            this.modernButton3.Click += new System.EventHandler(this.modernButton3_Click);
+            this.modernButton3.Click += new System.EventHandler(this.ModernButton3_Click);
             // 
             // modernButton2
             // 
@@ -88,7 +88,7 @@
             this.modernButton2.TabIndex = 9;
             this.modernButton2.Text = "OK";
             this.modernButton2.UseVisualStyleBackColor = true;
-            this.modernButton2.Click += new System.EventHandler(this.modernButton2_Click);
+            this.modernButton2.Click += new System.EventHandler(this.ModernButton2_Click);
             // 
             // KeyInfoHelper
             // 
