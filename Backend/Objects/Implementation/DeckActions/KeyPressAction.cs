@@ -38,7 +38,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             form.ModifiableAction = execAction;
 
             if (form.ShowDialog() == DialogResult.OK) {
-                KeyInfoValue = form.ModifiableAction.ToExecute;
+                KeyInfoValue = form.ModifiableAction.KeyInfoValue;
             } else {
                 KeyInfoValue = keyInfo;
             }
@@ -63,12 +63,14 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
 
         public override void OnButtonDown(DeckDevice deckDevice)
         {
-            
+            NativeKeyHandler.PressKey(KeyInfoValue.ModifierKeys);
+            NativeKeyHandler.PressKey(KeyInfoValue.Keys);
         }
 
         public override void OnButtonUp(DeckDevice deckDevice)
         {
-            
+            NativeKeyHandler.UnpressKey(KeyInfoValue.Keys);
+            NativeKeyHandler.UnpressKey(KeyInfoValue.ModifierKeys);
         }
     }
 }

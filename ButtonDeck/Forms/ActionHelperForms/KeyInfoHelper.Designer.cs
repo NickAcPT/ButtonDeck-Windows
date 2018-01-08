@@ -59,10 +59,11 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Enabled = false;
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.textBox1.Location = new System.Drawing.Point(17, 133);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(397, 29);
             this.textBox1.TabIndex = 2;
             // 
@@ -76,6 +77,7 @@
             this.modernButton3.TabIndex = 8;
             this.modernButton3.Text = "Cancel";
             this.modernButton3.UseVisualStyleBackColor = true;
+            this.modernButton3.Click += new System.EventHandler(this.modernButton3_Click);
             // 
             // modernButton2
             // 
@@ -86,11 +88,14 @@
             this.modernButton2.TabIndex = 9;
             this.modernButton2.Text = "OK";
             this.modernButton2.UseVisualStyleBackColor = true;
+            this.modernButton2.Click += new System.EventHandler(this.modernButton2_Click);
             // 
             // KeyInfoHelper
             // 
+            this.AcceptButton = this.modernButton2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.modernButton3;
             this.ClientSize = new System.Drawing.Size(427, 247);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
