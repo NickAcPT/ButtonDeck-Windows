@@ -120,7 +120,7 @@ namespace ButtonDeck.Forms
 
             DevicePersistManager.DeviceDisconnected += DevicePersistManager_DeviceDisconnected;
             var image = ColorScheme.ForegroundColor == Color.White ? Resources.ic_settings_white_48dp_2x : Resources.ic_settings_black_48dp_2x;
-                var imageTrash = ColorScheme.ForegroundColor == Color.White ? Resources.ic_delete_white_48dp_2x : Resources.ic_delete_black_48dp_2x;
+            var imageTrash = ColorScheme.ForegroundColor == Color.White ? Resources.ic_delete_white_48dp_2x : Resources.ic_delete_black_48dp_2x;
             AppAction item = new AppAction()
             {
                 Image = image
@@ -176,6 +176,16 @@ namespace ButtonDeck.Forms
                 if (c is ImageModernButton mb) {
                     mb.AllowDrop = true;
                     mb.DragEnter += (s, ee) => {
+                        if (mb.Tag != null && mb.Tag is IDeckFolder folder) {
+                            CurrentDevice.CurrentFolder = folder;
+                            RefreshAllButtons(true);
+                        } else if (mb.Tag != null && CurrentDevice.CurrentFolder != null && CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1 && mb.Tag is IDeckItem upItem) {
+
+                            CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
+                            RefreshAllButtons(true);
+
+                        }
+
                         if (ee.Data.GetDataPresent(typeof(DeckActionHelper)))
                             ee.Effect = DragDropEffects.Copy;
                     };
@@ -183,7 +193,7 @@ namespace ButtonDeck.Forms
                         if (ee.Effect == DragDropEffects.Copy) {
                             if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
                                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
-                                    if (CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1) return; 
+                                    if (CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1) return;
                                     if (item is IDeckFolder deckFolder) {
                                         var deckItemToAdd = new DynamicDeckItem
                                         {
@@ -249,7 +259,7 @@ namespace ButtonDeck.Forms
         }
 
 
-        private void RefreshAllButtons( bool sendToDevice = true)
+        private void RefreshAllButtons(bool sendToDevice = true)
         {
             IDeckFolder folder = CurrentDevice.CurrentFolder;
             Bitmap empty = new Bitmap(1, 1);
@@ -285,6 +295,7 @@ namespace ButtonDeck.Forms
         private void Buttons_Unfocus(object sender, EventArgs e)
         {
             shadedPanel2.Hide();
+            Refresh();
         }
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)
@@ -312,7 +323,7 @@ namespace ButtonDeck.Forms
         private void Device_ButtonInteraction(object sender, DeckDevice.ButtonInteractionEventArgs e)
         {
             if (sender is DeckDevice device) {
-                if (ignoreOnce.Any(c=>c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID)) {
+                if (ignoreOnce.Any(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID)) {
                     ignoreOnce.Remove(ignoreOnce.First(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID));
                     return;
                 }
