@@ -135,6 +135,7 @@ namespace ButtonDeck.Forms
                 Image = imageTrash
             };
             itemTrash.Click += (s, ee) => {
+                if (CurrentDevice == null) return;
                 if (MessageBox.Show("Are you sure you  want to clear everything?" + Environment.NewLine + "All items will be lost!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                     CurrentDevice.MainFolder = new DynamicDeckFolder();
                     SendItemsToDevice(CurrentDevice, true);
@@ -459,6 +460,23 @@ namespace ButtonDeck.Forms
 
         private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
+            if (e.Device.DeviceGuid == CurrentDevice.DeviceGuid) {
+                CurrentDevice = null;
+                //Try to find a new device to be the current one.
+                if (DevicePersistManager.PersistedDevices.Any(d => DevicePersistManager.IsDeviceConnected(d.DeviceGuid))) {
+                    CurrentDevice = DevicePersistManager.PersistedDevices.First(d => DevicePersistManager.IsDeviceConnected(d.DeviceGuid));
+                    Invoke(new Action(() => {
+                        shadedPanel1.Show();
+                        Buttons_Unfocus(sender, EventArgs.Empty);
+
+                        e.Device.CheckCurrentFolder();
+                        FixFolders(e.Device);
+
+                        RefreshAllButtons(false);
+                    }));
+                }
+            }
+
             Invoke(new Action(() => {
                 shadedPanel2.Hide();
                 shadedPanel1.Hide();
