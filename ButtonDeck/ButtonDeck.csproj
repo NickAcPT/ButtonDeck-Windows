@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>button-deck.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ModernUIDoneRight">
       <HintPath>..\..\ModernUIDoneRight\ModernUIDoneRight\bin\Debug\ModernUIDoneRight.dll</HintPath>
@@ -221,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ic_delete_black_48dp_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="button-deck.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

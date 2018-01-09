@@ -1,5 +1,6 @@
 ﻿using ButtonDeck.Controls;
 using ButtonDeck.Misc;
+using ButtonDeck.Properties;
 using NickAc.Backend.Utils;
 using NickAc.ModernUIDoneRight.Forms;
 using NickAc.ModernUIDoneRight.Objects;
@@ -39,6 +40,7 @@ namespace ButtonDeck.Forms
                 LoadTheme(ApplicationSettingsManager.Settings.Theme);
                 ModifyColorScheme(Controls.OfType<Control>());
             };
+            Icon = Resources.button_deck;
         }
 
         protected override void OnLoad(EventArgs e)
