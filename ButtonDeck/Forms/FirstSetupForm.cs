@@ -64,6 +64,7 @@ namespace ButtonDeck.Forms
                 ChangePage(++currentPage);
                 ModifyColorScheme(Controls.OfType<Control>());
             } else {
+                if (currentPageTemplate != null && !currentPageTemplate.CanProgress) return;
                 if (currentPageTemplate != null) currentPageTemplate.SaveProgress();
                 FinishedSetup = true;
                 Close();
