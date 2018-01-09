@@ -38,6 +38,7 @@ namespace ButtonDeck.Misc
                 MinimumSize = new Size(0, controlSize),
                 Size = new Size(Width * 2, Math.Max(controlSize * CurrentConnections, controlSize) + 2)
             };
+
             //Hacky method to get this button rectangle on screen
             var rect = _frm.RectangleToScreen(_frm.TitlebarButtonsRectangle);
             rect.Width = rect.Width - (rect.Width - Width);
@@ -46,16 +47,7 @@ namespace ButtonDeck.Misc
             Size controlFinalSize = new Size(frm.DisplayRectangle.Width, controlSize);
 
             if (CurrentConnections < 1) return;
-            /*
-            //Remove any unnecessary connections.
-            List<Guid> toRemove = new List<Guid>();
-            var connections = Program.ServerThread.TcpServer.Connections.OfType<ConnectionState>();
-            toRemove.AddRange(DevicePersistManager.GuidsFromConnections.Where(g => connections.FirstOrDefault(c => c.ConnectionGuid == g) == null));
-            toRemove.All(c => {DevicePersistManager.RemoveConnectionState(c); return true; });
-            /*
-            DevicePersistManager.GuidsFromConnections.Select(g => connections.FirstOrDefault(c => c.ConnectionGuid == g)).Where(c => c != null).Where(c => !c.TryHeartbeat()).All(c => {
-                DevicePersistManager.RemoveConnectionState(c); return true;
-            });*/
+
             //Load devices
             foreach (var device in DevicePersistManager.PersistedDevices.Where(DevicePersistManager.IsDeviceOnline)) {
                 try {

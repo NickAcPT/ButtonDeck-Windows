@@ -84,6 +84,7 @@ namespace NickAc.Backend.Utils
         }
 
 
+        [Obsolete]
         public static bool IsDeviceOnline(Guid device)
         {
             return deckDevicesFromConnection.Values.Any(m => m.DeviceGuid == device);
@@ -147,7 +148,6 @@ namespace NickAc.Backend.Utils
             }
         }
 
-
         private static void CompressFolders(IDeckFolder folder)
         {
             folder.GetSubFolders().All(c => {
@@ -156,7 +156,6 @@ namespace NickAc.Backend.Utils
                 if (c.GetParent() != null) {
                     c.Remove(1);
                 }
-
                 return true;
             });
         }
