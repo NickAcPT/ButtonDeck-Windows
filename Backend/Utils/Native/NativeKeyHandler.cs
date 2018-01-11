@@ -15,10 +15,12 @@ namespace NickAc.Backend.Utils.Native
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
 #pragma warning restore IDE1006 // Naming Styles
 
+        const int VK_SHIFT = 0x10;
+        const int VK_CONTROL = 0x11;
+        const int VK_MENU = 0x12;
 
         const int VK_LSHIFT = 0xA0;
         const int VK_RSHIFT = 0xA1;
-        const int VK_SHIFT = 0x10;
         const int VK_LCONTROL = 0xA2;
         const int VK_RCONTROL = 0xA3;
         const int VK_LMENU = 0xA4;
@@ -49,20 +51,23 @@ namespace NickAc.Backend.Utils.Native
             switch (k) {
                 case Keys.Shift:
                 case Keys.ShiftKey:
+                    return VK_SHIFT;
                 case Keys.LShiftKey:
                     return VK_LSHIFT;
                 case Keys.RShiftKey:
                     return VK_RSHIFT;
 
                 case Keys.Alt:
-                case Keys.LMenu:
                 case Keys.Menu:
+                    return VK_SHIFT;
+                case Keys.LMenu:
                     return VK_LMENU;
                 case Keys.RMenu:
                     return VK_RMENU;
 
                 case Keys.Control:
                 case Keys.ControlKey:
+                    return VK_CONTROL;
                 case Keys.LControlKey:
                     return VK_LCONTROL;
                 case Keys.RControlKey:
