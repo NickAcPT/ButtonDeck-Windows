@@ -40,7 +40,6 @@ namespace ButtonDeck.Forms
         {
             instance = this;
             InitializeComponent();
-            MinimizeToTrayRightMinimize = true;
             DevicesTitlebarButton item = new DevicesTitlebarButton(this);
             TitlebarButtons.Add(item);
             if (Program.Silent) {
