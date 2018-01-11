@@ -19,6 +19,8 @@ namespace ButtonDeck.Forms
 {
     public class TemplateForm : ModernForm
     {
+        public bool MinimizeToTrayRightMinimize { get; set; }
+
         private ApplicationColorScheme _applicationColorScheme;
 
         private ApplicationColorScheme ApplicationColorScheme {
@@ -77,9 +79,9 @@ namespace ButtonDeck.Forms
                     return true;
                 }
             });/*
-            cccc.OfType<ColorSchemePreviewControl>().All(c => {
-                c.AppTheme = ColorSchemeCentral.FromAppTheme(c.UnderlyingAppTheme);
-                return true; });*/
+    cccc.OfType<ColorSchemePreviewControl>().All(c => {
+    c.AppTheme = ColorSchemeCentral.FromAppTheme(c.UnderlyingAppTheme);
+    return true; });*/
         }
 
 

@@ -40,6 +40,7 @@ namespace ButtonDeck.Forms
         {
             instance = this;
             InitializeComponent();
+            MinimizeToTrayRightMinimize = true;
             DevicesTitlebarButton item = new DevicesTitlebarButton(this);
             TitlebarButtons.Add(item);
             if (Program.Silent) {
@@ -96,6 +97,8 @@ namespace ButtonDeck.Forms
                 icon.Visible = true;
             }
         }
+        
+
 
         ~MainForm()
         {
@@ -320,14 +323,14 @@ namespace ButtonDeck.Forms
             e.Device.ButtonInteraction += Device_ButtonInteraction;
         }
 
-        List<Tuple<Guid, int>> ignoreOnce = new List<Tuple<Guid, int>>();
+        //List<Tuple<Guid, int>> ignoreOnce = new List<Tuple<Guid, int>>();
         private void Device_ButtonInteraction(object sender, DeckDevice.ButtonInteractionEventArgs e)
         {
             if (sender is DeckDevice device) {
-                if (ignoreOnce.Any(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID)) {
+                /*if (ignoreOnce.Any(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID)) {
                     ignoreOnce.Remove(ignoreOnce.First(c => c.Item1 == device.DeviceGuid && c.Item2 == e.SlotID));
                     return;
-                }
+                }*/
                 var currentItems = device.CurrentFolder.GetDeckItems();
                 if (currentItems.Any(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1)) {
                     var item = currentItems.FirstOrDefault(c => device.CurrentFolder.GetItemIndex(c) == e.SlotID + 1);
@@ -349,13 +352,12 @@ namespace ButtonDeck.Forms
                                     break;
                                 case ButtonInteractPacket.ButtonAction.ButtonUp:
                                     deckItem.DeckAction.OnButtonUp(device);
-                                    deckItem.DeckAction.OnButtonClick(device);
                                     break;
                             }
                         }
-                    } else if (item is DynamicDeckFolder deckFolder) {
+                    } else if (item is DynamicDeckFolder deckFolder && e.PerformedAction == ButtonInteractPacket.ButtonAction.ButtonUp) {
                         device.CurrentFolder = deckFolder;
-                        ignoreOnce.Add(new Tuple<Guid, int>(device.DeviceGuid, e.SlotID));
+                        //ignoreOnce.Add(new Tuple<Guid, int>(device.DeviceGuid, e.SlotID));
                         SendItemsToDevice(CurrentDevice, deckFolder);
                         RefreshAllButtons(false);
                     }

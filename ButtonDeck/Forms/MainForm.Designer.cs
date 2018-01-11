@@ -367,7 +367,6 @@ namespace ButtonDeck.Forms
             this.imageModernButton1.Origin = null;
             this.imageModernButton1.Size = new System.Drawing.Size(80, 80);
             this.imageModernButton1.TabIndex = 2;
-            this.imageModernButton1.Text = "imageModernButton1";
             this.imageModernButton1.UseVisualStyleBackColor = true;
             this.imageModernButton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ImageModernButton1_MouseClick);
             // 

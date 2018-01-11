@@ -32,20 +32,21 @@ namespace NickAc.Backend.Networking.Implementation
             } catch (Exception) {
                 //Ignore malformed packet
             }
-            
+
         }
 
         public override void Execute(ConnectionState state)
         {
             var device = DevicePersistManager.GetDeckDeviceFromConnectionGuid(state.ConnectionGuid);
-            device.OnButtonInteraction(PerformedAction, SlotID);
+            if (PerformedAction != ButtonAction.ButtonClick)
+                device.OnButtonInteraction(PerformedAction, SlotID);
         }
 
         public override long GetPacketNumber() => 8;
 
         public override void ToOutputStream(DataOutputStream writer)
         {
-            
+
         }
 
         public override object Clone()
