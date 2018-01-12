@@ -180,7 +180,7 @@ namespace ButtonDeck.Forms
                 if (c is ImageModernButton mb) {
                     mb.AllowDrop = true;
                     mb.DragEnter += (s, ee) => {
-                        if (mb.Tag != null && mb.Tag is IDeckFolder folder) {
+                        if (mb.Tag != null && mb.Tag is IDeckFolder folder && !(ee.Data.GetDataPresent(typeof(DeckItemMoveHelper)))) {
                             CurrentDevice.CurrentFolder = folder;
                             RefreshAllButtons(true);
                         } else if (mb.Tag != null && CurrentDevice.CurrentFolder != null && CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1 && mb.Tag is IDeckItem upItem) {
@@ -192,6 +192,8 @@ namespace ButtonDeck.Forms
 
                         if (ee.Data.GetDataPresent(typeof(DeckActionHelper)))
                             ee.Effect = DragDropEffects.Copy;
+                        else if (ee.Data.GetDataPresent(typeof(DeckItemMoveHelper)))
+                            ee.Effect = DragDropEffects.Move;
                     };
                     mb.DragDrop += (s, ee) => {
                         if (ee.Effect == DragDropEffects.Copy) {
@@ -252,6 +254,12 @@ namespace ButtonDeck.Forms
                                     FocusItem(mb, mb.Tag as IDeckItem);
                                 }
                             }
+                        } else if (ee.Effect == DragDropEffects.Move) {
+                            if (ee.Data.GetData(typeof(DeckItemMoveHelper)) is DeckItemMoveHelper action) {
+                                CurrentDevice.CurrentFolder.Remove(action.OldSlot);
+                                CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, action.DeckItem);
+                                RefreshAllButtons(true);
+                            }
                         }
                     };
                     mb.Text = string.Empty;
@@ -265,13 +273,14 @@ namespace ButtonDeck.Forms
 
         private void RefreshAllButtons(bool sendToDevice = true)
         {
+            Buttons_Unfocus(this, EventArgs.Empty);
             IDeckFolder folder = CurrentDevice.CurrentFolder;
             Bitmap empty = new Bitmap(1, 1);
             for (int j = 0; j < 15; j++) {
                 ImageModernButton control = GetButtonControl(j + 1);
                 control.NormalImage = null;
                 control.Tag = null;
-                control.Invoke(new Action(() => control.Refresh()));
+                control.Invoke(new Action(control.Refresh));
             }
 
             for (int i = 0; i < folder.GetDeckItems().Count; i++) {
@@ -282,7 +291,7 @@ namespace ButtonDeck.Forms
                     var ser = item.GetItemImage().BitmapSerialized;
                     control.NormalImage = item?.GetItemImage().Bitmap;
                     control.Tag = item;
-                    control.Invoke(new Action(() => control.Refresh()));
+                    control.Invoke(new Action(control.Refresh));
                 }
 
             }
@@ -573,8 +582,6 @@ namespace ButtonDeck.Forms
         Stopwatch lastClick = new Stopwatch();
         private void ItemButton_MouseClick(object sender, EventArgs e)
         {
-            Debug.WriteLine("Item Button");
-
             lastClick.Stop();
             Debug.WriteLine(lastClick.ElapsedMilliseconds);
             bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
@@ -588,7 +595,7 @@ namespace ButtonDeck.Forms
                         //Navigate to the folder
                         CurrentDevice.CurrentFolder = folder;
                         RefreshAllButtons();
-                        return;
+                        goto end;
 
                     }
                     if (CurrentDevice.CurrentFolder.GetParent() != null) {
@@ -596,13 +603,13 @@ namespace ButtonDeck.Forms
                         if (mb.CurrentSlot == 1) {
                             CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
                             RefreshAllButtons();
+                            goto end;
                         }
                     }
 
                     //Show button panel with settable properties
                     FocusItem(mb, item);
-                    lastClick.Reset();
-
+                    goto end;
 
                 } else {
                     Buttons_Unfocus(sender, e);
@@ -616,6 +623,7 @@ namespace ButtonDeck.Forms
 
         private void ItemButton_MouseUp(object sender, MouseEventArgs e)
         {
+            mouseDown = false;
             if (sender is ImageModernButton senderB) {
                 if (!senderB.DisplayRectangle.Contains(e.Location)) return;
                 if (e.Button == MouseButtons.Right) {
@@ -733,6 +741,30 @@ namespace ButtonDeck.Forms
         }
 
         #endregion
+        bool mouseDown;
+        Point mouseDownLoc = Cursor.Position;
+        private void ItemButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            mouseDownLoc = Cursor.Position;
+        }
+
+        private void ItemButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            var finalPoint = Point.Subtract(mouseDownLoc, new Size(Cursor.Position));
+            bool didMove = SystemInformation.DragSize.Width > finalPoint.X && SystemInformation.DragSize.Height > finalPoint.Y;
+            if (mouseDown && didMove) {
+                mouseDown = false;
+                if (sender is ImageModernButton mb) {
+                    if (mb.Tag != null && mb.Tag is IDeckItem act) {
+                        bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
+                        if (isDoubleClick) return;
+                        if ((CurrentDevice.CurrentFolder.GetParent() != null && (mb.CurrentSlot == 1))) return;
+                        mb.DoDragDrop(new DeckItemMoveHelper(act, mb.CurrentSlot), DragDropEffects.Move);
+                    }
+                }
+            }
+        }
     }
 }
 #pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body

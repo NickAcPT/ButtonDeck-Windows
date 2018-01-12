@@ -82,6 +82,8 @@ namespace ButtonDeck.Forms
             this.modernButton1.Text = "modernButton1";
             this.modernButton1.UseVisualStyleBackColor = true;
             this.modernButton1.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton2
@@ -96,6 +98,8 @@ namespace ButtonDeck.Forms
             this.modernButton2.Text = "modernButton1";
             this.modernButton2.UseVisualStyleBackColor = true;
             this.modernButton2.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton3
@@ -110,6 +114,8 @@ namespace ButtonDeck.Forms
             this.modernButton3.Text = "modernButton1";
             this.modernButton3.UseVisualStyleBackColor = true;
             this.modernButton3.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton4
@@ -124,6 +130,8 @@ namespace ButtonDeck.Forms
             this.modernButton4.Text = "modernButton1";
             this.modernButton4.UseVisualStyleBackColor = true;
             this.modernButton4.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton5
@@ -138,6 +146,8 @@ namespace ButtonDeck.Forms
             this.modernButton5.Text = "modernButton1";
             this.modernButton5.UseVisualStyleBackColor = true;
             this.modernButton5.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // panel1
@@ -176,6 +186,8 @@ namespace ButtonDeck.Forms
             this.modernButton15.Text = "modernButton1";
             this.modernButton15.UseVisualStyleBackColor = true;
             this.modernButton15.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton10
@@ -190,6 +202,8 @@ namespace ButtonDeck.Forms
             this.modernButton10.Text = "modernButton1";
             this.modernButton10.UseVisualStyleBackColor = true;
             this.modernButton10.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton11
@@ -204,6 +218,8 @@ namespace ButtonDeck.Forms
             this.modernButton11.Text = "modernButton1";
             this.modernButton11.UseVisualStyleBackColor = true;
             this.modernButton11.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton6
@@ -218,6 +234,8 @@ namespace ButtonDeck.Forms
             this.modernButton6.Text = "modernButton1";
             this.modernButton6.UseVisualStyleBackColor = true;
             this.modernButton6.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton14
@@ -232,6 +250,8 @@ namespace ButtonDeck.Forms
             this.modernButton14.Text = "modernButton1";
             this.modernButton14.UseVisualStyleBackColor = true;
             this.modernButton14.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton9
@@ -246,6 +266,8 @@ namespace ButtonDeck.Forms
             this.modernButton9.Text = "modernButton1";
             this.modernButton9.UseVisualStyleBackColor = true;
             this.modernButton9.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton12
@@ -260,6 +282,8 @@ namespace ButtonDeck.Forms
             this.modernButton12.Text = "modernButton1";
             this.modernButton12.UseVisualStyleBackColor = true;
             this.modernButton12.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton7
@@ -274,6 +298,8 @@ namespace ButtonDeck.Forms
             this.modernButton7.Text = "modernButton1";
             this.modernButton7.UseVisualStyleBackColor = true;
             this.modernButton7.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton13
@@ -288,6 +314,8 @@ namespace ButtonDeck.Forms
             this.modernButton13.Text = "modernButton1";
             this.modernButton13.UseVisualStyleBackColor = true;
             this.modernButton13.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // modernButton8
@@ -302,6 +330,8 @@ namespace ButtonDeck.Forms
             this.modernButton8.Text = "modernButton1";
             this.modernButton8.UseVisualStyleBackColor = true;
             this.modernButton8.Click += new System.EventHandler(this.ItemButton_MouseClick);
+            this.modernButton8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseDown);
+            this.modernButton8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseMove);
             this.modernButton8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ItemButton_MouseUp);
             // 
             // label1

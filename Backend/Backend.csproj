@@ -74,6 +74,7 @@
     <Compile Include="Utils\AppSettings.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\DeckActionHelper.cs" />
+    <Compile Include="Utils\DeckItemHelper.cs" />
     <Compile Include="Utils\DevicePersistManager.cs" />
     <Compile Include="Utils\Native\NativeKeyHandler.cs" />
     <Compile Include="Utils\ReflectiveEnumerator.cs" />
