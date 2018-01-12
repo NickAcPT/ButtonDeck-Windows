@@ -54,7 +54,8 @@ namespace ButtonDeck.Controls
                     return;
                 }
                 _image = value;
-                Refresh();
+                if (IsHandleCreated)
+                    Invoke(new Action(Refresh));
             }
         }
 
@@ -84,6 +85,8 @@ namespace ButtonDeck.Controls
                             var deckImage = new DeckImage(bmp);
                             if (Tag is DynamicDeckItem itemTag) {
                                 itemTag.DeckImage = deckImage;
+                            } else if (Tag is DynamicDeckFolder itemFolder) {
+                                itemFolder.DeckImage = deckImage;
                             }
                             state.SendPacket(new SingleSlotImageChangePacket(deckImage)
                             {

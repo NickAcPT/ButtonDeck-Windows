@@ -1,4 +1,6 @@
-﻿using ButtonDeck.Forms;
+﻿//#define FORCE_SILENCE
+
+using ButtonDeck.Forms;
 using ButtonDeck.Misc;
 using NickAc.Backend.Utils;
 using System;
@@ -24,8 +26,11 @@ namespace ButtonDeck
         static void Main(string[] args)
         {
 
+#if FORCE_SILENCE
+            Silent = true;
+#else
             Silent = args.Any(c => c.ToLower() == "/s");
-
+#endif
             Trace.Listeners.Add(new TextWriterTraceListener(errorFileName));
             Trace.AutoFlush = true;
 

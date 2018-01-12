@@ -11,6 +11,7 @@ namespace NickAc.Backend.Objects
     [XmlInclude(typeof(DynamicDeckFolder))]
     public abstract class IDeckFolder : IDeckItem
     {
+        public abstract DeckImage GetDeckImage();
         public abstract List<IDeckFolder> GetSubFolders();
         public abstract List<IDeckItem> GetDeckItems();
         public abstract IDeckFolder GetParent();

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -96,7 +97,7 @@ namespace ButtonDeck.Forms
                 icon.Visible = true;
             }
         }
-        
+
 
 
         ~MainForm()
@@ -270,7 +271,7 @@ namespace ButtonDeck.Forms
                 ImageModernButton control = GetButtonControl(j + 1);
                 control.NormalImage = null;
                 control.Tag = null;
-                control.Refresh();
+                control.Invoke(new Action(() => control.Refresh()));
             }
 
             for (int i = 0; i < folder.GetDeckItems().Count; i++) {
@@ -281,7 +282,7 @@ namespace ButtonDeck.Forms
                     var ser = item.GetItemImage().BitmapSerialized;
                     control.NormalImage = item?.GetItemImage().Bitmap;
                     control.Tag = item;
-                    control.Refresh();
+                    control.Invoke(new Action(() => control.Refresh()));
                 }
 
             }
@@ -569,15 +570,26 @@ namespace ButtonDeck.Forms
             }
         }
 
+        Stopwatch lastClick = new Stopwatch();
         private void ItemButton_MouseClick(object sender, EventArgs e)
         {
+            Debug.WriteLine("Item Button");
+
+            lastClick.Stop();
+            Debug.WriteLine(lastClick.ElapsedMilliseconds);
+            bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
             if (sender is ImageModernButton mb) {
                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
                     if (item is IDeckFolder folder) {
+                        if (!isDoubleClick) {
+                            FocusItem(mb, item);
+                            goto end;
+                        }
                         //Navigate to the folder
                         CurrentDevice.CurrentFolder = folder;
                         RefreshAllButtons();
                         return;
+
                     }
                     if (CurrentDevice.CurrentFolder.GetParent() != null) {
                         //Not on the main folder
@@ -586,14 +598,19 @@ namespace ButtonDeck.Forms
                             RefreshAllButtons();
                         }
                     }
-                    //Show button panel with settable properties
 
+                    //Show button panel with settable properties
                     FocusItem(mb, item);
+                    lastClick.Reset();
 
 
                 } else {
                     Buttons_Unfocus(sender, e);
                 }
+                return;
+                end:
+                lastClick.Reset();
+                lastClick.Start();
             }
         }
 
@@ -603,16 +620,6 @@ namespace ButtonDeck.Forms
                 if (!senderB.DisplayRectangle.Contains(e.Location)) return;
                 if (e.Button == MouseButtons.Right) {
                     var popupMenu = new ContextMenuStrip();
-
-                    popupMenu.Items.Add("Clear image").Click += (s, ee) => {
-                        if (senderB.Image != null && senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
-                            senderB.Image.Dispose();
-                            if (senderB != null && senderB.Tag != null && senderB.Tag is IDeckItem deckItem) {
-                                bool isFolder = deckItem is IDeckFolder;
-                                senderB.Image = isFolder ? Resources.img_folder : Resources.img_item_default;
-                            }
-                        }
-                    };
 
                     popupMenu.Items.Add("Remove item").Click += (s, ee) => {
                         if (senderB != null) {
@@ -627,6 +634,16 @@ namespace ButtonDeck.Forms
                         }
                     };
 
+                    popupMenu.Items.Add("Clear image").Click += (s, ee) => {
+                        if (senderB.Image != null && senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
+                            senderB.Image.Dispose();
+                            if (senderB != null && senderB.Tag != null && senderB.Tag is IDeckItem deckItem) {
+                                bool isFolder = deckItem is IDeckFolder;
+                                senderB.Image = isFolder ? Resources.img_folder : Resources.img_item_default;
+                            }
+                        }
+                    };
+
                     popupMenu.Show(sender as Control, e.Location);
                 }
                 return;
@@ -635,20 +652,22 @@ namespace ButtonDeck.Forms
 
         private void FocusItem(ImageModernButton mb, IDeckItem item)
         {
-            if (item is DynamicDeckItem dI && dI.DeckAction != null) {
-                flowLayoutPanel1.Controls.OfType<Control>().All(c => {
-                    c.Dispose();
-                    return true;
-                });
+            flowLayoutPanel1.Controls.OfType<Control>().All(c => {
+                c.Dispose();
+                return true;
+            });
 
-                flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.Controls.Clear();
+            if (item is DynamicDeckItem dI && dI.DeckAction != null) {
                 label2.Text = dI.DeckAction.GetActionName();
                 LoadProperties(dI, flowLayoutPanel1);
-                imageModernButton1.Origin = mb;
-                imageModernButton1.Refresh();
-                shadedPanel2.Show();
-                shadedPanel1.Refresh();
+            } else if (item is IDeckFolder) {
+                label2.Text = "Folder";
             }
+            imageModernButton1.Origin = mb;
+            imageModernButton1.Refresh();
+            shadedPanel2.Show();
+            shadedPanel1.Refresh();
         }
 
         private void LoadProperties(DynamicDeckItem item, FlowLayoutPanel panel)

@@ -71,5 +71,10 @@ namespace NickAc.Backend.Objects.Implementation
         {
             items.Remove(slot);
         }
+
+        public override DeckImage GetDeckImage()
+        {
+            return DeckImage;
+        }
     }
 }
