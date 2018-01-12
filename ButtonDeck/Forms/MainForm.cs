@@ -184,7 +184,6 @@ namespace ButtonDeck.Forms
                             CurrentDevice.CurrentFolder = folder;
                             RefreshAllButtons(true);
                         } else if (mb.Tag != null && CurrentDevice.CurrentFolder != null && CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1 && mb.Tag is IDeckItem upItem) {
-
                             CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
                             RefreshAllButtons(true);
 
@@ -192,12 +191,14 @@ namespace ButtonDeck.Forms
 
                         if (ee.Data.GetDataPresent(typeof(DeckActionHelper)))
                             ee.Effect = DragDropEffects.Copy;
-                        else if (ee.Data.GetDataPresent(typeof(DeckItemMoveHelper)))
-                            ee.Effect = DragDropEffects.Move;
+                        else if (ee.Data.GetDataPresent(typeof(DeckItemMoveHelper))) {
+                            var item = ee.Data.GetData(typeof(DeckItemMoveHelper)) as DeckItemMoveHelper;
+                            ee.Effect = item.CopyOld ? DragDropEffects.Copy : DragDropEffects.Move;
+                        }
                     };
                     mb.DragDrop += (s, ee) => {
-                        if (ee.Effect == DragDropEffects.Copy) {
-                            if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
+                        if (ee.Data.GetData(typeof(DeckActionHelper)) is DeckActionHelper action) {
+                            if (ee.Effect == DragDropEffects.Copy) {
                                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
                                     if (CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1) return;
                                     if (item is IDeckFolder deckFolder) {
@@ -254,12 +255,17 @@ namespace ButtonDeck.Forms
                                     FocusItem(mb, mb.Tag as IDeckItem);
                                 }
                             }
-                        } else if (ee.Effect == DragDropEffects.Move) {
-                            if (ee.Data.GetData(typeof(DeckItemMoveHelper)) is DeckItemMoveHelper action) {
-                                CurrentDevice.CurrentFolder.Remove(action.OldSlot);
-                                CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, action.DeckItem);
-                                RefreshAllButtons(true);
+                        } else if (ee.Data.GetDataPresent(typeof(DeckItemMoveHelper))) {
+                            var action1 = ee.Data.GetData(typeof(DeckItemMoveHelper)) as DeckItemMoveHelper;
+                            bool shouldMove = ee.Effect == DragDropEffects.Move;
+                            if (shouldMove)
+                                CurrentDevice.CurrentFolder.Remove(action1.OldSlot);
+                            IDeckItem item1 = shouldMove ? action1.DeckItem : action1.DeckItem.DeepClone();
+                            if (item1 is IDeckFolder folder && !shouldMove) {
+                                FixFolders(folder, false, CurrentDevice.CurrentFolder);
                             }
+                            CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, item1);
+                            RefreshAllButtons(true);
                         }
                     };
                     mb.Text = string.Empty;
@@ -443,8 +449,16 @@ namespace ButtonDeck.Forms
 
         static DeckImage defaultDeckImage = new DeckImage(Resources.img_folder_up);
         static DynamicDeckItem folderUpItem = new DynamicDeckItem() { DeckImage = defaultDeckImage };
-        private void FixFolders(IDeckFolder folder)
+        private void FixFolders(IDeckFolder folder, bool ignoreFirst = true, IDeckFolder trueParent = null)
         {
+            if (!ignoreFirst) {
+                if (trueParent != null)
+                folder.SetParent(trueParent);
+                if (folder.GetParent() != null) {
+                    folder.Add(1, folderUpItem);
+                }
+            }
+
             folder.GetSubFolders().All(c => {
                 FixFolders(c);
                 c.SetParent(folder);
@@ -487,12 +501,12 @@ namespace ButtonDeck.Forms
                     }));
                 }
             }
-
-            Invoke(new Action(() => {
-                shadedPanel2.Hide();
-                shadedPanel1.Hide();
-                Refresh();
-            }));
+            if (IsHandleCreated)
+                Invoke(new Action(() => {
+                    shadedPanel2.Hide();
+                    shadedPanel1.Hide();
+                    Refresh();
+                }));
 
             e.Device.ButtonInteraction -= Device_ButtonInteraction;
         }
@@ -603,13 +617,14 @@ namespace ButtonDeck.Forms
                         if (mb.CurrentSlot == 1) {
                             CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
                             RefreshAllButtons();
-                            goto end;
+                            lastClick.Reset();
+                            return;
                         }
                     }
 
                     //Show button panel with settable properties
                     FocusItem(mb, item);
-                    goto end;
+                    lastClick.Reset();
 
                 } else {
                     Buttons_Unfocus(sender, e);
@@ -752,15 +767,15 @@ namespace ButtonDeck.Forms
         private void ItemButton_MouseMove(object sender, MouseEventArgs e)
         {
             var finalPoint = Point.Subtract(mouseDownLoc, new Size(Cursor.Position));
-            bool didMove = SystemInformation.DragSize.Width > finalPoint.X && SystemInformation.DragSize.Height > finalPoint.Y;
-            if (mouseDown && didMove) {
+            bool didMove = SystemInformation.DragSize.Width * 2 > finalPoint.X && SystemInformation.DragSize.Height * 2 > finalPoint.Y;
+            if (mouseDown && didMove && finalPoint.IsEmpty) {
                 mouseDown = false;
                 if (sender is ImageModernButton mb) {
                     if (mb.Tag != null && mb.Tag is IDeckItem act) {
                         bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
                         if (isDoubleClick) return;
                         if ((CurrentDevice.CurrentFolder.GetParent() != null && (mb.CurrentSlot == 1))) return;
-                        mb.DoDragDrop(new DeckItemMoveHelper(act, mb.CurrentSlot), DragDropEffects.Move);
+                        mb.DoDragDrop(new DeckItemMoveHelper(act, mb.CurrentSlot) { CopyOld = ModifierKeys.HasFlag(Keys.Control) }, ModifierKeys.HasFlag(Keys.Control) ? DragDropEffects.Copy : DragDropEffects.Move);
                     }
                 }
             }

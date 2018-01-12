@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +13,12 @@ namespace NickAc.Backend.Utils
     //All credits go to Repo Man (https://stackoverflow.com/users/140126/repo-man)
     public static class ReflectiveEnumerator
     {
+        public static T DeepClone<T>(this T obj)
+        {
+            
+            return (T)XMLUtils.FromXML<T>(XMLUtils.ToXML(obj));
+        }
+
         static ReflectiveEnumerator() { }
 
         public static IEnumerable<T> GetEnumerableOfType<T>(params object[] constructorArgs) where T : class

@@ -17,5 +17,6 @@ namespace NickAc.Backend.Utils
 
         public IDeckItem DeckItem { get; set; }
         public int OldSlot { get; set; }
+        public bool CopyOld { get; set; } = false;
     }
 }
