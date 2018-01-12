@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -52,22 +53,28 @@ namespace ButtonDeck
                 if (!firstRunForm.FinishedSetup) return;
             }
 
+            NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
+            NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAddressChanged;
+
             ServerThread = new ServerThread();
             ServerThread.Start();
-            /*
-            if (!SuccessfulServerStart) {
-                MessageBox.Show("Unable to start the deck server!" + Environment.NewLine
-                    + "Do you have another instance running?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
 
             Application.Run(new MainForm());
             ServerThread.Stop();
+            NetworkChange.NetworkAddressChanged -= NetworkChange_NetworkAddressChanged;
+            NetworkChange.NetworkAvailabilityChanged -= NetworkChange_NetworkAddressChanged;
             ApplicationSettingsManager.SaveSettings();
             DevicePersistManager.SaveDevices();
             Trace.Flush();
 
 
+
+        }
+
+        private static void NetworkChange_NetworkAddressChanged(object sender, EventArgs e)
+        {
+            ServerThread.Stop();
+            ServerThread.Start();
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
