@@ -1,9 +1,6 @@
 ﻿using NickAc.Backend.Objects.Implementation.DeckActions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace NickAc.Backend.Objects
@@ -66,5 +63,10 @@ namespace NickAc.Backend.Objects
         public abstract void OnButtonDown(DeckDevice deckDevice);
         public abstract void OnButtonUp(DeckDevice deckDevice);
         public abstract AbstractDeckAction CloneAction();
+        public virtual DeckImage GetDefaultItemImage()
+        {
+            return null;
+        }
+
     }
 }
