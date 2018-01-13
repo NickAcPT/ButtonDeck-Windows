@@ -766,9 +766,12 @@ namespace ButtonDeck.Forms
 
         private void ItemButton_MouseMove(object sender, MouseEventArgs e)
         {
-            var finalPoint = Point.Subtract(mouseDownLoc, new Size(Cursor.Position));
+            int distanceX = Math.Abs(mouseDownLoc.X - Cursor.Position.X);
+            int distanceY = Math.Abs(mouseDownLoc.Y - Cursor.Position.Y);
+
+            var finalPoint = new Point(distanceX, distanceY);
             bool didMove = SystemInformation.DragSize.Width * 2 > finalPoint.X && SystemInformation.DragSize.Height * 2 > finalPoint.Y;
-            if (mouseDown && didMove && finalPoint.IsEmpty) {
+            if (mouseDown && didMove && !finalPoint.IsEmpty) {
                 mouseDown = false;
                 if (sender is ImageModernButton mb) {
                     if (mb.Tag != null && mb.Tag is IDeckItem act) {
