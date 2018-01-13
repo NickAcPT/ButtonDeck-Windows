@@ -68,6 +68,7 @@
     <Compile Include="Objects\IDeckItem.cs" />
     <Compile Include="Objects\Implementation\DeckActions\ExecutableRunAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\KeyPressAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\KeyToggleAction.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckFolder.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
