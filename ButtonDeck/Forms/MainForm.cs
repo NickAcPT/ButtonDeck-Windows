@@ -405,7 +405,7 @@ namespace ButtonDeck.Forms
                     if (item == null) continue;
 
                     bool isFolder = item is IDeckFolder;
-                    var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                    var image = item.GetItemImage() ?? item.GetDefaultImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
                     var seri = image.BitmapSerialized;
 
                     packet.AddToQueue(folder.GetItemIndex(item), image);
@@ -432,7 +432,7 @@ namespace ButtonDeck.Forms
 
                 bool isFolder = item is IDeckFolder;
                 ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
-                var image = item.GetItemImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
+                var image = item.GetItemImage() ?? item.GetDefaultImage() ?? (new DeckImage(isFolder ? Resources.img_folder : Resources.img_item_default));
                 var seri = image.BitmapSerialized;
 
                 //TODO: ALLOW FOR SMALL BITMAP
@@ -716,6 +716,31 @@ namespace ButtonDeck.Forms
                     panel.Controls.Add(helperButton);
 
                 } else {
+                    if (prop.PropertyType.IsAssignableFrom(typeof(Enum))) {
+                        var values = Enum.GetValues(prop.PropertyType);
+                        panel.Controls.Add(new Label()
+                        {
+                            Text = GetPropertyDescription(prop)
+                        });
+                        ComboBox cBox = new ComboBox
+                        {
+                            DropDownStyle = ComboBoxStyle.DropDownList,
+                            SelectedIndex = 0,
+                            Text = values.GetValue(0).ToString()
+                        };
+                        cBox.Items.AddRange(values.OfType<Enum>().ToArray());
+                        cBox.SelectedIndexChanged += (s, e) => {
+                            try {
+                                if (cBox.Text == string.Empty) return;
+                                prop.SetValue(item.DeckAction, values.GetValue(cBox.SelectedIndex));
+                            } catch (Exception) {
+                                //Ignore all errors
+                            }
+                        };
+                        panel.Controls.Add(cBox);
+                        return;
+                    }
+
                     if (TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
                 (typeof(string))) continue;
                     panel.Controls.Add(new Label()

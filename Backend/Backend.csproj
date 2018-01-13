@@ -72,6 +72,11 @@
     <Compile Include="Objects\Implementation\DynamicDeckFolder.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AppSettings.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\DeckActionHelper.cs" />
@@ -81,6 +86,36 @@
     <Compile Include="Utils\ReflectiveEnumerator.cs" />
     <Compile Include="Utils\SerializableDictionary.cs" />
     <Compile Include="Utils\XMLUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_playpause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_volumedown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_volumeoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_volumeup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
