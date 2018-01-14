@@ -53,7 +53,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         [Obsolete]
         public override bool OnButtonClick(DeckDevice deckDevice)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public Keys GetKeyFromMediaKey(MediaKeys mediaKey)
