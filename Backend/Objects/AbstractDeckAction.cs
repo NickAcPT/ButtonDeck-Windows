@@ -9,15 +9,9 @@ namespace NickAc.Backend.Objects
     public class ActionPropertyIncludeAttribute : Attribute
     { }
 
-
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-    public class ActionPropertyHelperAttribute : Attribute
+    public class ActionPropertyUpdateImageOnChangedAttribute : Attribute
     {
-        readonly Action targetMethod;
-        public ActionPropertyHelperAttribute(Action targetMethod)
-        {
-            this.targetMethod = targetMethod;
-        }
     }
 
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]

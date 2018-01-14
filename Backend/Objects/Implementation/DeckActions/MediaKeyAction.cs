@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NickAc.Backend.Objects.Implementation.DeckActions
 {
     public class MediaKeyAction : AbstractDeckAction
     {
-        public enum MediaKey
+        public enum MediaKeys
         {
             [Description("Previous")]
             Back,
@@ -17,6 +18,8 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             Next,
             [Description("Play/Pause")]
             PlayPause,
+            [Description("Stop")]
+            Stop,
             [Description("Volume Off")]
             VolumeOff,
             [Description("Volume Down")]
@@ -26,7 +29,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         }
 
         [ActionPropertyInclude]
-        public MediaKey Key { get; set; } = MediaKey.PlayPause;
+        public MediaKeys Key { get; set; } = MediaKeys.PlayPause;
 
         public override AbstractDeckAction CloneAction()
         {
@@ -49,8 +52,30 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             throw new NotImplementedException();
         }
 
+        public Keys GetKeyFromMediaKey(MediaKeys mediaKey)
+        {
+            switch (mediaKey) {
+                case MediaKeys.Back:
+                    return Keys.MediaPreviousTrack;
+                case MediaKeys.Next:
+                    return Keys.MediaPreviousTrack;
+                case MediaKeys.PlayPause:
+                    return Keys.MediaPlayPause;
+                case MediaKeys.Stop:
+                    return Keys.MediaPlayPause;
+                case MediaKeys.VolumeOff:
+                    return Keys.VolumeMute;
+                case MediaKeys.VolumeMinus:
+                    return Keys.VolumeDown;
+                case MediaKeys.VolumePlus:
+                    return Keys.VolumeUp;
+            }
+            return Keys.None;
+        }
+
         public override void OnButtonDown(DeckDevice deckDevice)
         {
+
         }
 
         public override void OnButtonUp(DeckDevice deckDevice)

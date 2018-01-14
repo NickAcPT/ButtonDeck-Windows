@@ -250,7 +250,7 @@ namespace ButtonDeck.Forms
                                     {
                                         DeckAction = action.DeckAction.CloneAction()
                                     };
-                                    mb.Image = Resources.img_item_default;
+                                    mb.Image = ((DynamicDeckItem)mb.Tag).DeckAction.GetDefaultItemImage()?.Bitmap ?? Resources.img_item_default;
 
                                     FocusItem(mb, mb.Tag as IDeckItem);
                                 }
@@ -641,12 +641,12 @@ namespace ButtonDeck.Forms
             mouseDown = false;
             if (sender is ImageModernButton senderB) {
                 if (!senderB.DisplayRectangle.Contains(e.Location)) return;
-                if (e.Button == MouseButtons.Right) {
+                if (e.Button == MouseButtons.Right && CurrentDevice.CurrentFolder.GetDeckItems().Any(c=> CurrentDevice.CurrentFolder.GetItemIndex(c) == senderB.CurrentSlot)) {
                     var popupMenu = new ContextMenuStrip();
 
                     popupMenu.Items.Add("Remove item").Click += (s, ee) => {
                         if (senderB != null) {
-                            if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
+                            if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default && senderB.Image != ((IDeckItem)senderB.Tag).GetDefaultImage()?.Bitmap) {
                                 senderB.Image.Dispose();
                             }
                             senderB.Tag = null;
@@ -662,7 +662,7 @@ namespace ButtonDeck.Forms
                             senderB.Image.Dispose();
                             if (senderB != null && senderB.Tag != null && senderB.Tag is IDeckItem deckItem) {
                                 bool isFolder = deckItem is IDeckFolder;
-                                senderB.Image = isFolder ? Resources.img_folder : Resources.img_item_default;
+                                senderB.Image = isFolder ? Resources.img_folder : ((IDeckItem)senderB.Tag).GetDefaultImage()?.Bitmap ?? Resources.img_item_default;
                             }
                         }
                     };
@@ -698,6 +698,7 @@ namespace ButtonDeck.Forms
             var props = item.DeckAction.GetType().GetProperties().Where(
                 prop => Attribute.IsDefined(prop, typeof(ActionPropertyIncludeAttribute)));
             foreach (var prop in props) {
+                bool shouldUpdateIcon = Attribute.IsDefined(prop, typeof(ActionPropertyUpdateImageOnChangedAttribute));
                 MethodInfo helperMethod = item.DeckAction.GetType().GetMethod(prop.Name + "Helper");
                 if (helperMethod != null) {
                     panel.Controls.Add(new Label()
@@ -734,6 +735,7 @@ namespace ButtonDeck.Forms
                             try {
                                 if (cBox.Text == string.Empty) return;
                                 prop.SetValue(item.DeckAction, EnumUtils.FromDescription(prop.PropertyType, cBox.Text));
+                                UpdateIcon(shouldUpdateIcon);
                             } catch (Exception) {
                                 //Ignore all errors
                             }
@@ -753,12 +755,12 @@ namespace ButtonDeck.Forms
                     {
                         Text = (string)TypeDescriptor.GetConverter(prop.PropertyType).ConvertTo(prop.GetValue(item.DeckAction), typeof(string))
                     };
-                    txt.LostFocus += (sender, e) => {
+                    txt.TextChanged += (sender, e) => {
                         try {
                             if (txt.Text == string.Empty) return;
                             //After loosing focus, convert type to thingy.
                             prop.SetValue(item.DeckAction, TypeDescriptor.GetConverter(prop.PropertyType).ConvertFrom(txt.Text));
-                            txt.Text = string.Empty;
+                            UpdateIcon(shouldUpdateIcon);
                         } catch (Exception) {
                             //Ignore all errors
                         }
@@ -770,6 +772,13 @@ namespace ButtonDeck.Forms
 
             ModifyColorScheme(flowLayoutPanel1.Controls.OfType<Control>());
 
+        }
+
+        private void UpdateIcon(bool shouldUpdateIcon)
+        {
+            if (shouldUpdateIcon) {
+                imageModernButton1.Image = ((IDeckItem)imageModernButton1.Tag).GetDefaultImage()?.Bitmap ?? Resources.img_item_default;
+            }
         }
 
         private string GetPropertyDescription(PropertyInfo prop)
@@ -786,18 +795,19 @@ namespace ButtonDeck.Forms
         Point mouseDownLoc = Cursor.Position;
         private void ItemButton_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseDown = true;
+            mouseDown = e.Button == MouseButtons.Left;
             mouseDownLoc = Cursor.Position;
         }
 
         private void ItemButton_MouseMove(object sender, MouseEventArgs e)
         {
+            if (!mouseDown) return;
             int distanceX = Math.Abs(mouseDownLoc.X - Cursor.Position.X);
             int distanceY = Math.Abs(mouseDownLoc.Y - Cursor.Position.Y);
 
             var finalPoint = new Point(distanceX, distanceY);
             bool didMove = SystemInformation.DragSize.Width * 2 > finalPoint.X && SystemInformation.DragSize.Height * 2 > finalPoint.Y;
-            if (mouseDown && didMove && !finalPoint.IsEmpty) {
+            if (didMove && !finalPoint.IsEmpty) {
                 mouseDown = false;
                 if (sender is ImageModernButton mb) {
                     if (mb.Tag != null && mb.Tag is IDeckItem act) {
