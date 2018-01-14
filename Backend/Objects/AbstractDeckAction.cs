@@ -40,6 +40,7 @@ namespace NickAc.Backend.Objects
     [XmlInclude(typeof(ExecutableRunAction))]
     [XmlInclude(typeof(KeyPressAction))]
     [XmlInclude(typeof(KeyToggleAction))]
+    [XmlInclude(typeof(MediaKeyAction))]
     public abstract class AbstractDeckAction
     {
         public static Type FindType(string fullName)
@@ -55,10 +56,10 @@ namespace NickAc.Backend.Objects
         {
             General,
             AutoHotKey,
-            OBS
         }
         public abstract DeckActionCategory GetActionCategory();
         public abstract string GetActionName();
+        [Obsolete]
         public abstract bool OnButtonClick(DeckDevice deckDevice);
         public abstract void OnButtonDown(DeckDevice deckDevice);
         public abstract void OnButtonUp(DeckDevice deckDevice);

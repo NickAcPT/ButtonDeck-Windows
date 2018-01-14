@@ -453,7 +453,7 @@ namespace ButtonDeck.Forms
         {
             if (!ignoreFirst) {
                 if (trueParent != null)
-                folder.SetParent(trueParent);
+                    folder.SetParent(trueParent);
                 if (folder.GetParent() != null) {
                     folder.Add(1, folderUpItem);
                 }
@@ -716,7 +716,7 @@ namespace ButtonDeck.Forms
                     panel.Controls.Add(helperButton);
 
                 } else {
-                    if (prop.PropertyType.IsAssignableFrom(typeof(Enum))) {
+                    if (prop.PropertyType.IsSubclassOf(typeof(Enum))) {
                         var values = Enum.GetValues(prop.PropertyType);
                         panel.Controls.Add(new Label()
                         {
@@ -724,15 +724,16 @@ namespace ButtonDeck.Forms
                         });
                         ComboBox cBox = new ComboBox
                         {
-                            DropDownStyle = ComboBoxStyle.DropDownList,
-                            SelectedIndex = 0,
-                            Text = values.GetValue(0).ToString()
+                            DropDownStyle = ComboBoxStyle.DropDownList
                         };
-                        cBox.Items.AddRange(values.OfType<Enum>().ToArray());
+                        cBox.Items.AddRange(values.OfType<Enum>().Select(c=> EnumUtils.GetDescription(prop.PropertyType, c, c.ToString())).ToArray());
+
+                        cBox.Text = EnumUtils.GetDescription(prop.PropertyType, (Enum)prop.GetValue(item.DeckAction), ((Enum)prop.GetValue(item.DeckAction)).ToString());
+
                         cBox.SelectedIndexChanged += (s, e) => {
                             try {
                                 if (cBox.Text == string.Empty) return;
-                                prop.SetValue(item.DeckAction, values.GetValue(cBox.SelectedIndex));
+                                prop.SetValue(item.DeckAction, EnumUtils.FromDescription(prop.PropertyType, cBox.Text));
                             } catch (Exception) {
                                 //Ignore all errors
                             }
