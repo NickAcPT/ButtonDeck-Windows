@@ -646,7 +646,7 @@ namespace ButtonDeck.Forms
 
                     popupMenu.Items.Add("Remove item").Click += (s, ee) => {
                         if (senderB != null) {
-                            if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default && senderB.Image != ((IDeckItem)senderB.Tag).GetDefaultImage()?.Bitmap) {
+                            if (senderB.Image != Resources.img_folder && senderB.Image != Resources.img_item_default) {
                                 senderB.Image.Dispose();
                             }
                             senderB.Tag = null;
@@ -777,7 +777,8 @@ namespace ButtonDeck.Forms
         private void UpdateIcon(bool shouldUpdateIcon)
         {
             if (shouldUpdateIcon) {
-                imageModernButton1.Image = ((IDeckItem)imageModernButton1.Tag).GetDefaultImage()?.Bitmap ?? Resources.img_item_default;
+                imageModernButton1.Image = ((IDeckItem)imageModernButton1.Origin.Tag).GetDefaultImage()?.Bitmap ?? Resources.img_item_default;
+                imageModernButton1.Refresh();
             }
         }
 
