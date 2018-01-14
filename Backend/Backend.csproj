@@ -119,5 +119,8 @@
   <ItemGroup>
     <None Include="Resources\img_item_media_volumeup.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_media_stop.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

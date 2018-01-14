@@ -1,6 +1,9 @@
-﻿using System;
+﻿using NickAc.Backend.Properties;
+using NickAc.Backend.Utils.Native;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +32,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         }
 
         [ActionPropertyInclude]
+        [ActionPropertyUpdateImageOnChanged]
         public MediaKeys Key { get; set; } = MediaKeys.PlayPause;
 
         public override AbstractDeckAction CloneAction()
@@ -62,7 +66,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
                 case MediaKeys.PlayPause:
                     return Keys.MediaPlayPause;
                 case MediaKeys.Stop:
-                    return Keys.MediaPlayPause;
+                    return Keys.MediaStop;
                 case MediaKeys.VolumeOff:
                     return Keys.VolumeMute;
                 case MediaKeys.VolumeMinus:
@@ -80,7 +84,40 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
 
         public override void OnButtonUp(DeckDevice deckDevice)
         {
-            
+            var key = GetKeyFromMediaKey(Key);
+            if (key != Keys.None) {
+                NativeKeyHandler.ClickKey(new[] { key });
+            }
+        }
+
+        public override DeckImage GetDefaultItemImage()
+        {
+            var img = GetKey(Key);
+            if (img != null)
+            return new DeckImage(img);
+            return base.GetDefaultItemImage();
+        }
+
+        private Bitmap GetKey(MediaKeys key)
+        {
+            switch (key) {
+                case MediaKeys.Back:
+                    return Resources.img_item_media_back;
+                case MediaKeys.Next:
+                    return Resources.img_item_media_next;
+                case MediaKeys.PlayPause:
+                    return Resources.img_item_media_playpause;
+                case MediaKeys.Stop:
+                    return Resources.img_item_media_stop;
+                case MediaKeys.VolumeOff:
+                    return Resources.img_item_media_volumeoff;
+                case MediaKeys.VolumeMinus:
+                    return Resources.img_item_media_volumedown;
+                case MediaKeys.VolumePlus:
+                    return Resources.img_item_media_volumeup;
+                default:
+                    return null;
+            }
         }
     }
 }
