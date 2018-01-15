@@ -53,6 +53,13 @@ namespace ButtonDeck
                 if (!firstRunForm.FinishedSetup) return;
             }
 
+
+            if (OBSUtils.PrepareOBS()) {
+                if (OBSUtils.IsConnected) {
+                    Debug.WriteLine("OBS CONNECTED");
+                    OBSUtils.PrintScenes();
+                }
+            }
             NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
             NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAddressChanged;
 
@@ -60,15 +67,15 @@ namespace ButtonDeck
             ServerThread.Start();
 
             Application.Run(new MainForm());
+
+            OBSUtils.Disconnect();
+
             ServerThread.Stop();
             NetworkChange.NetworkAddressChanged -= NetworkChange_NetworkAddressChanged;
             NetworkChange.NetworkAvailabilityChanged -= NetworkChange_NetworkAddressChanged;
             ApplicationSettingsManager.SaveSettings();
             DevicePersistManager.SaveDevices();
             Trace.Flush();
-
-
-
         }
 
         private static void NetworkChange_NetworkAddressChanged(object sender, EventArgs e)
