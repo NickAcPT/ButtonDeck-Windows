@@ -1,61 +1,41 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT14H9M53.3395068S" SolutionTotalViewTime="PT21H26.0580763S" SolutionTotalDebugTime="PT2H27M2.7010111S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT14H27M14.3436791S" SolutionTotalViewTime="PT21H14M29.5692047S" SolutionTotalDebugTime="PT2H27M58.1323902S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
   </FileVersion>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT1M35.9585913S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT55.4303809S" EditActiveTime="PT4M58.0452898S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>Backend\Backend.csproj</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2018-01-15T10:41:18.938346+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4M18.201799S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
+      <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
-      <CreatedDate>2018-01-15T10:54:57.5209784+00:00</CreatedDate>
+      <CreatedDate>2018-01-15T19:24:25.3553732+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8M23.7768908S" EditActiveTime="PT18M28.6368686S">
-      <ModifiedDate>2018-01-15T11:37:54.1050745+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT9M1.302229S" EditActiveTime="PT17M9.7354234S">
+      <ModifiedDate>2018-01-15T23:51:58.9803059+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\OBSUtils.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
-      <CreatedDate>2018-01-15T10:44:23.5151856+00:00</CreatedDate>
+      <CreatedDate>2018-01-15T18:06:04.4457389+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT13.7071611S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>OBSWebsocket.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName />
-      <CreatedDate>2018-01-15T10:49:09.935689+00:00</CreatedDate>
-      <ViewedBy>User</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M10.1577701S" EditActiveTime="PT44.2654385S">
-      <ModifiedDate>2018-01-15T11:06:21.2637534+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M2.236956S" EditActiveTime="PT11.277757S">
+      <ModifiedDate>2018-01-15T19:23:04.9007226+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Program.cs</Item>
+      <Item>c:\users\user\documents\visual studio 2017\projects\buttondeck\buttondeck\Program.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
-      <CreatedDate>2018-01-15T10:38:35.4562991+00:00</CreatedDate>
+      <CreatedDate>2018-01-15T19:22:49.7954857+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -337,10 +317,10 @@
       <CreatedDate>2017-12-25T20:26:04.4569612+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2H27M2.7010111S" EditActiveTime="PT40M28.1121563S">
+    <DevTrackerDataItem ViewActiveTime="PT2H27M58.131392S" EditActiveTime="PT45M26.1574461S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>4</EditedCount>
-      <ViewedCount>30</ViewedCount>
+      <EditedCount>5</EditedCount>
+      <ViewedCount>31</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
@@ -1084,11 +1064,11 @@
       <CreatedDate>2018-01-07T22:10:27.7109152+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8M23.7338266S" EditActiveTime="PT18M28.6368686S">
-      <ModifiedDate>2018-01-15T11:37:54.1050745+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT17M25.0360556S" EditActiveTime="PT35M38.372292S">
+      <ModifiedDate>2018-01-15T23:51:58.9803059+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\OBSUtils.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
@@ -1159,11 +1139,11 @@
       <CreatedDate>2018-01-12T21:59:33.2537852+00:00</CreatedDate>
       <ViewedBy>User</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT40M30.4264224S" EditActiveTime="PT18M36.5076789S">
-      <ModifiedDate>2018-01-15T11:06:21.2637534+00:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT45M32.6343324S" EditActiveTime="PT18M47.7854359S">
+      <ModifiedDate>2018-01-15T19:23:04.9007226+00:00</ModifiedDate>
       <ModifiedBy>User</ModifiedBy>
-      <EditedCount>10</EditedCount>
-      <ViewedCount>21</ViewedCount>
+      <EditedCount>11</EditedCount>
+      <ViewedCount>22</ViewedCount>
       <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\Program.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
@@ -1449,6 +1429,38 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT55.4303809S" EditActiveTime="PT4M58.0452898S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2018-01-15T19:24:25.3553732+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5M2.2199239S" EditActiveTime="PT11.277757S">
+      <ModifiedDate>2018-01-15T19:23:04.9007226+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>c:\users\user\documents\visual studio 2017\projects\buttondeck\buttondeck\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\ButtonDeck\ButtonDeck.csproj</ProjectName>
+      <CreatedDate>2018-01-15T19:22:49.7954857+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9M1.302229S" EditActiveTime="PT17M9.7354234S">
+      <ModifiedDate>2018-01-15T23:51:58.9803059+00:00</ModifiedDate>
+      <ModifiedBy>User</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Utils\OBSUtils.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\User\Documents\Visual Studio 2017\Projects\ButtonDeck\Backend\Backend.csproj</ProjectName>
+      <CreatedDate>2018-01-15T18:06:04.4457389+00:00</CreatedDate>
+      <ViewedBy>User</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT4M18.201799S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>

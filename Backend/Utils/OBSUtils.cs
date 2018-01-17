@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Management;
 using System.Net;
@@ -23,6 +24,11 @@ namespace NickAc.Backend.Utils
         public static OBSWebsocket OBSConnection { get; set; }
         static OBSUtils()
         {
+        }
+
+        public static string GetPathFromOBSExecutable(string execLocation)
+        {
+            return Path.GetFullPath(Path.Combine(execLocation, "..", "..", ".."));
         }
 
         public static void ConnectToOBS()
@@ -49,13 +55,55 @@ namespace NickAc.Backend.Utils
             }
         }
 
-        public static bool PrepareOBS()
+        /// <summary>
+        /// Directories the copy.
+        /// </summary>
+        /// <param name="sourceDirPath">The source dir path.</param>
+        /// <param name="destDirName">Name of the destination dir.</param>
+        /// <param name="isCopySubDirs">if set to <c>true</c> [is copy sub directories].</param>
+        /// <returns></returns>
+        public static void DirectoryCopy(string sourceDirPath, string destDirName, bool isCopySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo directoryInfo = new DirectoryInfo(sourceDirPath);
+            DirectoryInfo[] directories = directoryInfo.GetDirectories();
+            if (!directoryInfo.Exists) {
+                throw new DirectoryNotFoundException("Source directory does not exist or could not be found: "
+                    + sourceDirPath);
+            }
+            DirectoryInfo parentDirectory = Directory.GetParent(directoryInfo.FullName);
+            destDirName = System.IO.Path.Combine(parentDirectory.FullName, destDirName);
+
+            // If the destination directory doesn't exist, create it. 
+            if (!Directory.Exists(destDirName)) {
+                Directory.CreateDirectory(destDirName);
+            }
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = directoryInfo.GetFiles();
+
+            foreach (FileInfo file in files) {
+                string tempPath = System.IO.Path.Combine(destDirName, file.Name);
+
+                if (!File.Exists(tempPath)) {
+                    file.CopyTo(tempPath, false);
+                }
+            }
+            // If copying subdirectories, copy them and their contents to new location using recursive  function. 
+            if (isCopySubDirs) {
+                foreach (DirectoryInfo item in directories) {
+                    string tempPath = System.IO.Path.Combine(destDirName, item.Name);
+                    DirectoryCopy(item.FullName, tempPath, isCopySubDirs);
+                }
+            }
+        }
+
+        public static bool PrepareOBSIntegration()
         {
             var obs32List = Process.GetProcessesByName("obs32");
             var obs64List = Process.GetProcessesByName("obs64");
             if (obs32List.Length == 0 && obs64List.Length == 0) {
                 //No OBS found. Cancel operation.
-                return true;
+                return false;
             }
             List<Process> obsProcesses = new List<Process>();
             obsProcesses.AddRange(obs32List);
@@ -72,7 +120,7 @@ namespace NickAc.Backend.Utils
                 //We have the OBS executable path.
                 //We should ask if the user wants to download the obs plugin.
                 var obsGlobalFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "obs-studio", "global.ini");
-                if (File.Exists(obsGlobalFilePath)/* && !File.ReadAllText(obsGlobalFilePath).Contains("[WebsocketAPI]")*/) {
+                if (File.Exists(obsGlobalFilePath) && !File.ReadAllText(obsGlobalFilePath).Contains("[WebsocketAPI]")) {
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("An OBS instance was found!");
                     sb.AppendLine("");
@@ -89,11 +137,17 @@ namespace NickAc.Backend.Utils
                         //and extract the plugin files to the obs folder.
 
 
-                        ProcessInfo newProcess = new System.Diagnostics.ProcessInfo();
+                        var newProcess = new ProcessStartInfo(Process.GetCurrentProcess().MainModule.FileName, "/armobs")
+                        {
+                            Verb = "runas"
+                        };
+                        Process process = Process.Start(newProcess);
 
-
-
+                        process.WaitForExit();
                     }
+                } else {
+                    ConnectToOBS();
+                    return true;
                 }
 
             }
@@ -102,6 +156,12 @@ namespace NickAc.Backend.Utils
 
 
         }
+
+        public static void ExtractZip(string file, string path)
+        {
+            ZipFile.ExtractToDirectory(file, path);
+        }
+
         public static string GetProcessPath(int processId)
         {
             string MethodResult = "";

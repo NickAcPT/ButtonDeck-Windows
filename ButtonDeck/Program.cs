@@ -6,8 +6,10 @@ using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,14 +29,86 @@ namespace ButtonDeck
         static void Main(string[] args)
         {
 
-#if FORCE_SILENCE
-            Silent = true;
-#else
-            Silent = args.Any(c => c.ToLower() == "/s");
-#endif
             Trace.Listeners.Add(new TextWriterTraceListener(errorFileName));
             Trace.AutoFlush = true;
 
+
+
+            if (args.Any(c => c.ToLower() == "/armobs")) {
+                if (args.Length == 1) {
+                    var obs32List = Process.GetProcessesByName("obs32");
+                    var obs64List = Process.GetProcessesByName("obs64");
+                    if (obs32List.Length == 0 && obs64List.Length == 0) {
+                        //No OBS found. Cancel operation.
+                        File.Delete(OBSUtils.obswszip);
+                        return;
+                    }
+                    List<Process> obsProcesses = new List<Process>();
+                    obsProcesses.AddRange(obs32List);
+                    obsProcesses.AddRange(obs64List);
+
+                    if (obsProcesses.Count != 1) {
+                        //Multiple OBS instances found. Cancel operation.
+                        File.Delete(OBSUtils.obswszip);
+                        return;
+                    }
+                    var obsProcess = obsProcesses.First();
+
+                    string path = OBSUtils.GetProcessPath(obsProcess.Id);
+                    string zipTempPath = Path.GetFileNameWithoutExtension(OBSUtils.obswszip);
+                    OBSUtils.ExtractZip(OBSUtils.obswszip, zipTempPath);
+
+                    OBSUtils.DirectoryCopy(zipTempPath, OBSUtils.GetPathFromOBSExecutable(path), true);
+                    File.Delete(OBSUtils.obswszip);
+                    Directory.Delete(zipTempPath, true);
+
+                    var obsGlobalFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "obs-studio", "global.ini");
+                    if (File.Exists(obsGlobalFilePath) && !File.ReadAllText(obsGlobalFilePath).Contains("[WebsocketAPI]")) {
+
+                        while (!obsProcess.HasExited) {
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendLine("OBS plugin install completed!");
+                            sb.AppendLine("");
+                            sb.AppendLine("Please close OBS and click OK to apply the final touches.");
+                            MessageBox.Show(sb.ToString());
+                        }
+
+                        using (StreamWriter outputFile = new StreamWriter(obsGlobalFilePath)) {
+                            outputFile.WriteLine("");
+                            outputFile.WriteLine("[WebsocketAPI]");
+                            outputFile.WriteLine("ServerPort=4444");
+                            outputFile.WriteLine("DebugEnabled=false");
+                            outputFile.WriteLine("AlertsEnabled=false");
+                            outputFile.WriteLine("AuthRequired=false");
+                        }
+
+                        bool shouldRepeat = true;
+                        while (shouldRepeat) {
+                            var obs32List2 = Process.GetProcessesByName("obs32");
+                            var obs64List2 = Process.GetProcessesByName("obs64");
+
+                            shouldRepeat = obs32List2.Length == 0 && obs64List2.Length == 0;
+                            if (!shouldRepeat) break;
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendLine("OBS plugin install successfully!");
+                            sb.AppendLine("");
+                            sb.AppendLine("Please open OBS and click OK to continue to the app.");
+                            MessageBox.Show(sb.ToString());
+                        }
+
+                    }
+
+                    return;
+                }
+            }
+
+#if FORCE_SILENCE
+    Silent = true;
+#else
+            Silent = args.Any(c => c.ToLower() == "/s");
+#endif
             errorText = $"An error occured! And it was saved to a file called {errorFileName}." + Environment.NewLine + "Please send this to the developer of the application.";
 
             Application.ThreadException += Application_ThreadException;
@@ -53,13 +127,9 @@ namespace ButtonDeck
                 if (!firstRunForm.FinishedSetup) return;
             }
 
+            OBSUtils.PrepareOBSIntegration();
 
-            if (OBSUtils.PrepareOBS()) {
-                if (OBSUtils.IsConnected) {
-                    Debug.WriteLine("OBS CONNECTED");
-                    OBSUtils.PrintScenes();
-                }
-            }
+
             NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
             NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAddressChanged;
 
