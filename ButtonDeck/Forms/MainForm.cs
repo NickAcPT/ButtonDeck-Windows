@@ -313,8 +313,12 @@ namespace ButtonDeck.Forms
 
         private void Buttons_Unfocus(object sender, EventArgs e)
         {
-            shadedPanel2.Hide();
-            shadedPanel1.Refresh();
+
+            Invoke(new Action(() => {
+                shadedPanel2.Hide();
+                shadedPanel1.Refresh();
+                Refresh();
+            }));
         }
 
         private void DevicePersistManager_DeviceConnected(object sender, DevicePersistManager.DeviceEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Objects.Implementation.DeckActions;
+using NickAc.Backend.Objects.Implementation.DeckActions.OBS;
 using System;
 using System.Linq;
 using System.Xml.Serialization;
@@ -35,6 +36,8 @@ namespace NickAc.Backend.Objects
     [XmlInclude(typeof(KeyPressAction))]
     [XmlInclude(typeof(KeyToggleAction))]
     [XmlInclude(typeof(MediaKeyAction))]
+    [XmlInclude(typeof(SwitchSceneAction))]
+    [XmlInclude(typeof(TestSceneMultiSwitch))]
     public abstract class AbstractDeckAction
     {
         public static Type FindType(string fullName)
@@ -50,11 +53,14 @@ namespace NickAc.Backend.Objects
         {
             General,
             AutoHotKey,
+            OBS,
         }
         public abstract DeckActionCategory GetActionCategory();
         public abstract string GetActionName();
         [Obsolete]
-        public abstract bool OnButtonClick(DeckDevice deckDevice);
+        public virtual bool OnButtonClick(DeckDevice deckDevice) {
+            return false;
+        }
         public abstract void OnButtonDown(DeckDevice deckDevice);
         public abstract void OnButtonUp(DeckDevice deckDevice);
         public abstract AbstractDeckAction CloneAction();

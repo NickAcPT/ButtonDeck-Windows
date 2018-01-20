@@ -84,5 +84,7 @@ namespace NickAc.Backend.Utils
 
         public string DeviceName { get; set; }
 
+        public bool OBSPluginNagged { get; set; }
+
     }
 }

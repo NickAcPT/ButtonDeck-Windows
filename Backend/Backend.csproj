@@ -81,6 +81,8 @@
     <Compile Include="Objects\Implementation\DeckActions\KeyPressAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\KeyToggleAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\MediaKeyAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\OBS\SwitchSceneAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\OBS\TestSceneMultiSwitch.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckFolder.cs" />
     <Compile Include="Objects\Implementation\DynamicDeckItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

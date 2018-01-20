@@ -7,29 +7,37 @@ using System.IO.Compression;
 using System.Linq;
 using System.Management;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NickAc.Backend.Utils
 {
     public static class OBSUtils
     {
-        public const string obswszip = "obs-ws.zip";
-        public const string obsWsWebLocation = "https://github.com/Palakis/obs-websocket/releases/download/4.3.0/obs-websocket-4.3.0-Windows.zip";
+        #region Fields
 
-        public static bool IsConnected { get => OBSConnection != null && OBSConnection.IsConnected; }
-        public static OBSWebsocket OBSConnection { get; set; }
+        public const string obsWsWebLocation = "https://github.com/Palakis/obs-websocket/releases/download/4.3.0/obs-websocket-4.3.0-Windows.zip";
+        public const string obswszip = "obs-ws.zip";
+
+        #endregion
+
+        #region Constructors
+
         static OBSUtils()
         {
         }
 
-        public static string GetPathFromOBSExecutable(string execLocation)
-        {
-            return Path.GetFullPath(Path.Combine(execLocation, "..", "..", ".."));
-        }
+        #endregion
+
+        #region Properties
+
+        public static bool IsConnected { get => OBSConnection != null && OBSConnection.IsConnected; }
+        public static OBSWebsocket OBSConnection { get; set; }
+
+        #endregion
+
+        #region Methods
 
         public static void ConnectToOBS()
         {
@@ -37,21 +45,6 @@ namespace NickAc.Backend.Utils
                 Thread th = new Thread(ConnectToServer);
                 th.Start();
             } catch (Exception) {
-            }
-        }
-
-        private static void ConnectToServer()
-        {
-            OBSConnection = new OBSWebsocket();
-            OBSConnection.Connect("ws://localhost:4444", "");
-        }
-
-        public static void PatchOBS(string obsPath)
-        {
-            //This method will take a file named obs-ws.zip from the current dir
-            //and fix obs to allow the plugin to work
-            if (File.Exists(obswszip)) {
-                var finalExtractionPath = Path.GetFullPath(Path.Combine(obsPath, "..", ".."));
             }
         }
 
@@ -74,7 +67,7 @@ namespace NickAc.Backend.Utils
             DirectoryInfo parentDirectory = Directory.GetParent(directoryInfo.FullName);
             destDirName = System.IO.Path.Combine(parentDirectory.FullName, destDirName);
 
-            // If the destination directory doesn't exist, create it. 
+            // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName)) {
                 Directory.CreateDirectory(destDirName);
             }
@@ -88,12 +81,56 @@ namespace NickAc.Backend.Utils
                     file.CopyTo(tempPath, false);
                 }
             }
-            // If copying subdirectories, copy them and their contents to new location using recursive  function. 
+            // If copying subdirectories, copy them and their contents to new location using recursive  function.
             if (isCopySubDirs) {
                 foreach (DirectoryInfo item in directories) {
                     string tempPath = System.IO.Path.Combine(destDirName, item.Name);
                     DirectoryCopy(item.FullName, tempPath, isCopySubDirs);
                 }
+            }
+        }
+
+        public static void Disconnect()
+        {
+            if (IsConnected) {
+                Thread th = new Thread(OBSConnection.Disconnect);
+                th.Start();
+            }
+        }
+
+        public static void ExtractZip(string file, string path)
+        {
+            ZipFile.ExtractToDirectory(file, path);
+        }
+
+        public static string GetPathFromOBSExecutable(string execLocation)
+        {
+            return Path.GetFullPath(Path.Combine(execLocation, "..", "..", ".."));
+        }
+        public static string GetProcessPath(int processId)
+        {
+            string MethodResult = "";
+            try {
+                string Query = "SELECT ExecutablePath FROM Win32_Process WHERE ProcessId = " + processId;
+
+                using (ManagementObjectSearcher mos = new ManagementObjectSearcher(Query)) {
+                    using (ManagementObjectCollection moc = mos.Get()) {
+                        string ExecutablePath = (from mo in moc.Cast<ManagementObject>() select mo["ExecutablePath"]).First().ToString();
+
+                        MethodResult = ExecutablePath;
+                    }
+                }
+            } catch {
+            }
+            return MethodResult;
+        }
+
+        public static void PatchOBS(string obsPath)
+        {
+            //This method will take a file named obs-ws.zip from the current dir
+            //and fix obs to allow the plugin to work
+            if (File.Exists(obswszip)) {
+                var finalExtractionPath = Path.GetFullPath(Path.Combine(obsPath, "..", ".."));
             }
         }
 
@@ -127,7 +164,6 @@ namespace NickAc.Backend.Utils
                     sb.AppendLine("Do you want to automatically download the necessary OBS plugin to enable compatibility with ButtonDeck?");
                     sb.AppendLine("You won't be prompted again in the future.");
                     if (MessageBox.Show(sb.ToString(), "OBS Interaction", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-
                         //Now we download the websocket plugin from the web
                         using (WebClient client = new WebClient()) {
                             client.DownloadFile(obsWsWebLocation, obswszip);
@@ -135,7 +171,6 @@ namespace NickAc.Backend.Utils
 
                         //TODO: After the download has been completed, try to elevate the process
                         //and extract the plugin files to the obs folder.
-
 
                         var newProcess = new ProcessStartInfo(Process.GetCurrentProcess().MainModule.FileName, "/armobs")
                         {
@@ -149,61 +184,42 @@ namespace NickAc.Backend.Utils
                     ConnectToOBS();
                     return true;
                 }
-
             }
 
             return true;
-
-
         }
 
-        public static void ExtractZip(string file, string path)
+        private static void ConnectToServer()
         {
-            ZipFile.ExtractToDirectory(file, path);
+            OBSConnection = new OBSWebsocket();
+            OBSConnection.Connect("ws://localhost:4444", "");
         }
 
-        public static string GetProcessPath(int processId)
-        {
-            string MethodResult = "";
-            try {
-                string Query = "SELECT ExecutablePath FROM Win32_Process WHERE ProcessId = " + processId;
+        #endregion
 
-                using (ManagementObjectSearcher mos = new ManagementObjectSearcher(Query)) {
-                    using (ManagementObjectCollection moc = mos.Get()) {
-                        string ExecutablePath = (from mo in moc.Cast<ManagementObject>() select mo["ExecutablePath"]).First().ToString();
+        #region OBS METHODS
 
-                        MethodResult = ExecutablePath;
-                    }
-
-                }
-
-            } catch {
-            }
-            return MethodResult;
-        }
-
-
-
-        public static void Disconnect()
-        {
-            if (IsConnected) {
-                Thread th = new Thread(OBSConnection.Disconnect);
-                th.Start();
-            }
-        }
-
-        public static void PrintScenes()
+        public static void SwitchScene(string scene)
         {
             Thread th = new Thread(() => {
-
-                Debug.WriteLine("OBS SCENES:");
                 List<OBSScene> scenes = OBSConnection.ListScenes();
-                foreach (var scene in scenes) {
-                    Debug.WriteLine($"   - {scene.Name}");
+                foreach (var s in scenes) {
+                    if (s.Name == scene) {
+                        OBSConnection.SetCurrentScene(scene);
+                    }
                 }
-                Debug.WriteLine("END");
             });
             th.Start();
         }
+
+
+        public static List<string> GetScenes()
+        {
+            ConnectToOBS();
+            return OBSConnection.ListScenes().Select(c => c.Name).ToList();
+        }
+
+
+        #endregion
     }
 }

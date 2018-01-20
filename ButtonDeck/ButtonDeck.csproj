@@ -93,6 +93,12 @@
     <Compile Include="Forms\ActionHelperForms\KeyInfoHelper.Designer.cs">
       <DependentUpon>KeyInfoHelper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ActionHelperForms\OBS\OBSSceneChangeHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionHelperForms\OBS\OBSSceneChangeHelper.Designer.cs">
+      <DependentUpon>OBSSceneChangeHelper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ActionHelperForms\KeyInfoHelper.resx">
       <DependentUpon>KeyInfoHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionHelperForms\OBS\OBSSceneChangeHelper.resx">
+      <DependentUpon>OBSSceneChangeHelper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetupForm.resx">
       <DependentUpon>FirstSetupForm.cs</DependentUpon>

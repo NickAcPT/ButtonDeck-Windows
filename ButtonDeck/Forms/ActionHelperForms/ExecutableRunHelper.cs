@@ -1,4 +1,5 @@
 ﻿using NickAc.Backend.Objects.Implementation.DeckActions;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,7 +37,8 @@ namespace ButtonDeck.Forms.ActionHelperForms
 
         public ExecutableRunAction ModifiableAction {
             get { return _modifiableAction; }
-            set { _modifiableAction = value;
+            set {
+                _modifiableAction = value;
                 var exec = GetExecutable(value.ToExecute);
                 textBox1.Text = exec.Trim();
                 textBox2.Text = value.ToExecute.Substring(exec.Length).Trim();
@@ -94,9 +97,12 @@ namespace ButtonDeck.Forms.ActionHelperForms
 
         private void ModernButton3_Click(object sender, EventArgs e)
         {
-            _toExecuteFileName = textBox1.Text;
-            ToExecuteArguments = textBox2.Text;
             CloseWithResult(DialogResult.Cancel);
+        }
+
+        private void ExecutableRunHelper_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
