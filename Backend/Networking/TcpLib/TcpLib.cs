@@ -231,7 +231,7 @@ namespace NickAc.Backend.Networking.TcpLib
         {
             try {
                 ConnectionState st = ar.AsyncState as ConnectionState;
-                st._conn.EndReceive(ar);
+               st._conn.EndReceive(ar);
                 //Im considering the following condition as a signal that the
                 //remote host droped the connection.
                 if (st._conn.Available == 0) DropConnection(st);

@@ -41,15 +41,22 @@ namespace ButtonDeck.Forms.ActionHelperForms.OBS
 
         private void OBSSceneChangeHelper_Load(object sender, EventArgs e)
         {
-            if (OBSUtils.IsConnected) {
-                Thread th = new Thread(() => {
-                    var scenes = OBSUtils.GetScenes();
-                    comboBox1.Invoke(new Action(() => {
-                        comboBox1.Items.AddRange(scenes.ToArray());
-                    }));
-                });
-                th.Start();
-            }
+            comboBox1.Text = ModifiableAction.SceneName;
+            Thread th = new Thread(() => {
+                if (!OBSUtils.IsConnected)
+                    OBSUtils.ConnectToServer();
+                if (OBSUtils.IsConnected) {
+                    Thread th2 = new Thread(() => {
+                        var scenes = OBSUtils.GetScenes();
+                        comboBox1.Invoke(new Action(() => {
+                            comboBox1.Items.AddRange(scenes.ToArray());
+                        }));
+                    });
+                    th2.Start();
+                }
+            });
+            th.Start();
+
         }
     }
 }

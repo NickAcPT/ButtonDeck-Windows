@@ -189,8 +189,9 @@ namespace NickAc.Backend.Utils
             return true;
         }
 
-        private static void ConnectToServer()
+        public static void ConnectToServer()
         {
+            if (IsConnected) return;
             OBSConnection = new OBSWebsocket();
             OBSConnection.Connect("ws://localhost:4444", "");
         }
@@ -201,6 +202,8 @@ namespace NickAc.Backend.Utils
 
         public static void SwitchScene(string scene)
         {
+            ConnectToOBS();
+            if (OBSConnection == null) return;
             Thread th = new Thread(() => {
                 List<OBSScene> scenes = OBSConnection.ListScenes();
                 foreach (var s in scenes) {
@@ -216,7 +219,7 @@ namespace NickAc.Backend.Utils
         public static List<string> GetScenes()
         {
             ConnectToOBS();
-            return OBSConnection.ListScenes().Select(c => c.Name).ToList();
+            return OBSConnection != null ? OBSConnection.ListScenes().Select(c => c.Name).ToList() : new List<string>();
         }
 
 
