@@ -151,6 +151,7 @@ namespace ButtonDeck
         private static void NetworkChange_NetworkAddressChanged(object sender, EventArgs e)
         {
             ServerThread.Stop();
+            ServerThread = new ServerThread();
             ServerThread.Start();
         }
 
