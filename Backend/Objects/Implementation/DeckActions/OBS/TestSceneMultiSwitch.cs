@@ -27,7 +27,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 
         public override string GetActionName()
         {
-            return "OBS Multi Scene Selector";
+            return "Multi Scene Selector";
         }
 
         public override void OnButtonDown(DeckDevice deckDevice)
@@ -65,7 +65,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                 //We create a deck folder
                 Size imageSize = new Size(512, 512);
                 DynamicDeckFolder folder = new DynamicDeckFolder();
-                Font defaultFont = new Font("Arial", 56, GraphicsUnit.Point);
+                Font defaultFont = new Font("Arial", 85, GraphicsUnit.Point);
                 folder.SetParent(deckDevice.CurrentFolder);
 
                 var scenes = OBSUtils.GetScenes();

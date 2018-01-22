@@ -67,7 +67,7 @@ namespace ButtonDeck.Forms.ActionHelperForms
             if (modifierKeys != null && nonModifierKeys != null) {
                 string value1 = string.Join(" + ", modifierKeys.Where(c => c != Keys.None).Select(c => c.ToString()).OrderBy(c => c));
                 string value2 = string.Join(" + ", nonModifierKeys.Where(c => !(c == Keys.ShiftKey || c == Keys.ControlKey || c == Keys.Menu)));
-                textBox1.Text = string.IsNullOrEmpty(value1) ? value2 : string.Join(" + ", value1, value2);
+                textBox1.Text = string.IsNullOrEmpty(value1) ? value2 : string.IsNullOrEmpty(value2) ? value1 : (string.Join(" + ", value1, value2));
             }
         }
 

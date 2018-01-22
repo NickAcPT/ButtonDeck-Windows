@@ -32,6 +32,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         }
 
         [ActionPropertyInclude]
+        [ActionPropertyDescription("Media Key")]
         [ActionPropertyUpdateImageOnChanged]
         public MediaKeys Key { get; set; } = MediaKeys.PlayPause;
 
