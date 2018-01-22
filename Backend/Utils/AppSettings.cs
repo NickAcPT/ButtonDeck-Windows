@@ -48,6 +48,15 @@ namespace NickAc.Backend.Utils
             File.WriteAllText(SETTINGS_FILE, XMLUtils.ToXML(settings));
         }
 
+        public static void ReplaceAppSettings(AppSettings newSettings)
+        {
+            Settings.DeviceName = newSettings.DeviceName;
+            Settings.FirstRun = newSettings.FirstRun;
+            Settings.OBSPluginNagged = newSettings.OBSPluginNagged;
+            Settings.Theme = newSettings.Theme;
+        }
+
+
     }
 
     [Serializable]
@@ -68,7 +77,8 @@ namespace NickAc.Backend.Utils
         public enum AppTheme
         {
             Neptune,
-            DarkSide
+            DarkSide,
+            KindaGreen
         }
 
         public AppSettings()

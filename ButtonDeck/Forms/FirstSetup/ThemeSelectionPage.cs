@@ -23,7 +23,8 @@ namespace ButtonDeck.Forms.FirstSetup
             colorSchemePreviewControl1.Tag = true;
             colorSchemePreviewControl2.AppTheme = ColorSchemeCentral.DarkSide;
             colorSchemePreviewControl2.UnderlyingAppTheme = AppSettings.AppTheme.DarkSide;
-            //TODO: Theme choosing
+            colorSchemePreviewControl2.AppTheme = ColorSchemeCentral.KindaGreen;
+            colorSchemePreviewControl2.UnderlyingAppTheme = AppSettings.AppTheme.KindaGreen;
         }
         
 

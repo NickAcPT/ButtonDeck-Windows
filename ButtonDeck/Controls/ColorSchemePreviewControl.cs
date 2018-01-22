@@ -48,7 +48,7 @@ namespace ButtonDeck.Controls
             });
         }
 
-        
+
         private void HandleClickEvent(IEnumerable<Control> cccc)
         {
             cccc.All(c => {
@@ -83,12 +83,13 @@ namespace ButtonDeck.Controls
             ctrls.All(c => {
                 SetVisibility(c.Controls.OfType<Control>(), visible);
                 c.Visible = visible;
-                return true; });
+                return true;
+            });
         }
 
         Image toRender;
 
-        private void FixMyTheme()
+        public void FixMyTheme()
         {
             toRender = null;
             SetVisibility(Controls.OfType<Control>(), true);
@@ -119,8 +120,13 @@ namespace ButtonDeck.Controls
 
         public AppTheme UnderlyingAppTheme {
             get { return _underlyingAppTheme; }
-            set { _underlyingAppTheme = value; }
+            set {
+                _underlyingAppTheme = value;
+                DescriptionText = value.ToString();
+                FixMyTheme();
+            }
         }
+
 
         public ApplicationColorScheme AppTheme {
             get { return _appTheme; }

@@ -130,8 +130,9 @@ namespace ButtonDeck.Forms
             };
             item.Click += (s, ee) => {
                 //TODO: Settings
+                new SettingsForm().ShowDialog();
             };
-            //appBar1.Actions.Add(item);
+            appBar1.Actions.Add(item);
 
             AppAction itemTrash = new AppAction()
             {

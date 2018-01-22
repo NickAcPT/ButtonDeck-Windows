@@ -68,11 +68,13 @@ namespace ButtonDeck.Forms
                 ModifyColorScheme(c.Controls.OfType<Control>());
                 try {
                     dynamic cc = c;
+
                     if (c is TextBox txtBx) {
                         txtBx.BorderStyle = BorderStyle.FixedSingle;
                         cc.BackColor = _applicationColorScheme.BackgroundColor;
-                        cc.ForeColor = GetReadableForeColor(_applicationColorScheme.BackgroundColor);
+                        c.ForeColor = GetReadableForeColor(_applicationColorScheme.BackgroundColor);
                     }
+
                     cc.ForeColor = _applicationColorScheme.ForeColorShaded;
                     cc.ColorScheme = ColorScheme;
                     return true;
@@ -89,16 +91,7 @@ namespace ButtonDeck.Forms
 
         private void LoadTheme(AppTheme theme)
         {
-            switch (theme) {
-                case AppTheme.Neptune:
-                    ApplicationColorScheme = ColorSchemeCentral.Neptune;
-                    break;
-                case AppTheme.DarkSide:
-                    ApplicationColorScheme = ColorSchemeCentral.DarkSide;
-                    break;
-                default:
-                    break;
-            }
+            ApplicationColorScheme = ColorSchemeCentral.FromAppTheme(theme);
         }
     }
 }
