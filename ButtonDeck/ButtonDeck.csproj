@@ -126,6 +126,12 @@
     <Compile Include="Forms\FirstSetup\ThemeSelectionPage.Designer.cs">
       <DependentUpon>ThemeSelectionPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MagnetiteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MagnetiteForm.Designer.cs">
+      <DependentUpon>MagnetiteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstSetup\ThemeSelectionPage.resx">
       <DependentUpon>ThemeSelectionPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MagnetiteForm.resx">
+      <DependentUpon>MagnetiteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

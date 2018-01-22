@@ -148,6 +148,14 @@ namespace ButtonDeck.Forms
             };
             appBar1.Actions.Add(itemTrash);
 
+
+            AppAction itemMagnetite = new AppAction();
+
+            itemMagnetite.Click += (s, ee) => {
+                new MagnetiteForm().ShowDialog();
+            };
+            appBar1.Actions.Add(itemMagnetite);
+
             ApplyTheme(panel1);
             GenerateSidebar(shadedPanel1);
             ApplySidebarTheme(shadedPanel1);
