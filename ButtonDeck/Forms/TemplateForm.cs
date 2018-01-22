@@ -68,7 +68,8 @@ namespace ButtonDeck.Forms
                 ModifyColorScheme(c.Controls.OfType<Control>());
                 try {
                     dynamic cc = c;
-                    if (c is TextBox) {
+                    if (c is TextBox txtBx) {
+                        txtBx.BorderStyle = BorderStyle.FixedSingle;
                         cc.BackColor = _applicationColorScheme.BackgroundColor;
                         cc.ForeColor = GetReadableForeColor(_applicationColorScheme.BackgroundColor);
                     }
