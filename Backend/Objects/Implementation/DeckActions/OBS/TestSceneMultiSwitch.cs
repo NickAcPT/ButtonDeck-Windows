@@ -15,6 +15,8 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 {
     public class TestSceneMultiSwitch : AbstractDeckAction
     {
+        private const string previewSuffix = "(Preview)";
+
         public override AbstractDeckAction CloneAction()
         {
             return new TestSceneMultiSwitch();
@@ -65,7 +67,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                 //We create a deck folder
                 Size imageSize = new Size(512, 512);
                 DynamicDeckFolder folder = new DynamicDeckFolder();
-                Font defaultFont = new Font("Arial", 85, GraphicsUnit.Point);
+                Font defaultFont = new Font("Arial", 80, GraphicsUnit.Point);
                 folder.SetParent(deckDevice.CurrentFolder);
 
                 var scenes = OBSUtils.GetScenes();
@@ -81,6 +83,15 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                     using (var bmp = new Bitmap(imageSize.Width, imageSize.Height)) {
                         using (var g = Graphics.FromImage(bmp)) {
                             g.DrawString(s, defaultFont, Brushes.Black, new RectangleF(Point.Empty, imageSize), new StringFormat { LineAlignment = StringAlignment.Center, Alignment = StringAlignment.Center });
+                        }
+                        folder.Add(++index, new DynamicDeckItem() { DeckImage = new DeckImage(bmp) });
+                    }
+                }
+
+                foreach (var s in scenes) {
+                    using (var bmp = new Bitmap(imageSize.Width, imageSize.Height)) {
+                        using (var g = Graphics.FromImage(bmp)) {
+                            g.DrawString(s + previewSuffix, defaultFont, Brushes.Black, new RectangleF(Point.Empty, imageSize), new StringFormat { LineAlignment = StringAlignment.Center, Alignment = StringAlignment.Center });
                         }
                         folder.Add(++index, new DynamicDeckItem() { DeckImage = new DeckImage(bmp) });
                     }
@@ -115,9 +126,13 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                                 deckDevice.ButtonInteraction -= fakeFolderHandle;
                                 return;
                             }
-
-                            if (scenes.AsEnumerable().ElementAtOrDefault(e.SlotID - 1) != null)
-                                OBSUtils.SwitchScene(scenes[e.SlotID - 1]);
+                            if (e.SlotID - 1 <= scenes.Count) {
+                                if (scenes.AsEnumerable().ElementAtOrDefault(e.SlotID - 1) != null)
+                                    OBSUtils.SwitchScene(scenes[e.SlotID - 1]);
+                            } else {
+                                if (scenes.AsEnumerable().ElementAtOrDefault((e.SlotID - 1) - scenes.Count) != null) 
+                                    OBSUtils.SwitchPreviewScene(scenes[(e.SlotID - 1) - scenes.Count]);
+                            }
                         }
 
                     }
