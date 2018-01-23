@@ -610,7 +610,6 @@ namespace ButtonDeck.Forms
         private void ItemButton_MouseClick(object sender, EventArgs e)
         {
             lastClick.Stop();
-            Debug.WriteLine(lastClick.ElapsedMilliseconds);
             bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
             if (sender is ImageModernButton mb) {
                 if (mb.Tag != null && mb.Tag is IDeckItem item) {
