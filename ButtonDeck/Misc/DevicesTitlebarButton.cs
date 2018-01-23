@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,10 +47,8 @@ namespace ButtonDeck.Misc
             frm.Deactivate += (s, ee) => frm.Dispose();
             Size controlFinalSize = new Size(frm.DisplayRectangle.Width, controlSize);
 
-            if (CurrentConnections < 1) return;
-
             //Load devices
-            foreach (var device in DevicePersistManager.PersistedDevices.Where(DevicePersistManager.IsDeviceOnline)) {
+            foreach (var device in DevicePersistManager.PersistedDevices) {
                 try {
 
                     var ctrl = new DeckDeviceInformationControl()
@@ -82,9 +81,23 @@ namespace ButtonDeck.Misc
                 if (control != null) control.Visible = CurrentConnections > 0;
                 Control control3 = _frm.Controls["shadedPanel1"];
                 if (control3 != null) control3.Visible = CurrentConnections > 0;
+                Thread th = new Thread(UpdateConnectedDevices);
+                th.Start();
                 return $"{CurrentConnections} Connected Device{(CurrentConnections != 1 ? "s" : "")}";
             }
             set => base.Text = value;
+        }
+
+        private void UpdateConnectedDevices()
+        {
+            List<Guid> toRemove = new List<Guid>();
+            DevicePersistManager.DeckDevicesFromConnection.All(c => {
+                if (!Program.ServerThread.TcpServer.Connections.OfType<ConnectionState>().Any(d => d.ConnectionGuid == c.Key)) {
+                    toRemove.Add(c.Key);
+                }
+                return true;
+            });
+            toRemove.All(c => { DevicePersistManager.RemoveConnectionState(c); return true; });
         }
 
         public override int Width { get => TextRenderer.MeasureText(Text, Font).Width + 16; set => base.Width = value; }
