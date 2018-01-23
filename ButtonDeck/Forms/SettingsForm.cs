@@ -94,6 +94,7 @@ namespace ButtonDeck.Forms
         private void ModernButton2_Click(object sender, EventArgs e)
         {
             ApplicationSettingsManager.Settings.DeviceName = textBox1.Text;
+            Close();
         }
 
         private void ModernButton1_Click(object sender, EventArgs e)
@@ -101,6 +102,7 @@ namespace ButtonDeck.Forms
             hasSaved = true;
             ApplicationSettingsManager.ReplaceAppSettings(OldSettings);
             ColorSchemeCentral.OnThemeChanged(this);
+            Close();
         }
     }
 }
