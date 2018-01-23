@@ -17,7 +17,7 @@ namespace NickAc.Backend.Utils
     {
         #region Fields
 
-        public const string obsWsWebLocation = "https://github.com/Palakis/obs-websocket/releases/download/4.3.0/obs-websocket-4.3.0-Windows.zip";
+        public const string obsWsWebLocation = "https://github.com/Palakis/obs-websocket/releases/download/4.3.1/obs-websocket-4.3.1-Windows.zip";
         public const string obswszip = "obs-ws.zip";
 
         #endregion
@@ -209,6 +209,21 @@ namespace NickAc.Backend.Utils
                 foreach (var s in scenes) {
                     if (s.Name == scene) {
                         OBSConnection.SetCurrentScene(scene);
+                    }
+                }
+            });
+            th.Start();
+        }
+
+        public static void SwitchPreviewScene(string scene)
+        {
+            ConnectToOBS();
+            if (OBSConnection == null) return;
+            Thread th = new Thread(() => {
+                List<OBSScene> scenes = OBSConnection.ListScenes();
+                foreach (var s in scenes) {
+                    if (s.Name == scene) {
+                        OBSConnection.SetPreviewScene(scene);
                     }
                 }
             });
