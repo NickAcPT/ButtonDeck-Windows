@@ -52,11 +52,6 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             return executable;
         }
 
-        public override bool OnButtonClick(DeckDevice deckDevice)
-        {
-            return false;
-        }
-
         public override void OnButtonDown(DeckDevice deckDevice)
         {
             string exec = GetExecutable(ToExecute);

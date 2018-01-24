@@ -169,7 +169,7 @@ namespace NickAc.Backend.Networking.TcpLib
                 _listener.Listen(100);
                 _listener.BeginAccept(ConnectionReady, null);
                 return true;
-            } catch (Exception ex) {
+            } catch (Exception) {
                 return false;
             }
         }
@@ -236,7 +236,7 @@ namespace NickAc.Backend.Networking.TcpLib
                 //remote host droped the connection.
                 if (st._conn.Available == 0) DropConnection(st);
                 else {
-                    try { st._provider.OnReceiveData(st); } catch (Exception ex) {
+                    try { st._provider.OnReceiveData(st); } catch (Exception) {
                         //report error in the provider
                     }
                     //Resume ReceivedData callback loop
@@ -244,7 +244,7 @@ namespace NickAc.Backend.Networking.TcpLib
                         st._conn.BeginReceive(st._buffer, 0, 0, SocketFlags.None,
                           ReceivedDataReady, st);
                 }
-            } catch (Exception ex) {
+            } catch (Exception) {
             }
         }
 
