@@ -48,12 +48,12 @@ namespace ButtonDeck.Forms
                 //We need to simulate that with a timer.
                 Timer t = new Timer
                 {
-                    //We should run it every half-second.
-                    Interval = 500
+                    //We should run it every 2 seconds and half.
+                    Interval = 2500
                 };
                 t.Tick += (s, e) => {
                     //The discovery works by reading the Text from the button
-                    var itemText = item.Text.Trim();
+                    item.RefreshCurrentDevices();
                 };
 
                 void handler(object s, EventArgs e)

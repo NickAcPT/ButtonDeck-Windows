@@ -28,8 +28,7 @@ namespace ButtonDeck.Misc
 
         private void DevicesTitlebarButton_Click(object sender, MouseEventArgs e)
         {
-            Thread th = new Thread(UpdateConnectedDevices);
-            th.Start();
+            RefreshCurrentDevices();
 
             int controlSize = _frm.TitlebarHeight * 2;
             ModernForm frm = new ModernForm()
@@ -70,6 +69,12 @@ namespace ButtonDeck.Misc
             }
 
             frm.Show();
+        }
+
+        public void RefreshCurrentDevices()
+        {
+            Thread th = new Thread(UpdateConnectedDevices);
+            th.Start();
         }
 
         public int CurrentConnections {
