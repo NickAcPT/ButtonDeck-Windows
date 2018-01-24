@@ -98,7 +98,19 @@ namespace ButtonDeck.Forms
             }
         }
 
+        public void ChangeButtonsVisibility(bool visible)
+        {
+            if (Disposing || !IsHandleCreated) return;
+            Invoke(new Action(() => {
+                Control control2 = Controls["label1"];
+                if (control2 != null) control2.Visible = !visible;
 
+                Control control = Controls["panel1"];
+                if (control != null) control.Visible = visible;
+                Control control3 = Controls["shadedPanel1"];
+                if (control3 != null) control3.Visible = visible;
+            }));
+        }
 
         ~MainForm()
         {
@@ -274,7 +286,8 @@ namespace ButtonDeck.Forms
                                 FixFolders(folder, false, CurrentDevice.CurrentFolder);
                             }
                             CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, item1);
-                            RefreshAllButtons(true);
+                            RefreshButton(action1.OldSlot,true);
+                            RefreshButton(mb.CurrentSlot, true);
                         }
                     };
                     mb.Text = string.Empty;
@@ -286,21 +299,50 @@ namespace ButtonDeck.Forms
         }
 
 
-        private void RefreshAllButtons(bool sendToDevice = true)
+        public void RefreshAllButtons(bool sendToDevice = true)
         {
             Buttons_Unfocus(this, EventArgs.Empty);
-            IDeckFolder folder = CurrentDevice.CurrentFolder;
-            Bitmap empty = new Bitmap(1, 1);
+            IDeckFolder folder = CurrentDevice?.CurrentFolder;
             for (int j = 0; j < 15; j++) {
                 ImageModernButton control = GetButtonControl(j + 1);
                 control.NormalImage = null;
                 control.Tag = null;
-                control.Invoke(new Action(control.Refresh));
+                if (folder == null) control.Invoke(new Action(control.Refresh));
             }
-
+            if (folder == null) return;
             for (int i = 0; i < folder.GetDeckItems().Count; i++) {
                 IDeckItem item = null;
                 item = folder.GetDeckItems()[i];
+                ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
+                if (item != null) {
+                    var ser = item.GetItemImage().BitmapSerialized;
+                    control.NormalImage = item?.GetItemImage().Bitmap;
+                    control.Tag = item;
+                    control.Invoke(new Action(control.Refresh));
+                }
+
+            }
+            CurrentDevice.CheckCurrentFolder();
+            if (sendToDevice)
+                SendItemsToDevice(CurrentDevice, folder);
+        }
+        public void RefreshButton(int slot, bool sendToDevice = true)
+        {
+            Buttons_Unfocus(this, EventArgs.Empty);
+
+            IDeckFolder folder = CurrentDevice?.CurrentFolder;
+            ImageModernButton control1 = GetButtonControl(slot);
+            control1.NormalImage = null;
+            control1.Tag = null;
+            if (folder == null) control1.Invoke(new Action(control1.Refresh));
+
+            if (folder == null) return;
+            for (int i = 0; i < folder.GetDeckItems().Count; i++) {
+                IDeckItem item = null;
+                item = folder.GetDeckItems()[i];
+
+                if (folder.GetItemIndex(item) != slot) continue;
+
                 ImageModernButton control = Controls.Find("modernButton" + folder.GetItemIndex(item), true).FirstOrDefault() as ImageModernButton;
                 if (item != null) {
                     var ser = item.GetItemImage().BitmapSerialized;
@@ -342,13 +384,18 @@ namespace ButtonDeck.Forms
 
 
                 if (CurrentDevice == null) {
-                    CurrentDevice = e.Device;
-                    LoadItems(CurrentDevice.CurrentFolder);
+                    ChangeToDevice(e.Device);
                 }
                 SendItemsToDevice(CurrentDevice, true);
             }));
 
             e.Device.ButtonInteraction += Device_ButtonInteraction;
+        }
+
+        public void ChangeToDevice(DeckDevice device)
+        {
+            CurrentDevice = device;
+            LoadItems(CurrentDevice.CurrentFolder);
         }
 
         //List<Tuple<Guid, int>> ignoreOnce = new List<Tuple<Guid, int>>();
@@ -499,22 +546,23 @@ namespace ButtonDeck.Forms
         private void DevicePersistManager_DeviceDisconnected(object sender, DevicePersistManager.DeviceEventArgs e)
         {
             if (e.Device.DeviceGuid == CurrentDevice.DeviceGuid) {
-                CurrentDevice = null;
+                if (!DevicePersistManager.IsVirtualDeviceConnected) CurrentDevice = null;
                 //Try to find a new device to be the current one.
                 if (DevicePersistManager.PersistedDevices.Any(d => DevicePersistManager.IsDeviceConnected(d.DeviceGuid))) {
                     CurrentDevice = DevicePersistManager.PersistedDevices.First(d => DevicePersistManager.IsDeviceConnected(d.DeviceGuid));
-                    Invoke(new Action(() => {
-                        shadedPanel1.Show();
-                        Buttons_Unfocus(sender, EventArgs.Empty);
+                    if (IsHandleCreated && !Disposing)
+                        Invoke(new Action(() => {
+                            shadedPanel1.Show();
+                            Buttons_Unfocus(sender, EventArgs.Empty);
 
-                        e.Device.CheckCurrentFolder();
-                        FixFolders(e.Device);
+                            e.Device.CheckCurrentFolder();
+                            FixFolders(e.Device);
 
-                        RefreshAllButtons(false);
-                    }));
+                            RefreshAllButtons(false);
+                        }));
                 }
             }
-            if (IsHandleCreated)
+            if (IsHandleCreated && !Disposing)
                 Invoke(new Action(() => {
                     shadedPanel2.Hide();
                     shadedPanel1.Hide();
@@ -653,7 +701,7 @@ namespace ButtonDeck.Forms
             mouseDown = false;
             if (sender is ImageModernButton senderB) {
                 if (!senderB.DisplayRectangle.Contains(e.Location)) return;
-                if (e.Button == MouseButtons.Right && CurrentDevice.CurrentFolder.GetDeckItems().Any(c=> CurrentDevice.CurrentFolder.GetItemIndex(c) == senderB.CurrentSlot)) {
+                if (e.Button == MouseButtons.Right && CurrentDevice.CurrentFolder.GetDeckItems().Any(c => CurrentDevice.CurrentFolder.GetItemIndex(c) == senderB.CurrentSlot)) {
                     var popupMenu = new ContextMenuStrip();
 
                     popupMenu.Items.Add("Remove item").Click += (s, ee) => {
@@ -739,7 +787,7 @@ namespace ButtonDeck.Forms
                         {
                             DropDownStyle = ComboBoxStyle.DropDownList
                         };
-                        cBox.Items.AddRange(values.OfType<Enum>().Select(c=> EnumUtils.GetDescription(prop.PropertyType, c, c.ToString())).ToArray());
+                        cBox.Items.AddRange(values.OfType<Enum>().Select(c => EnumUtils.GetDescription(prop.PropertyType, c, c.ToString())).ToArray());
 
                         cBox.Text = EnumUtils.GetDescription(prop.PropertyType, (Enum)prop.GetValue(item.DeckAction), ((Enum)prop.GetValue(item.DeckAction)).ToString());
 

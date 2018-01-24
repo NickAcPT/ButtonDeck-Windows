@@ -77,17 +77,19 @@ namespace ButtonDeck.Controls
                         var state = connections.FirstOrDefault(m => m.ConnectionGuid == stateID);
                         if (value == null) {
                             //Send clear packet
-                            state.SendPacket(new SlotImageClearPacket(slot));
+                            state?.SendPacket(new SlotImageClearPacket(slot));
                             return;
                         }
+
+                        Bitmap bmp = new Bitmap(value);
+                        var deckImage = new DeckImage(bmp);
+                        if (Tag is DynamicDeckItem itemTag) {
+                            itemTag.DeckImage = deckImage;
+                        } else if (Tag is DynamicDeckFolder itemFolder) {
+                            itemFolder.DeckImage = deckImage;
+                        }
+
                         if (state != null) {
-                            Bitmap bmp = new Bitmap(value);
-                            var deckImage = new DeckImage(bmp);
-                            if (Tag is DynamicDeckItem itemTag) {
-                                itemTag.DeckImage = deckImage;
-                            } else if (Tag is DynamicDeckFolder itemFolder) {
-                                itemFolder.DeckImage = deckImage;
-                            }
                             state.SendPacket(new SingleSlotImageChangePacket(deckImage)
                             {
                                 ImageSlot = slot

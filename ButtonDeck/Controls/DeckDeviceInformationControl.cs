@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static NickAc.Backend.Utils.DevicePersistManager;
 
 namespace ButtonDeck.Forms
 {
@@ -17,46 +18,88 @@ namespace ButtonDeck.Forms
     {
         private SizeF MeasureString(string text, Font font)
         {
-            using (Bitmap bmp = new Bitmap(1,1)) {
+            using (Bitmap bmp = new Bitmap(1, 1)) {
                 using (Graphics g = Graphics.FromImage(bmp)) {
                     return g.MeasureString(text, font);
                 }
             }
-        } 
+        }
 
 
         protected override void OnDoubleClick(EventArgs e)
         {
             base.OnDoubleClick(e);
             if (e is MouseEventArgs e2) {
-                if (DeckDevice != null && NameLabelRectangle.Contains(e2.Location)) {
-                    TextBox txtBox = new TextBox()
-                    {
-                        Bounds = NameLabelRectangleWithoutPrefix,
-                        Width = Width - Padding.Right * 2,
-                        Text = DeckDevice.DeviceName,
-                        BorderStyle = BorderStyle.None,
-                        BackColor = BackColor,
-                        ForeColor = ForeColor,
-                    };
-                    txtBox.LostFocus += (s, ee) => {
-                        if (txtBox.Text.Trim() != string.Empty) {
-                            DeckDevice.DeviceName = txtBox.Text.Trim();
-                            Refresh();
-                        }
-                        Controls.Remove(txtBox);
-                    };
-                    txtBox.KeyUp += (s, ee) => {
-                        if (ee.KeyCode != Keys.Enter) return;
-                        if (txtBox.Text.Trim() != string.Empty) {
-                            DeckDevice.DeviceName = txtBox.Text.Trim();
-                            Refresh();
-                        }
-                        Controls.Remove(txtBox);
-                    };
-                    Controls.Add(txtBox);
-                    txtBox.Focus();
+                if (DeckDevice != null) {
+                    if (NameLabelRectangle.Contains(e2.Location)) {
+                        TextBox txtBox = new TextBox()
+                        {
+                            Bounds = NameLabelRectangleWithoutPrefix,
+                            Width = Width - Padding.Right * 2,
+                            Text = DeckDevice.DeviceName,
+                            BorderStyle = BorderStyle.None,
+                            BackColor = BackColor,
+                            ForeColor = ForeColor,
+                        };
+                        txtBox.LostFocus += (s, ee) => {
+                            if (txtBox.Text.Trim() != string.Empty) {
+                                DeckDevice.DeviceName = txtBox.Text.Trim();
+                                Refresh();
+                            }
+                            Controls.Remove(txtBox);
+                        };
+                        txtBox.KeyUp += (s, ee) => {
+                            if (ee.KeyCode != Keys.Enter) return;
+                            if (txtBox.Text.Trim() != string.Empty) {
+                                DeckDevice.DeviceName = txtBox.Text.Trim();
+                                Refresh();
+                            }
+                            Controls.Remove(txtBox);
+                        };
+                        Controls.Add(txtBox);
+                        txtBox.Focus();
+                    } else {
+                        if (Tag is MainForm frm) {
+                            if (IsVirtualDeviceConnected) {
+                                if (frm.CurrentDevice.DeviceGuid == DeckDevice.DeviceGuid) {
+                                    //Someone clicked on the same device. Unload this one.
+                                    OnDeviceDisconnected(this, DeckDevice);
+                                    IsVirtualDeviceConnected = false;
 
+
+                                    frm.ChangeButtonsVisibility(false);
+                                    frm.CurrentDevice = null;
+                                    frm.RefreshAllButtons(false);
+                                    frm.Activate();
+                                } else {
+                                    //Someone requested another device. Unload current virtual device..
+                                    OnDeviceDisconnected(this, frm.CurrentDevice);
+                                    IsVirtualDeviceConnected = false;
+                                    frm.ChangeButtonsVisibility(false);
+                                    frm.CurrentDevice = null;
+                                    frm.RefreshAllButtons(false);
+                                }
+                            } else {
+                                frm.CurrentDevice = DeckDevice;
+                                IsVirtualDeviceConnected = true;
+                                OnDeviceConnected(this, DeckDevice);
+                                frm.ChangeButtonsVisibility(true);
+                                frm.RefreshAllButtons(false);
+                                void tempConnected(object s, DeviceEventArgs ee)
+                                {
+                                    if (ee.Device.DeviceGuid == DeckDevice.DeviceGuid) return;
+                                    DeviceConnected -= tempConnected;
+                                    if (IsVirtualDeviceConnected) {
+                                        //We had a virtual device.
+                                        OnDeviceDisconnected(this, DeckDevice);
+                                        IsVirtualDeviceConnected = false;
+                                        frm.ChangeButtonsVisibility(false);
+                                    }
+                                }
+                                DeviceConnected += tempConnected;
+                            }
+                        }
+                    }
                 }
             }
         }

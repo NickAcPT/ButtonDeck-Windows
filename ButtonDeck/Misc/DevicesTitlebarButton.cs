@@ -19,6 +19,7 @@ namespace ButtonDeck.Misc
     {
         private readonly MainForm _frm;
 
+
         public DevicesTitlebarButton(MainForm frm)
         {
             _frm = frm;
@@ -27,6 +28,9 @@ namespace ButtonDeck.Misc
 
         private void DevicesTitlebarButton_Click(object sender, MouseEventArgs e)
         {
+            Thread th = new Thread(UpdateConnectedDevices);
+            th.Start();
+
             int controlSize = _frm.TitlebarHeight * 2;
             ModernForm frm = new ModernForm()
             {
@@ -56,7 +60,8 @@ namespace ButtonDeck.Misc
                         DeckDevice = device,
                         Size = controlFinalSize,
                         ForeColor = _frm.ColorScheme.SecondaryColor,
-                        Dock = DockStyle.Top
+                        Dock = DockStyle.Top,
+                        Tag = _frm
                     };
                     frm.Controls.Add(ctrl);
                 } catch (Exception) {
@@ -74,19 +79,13 @@ namespace ButtonDeck.Misc
         }
         public override string Text {
             get {
-                Control control2 = _frm.Controls["label1"];
-                if (control2 != null) control2.Visible = CurrentConnections == 0;
-
-                Control control = _frm.Controls["panel1"];
-                if (control != null) control.Visible = CurrentConnections > 0;
-                Control control3 = _frm.Controls["shadedPanel1"];
-                if (control3 != null) control3.Visible = CurrentConnections > 0;
-                Thread th = new Thread(UpdateConnectedDevices);
-                th.Start();
+                _frm.ChangeButtonsVisibility(DevicePersistManager.IsVirtualDeviceConnected || CurrentConnections > 0);
+                
                 return $"{CurrentConnections} Connected Device{(CurrentConnections != 1 ? "s" : "")}";
             }
             set => base.Text = value;
         }
+
 
         private void UpdateConnectedDevices()
         {

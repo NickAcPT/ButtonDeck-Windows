@@ -12,6 +12,8 @@ namespace NickAc.Backend.Utils
     public static class DevicePersistManager
     {
         private const string DEVICES_FILENAME = "devices.xml";
+        public static bool IsVirtualDeviceConnected { get; set; }
+
         private static IDictionary<Guid, DeckDevice> deckDevicesFromConnection = new Dictionary<Guid, DeckDevice>();
 
         public static IDictionary<Guid, DeckDevice> DeckDevicesFromConnection {
