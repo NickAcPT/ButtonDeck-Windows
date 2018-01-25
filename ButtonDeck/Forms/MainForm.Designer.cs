@@ -66,7 +66,7 @@ namespace ButtonDeck.Forms
             this.appBar1.IconVisible = false;
             this.appBar1.Location = new System.Drawing.Point(1, 33);
             this.appBar1.Name = "appBar1";
-            this.appBar1.Size = new System.Drawing.Size(872, 50);
+            this.appBar1.Size = new System.Drawing.Size(913, 50);
             this.appBar1.TabIndex = 0;
             this.appBar1.Text = "appBar1";
             this.appBar1.TextFont = new System.Drawing.Font("Segoe UI", 14F);
@@ -340,7 +340,7 @@ namespace ButtonDeck.Forms
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(225, 233);
+            this.label1.Location = new System.Drawing.Point(245, 233);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(424, 69);
             this.label1.TabIndex = 3;
@@ -352,9 +352,9 @@ namespace ButtonDeck.Forms
             // 
             this.shadedPanel1.Controls.Add(this.shadedPanel2);
             this.shadedPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.shadedPanel1.Location = new System.Drawing.Point(617, 83);
+            this.shadedPanel1.Location = new System.Drawing.Point(658, 83);
             this.shadedPanel1.Name = "shadedPanel1";
-            this.shadedPanel1.Size = new System.Drawing.Size(256, 450);
+            this.shadedPanel1.Size = new System.Drawing.Size(256, 451);
             this.shadedPanel1.TabIndex = 4;
             this.shadedPanel1.Click += new System.EventHandler(this.Buttons_Unfocus);
             // 
@@ -365,7 +365,7 @@ namespace ButtonDeck.Forms
             this.shadedPanel2.Controls.Add(this.label2);
             this.shadedPanel2.Controls.Add(this.imageModernButton1);
             this.shadedPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.shadedPanel2.Location = new System.Drawing.Point(0, 188);
+            this.shadedPanel2.Location = new System.Drawing.Point(0, 189);
             this.shadedPanel2.Name = "shadedPanel2";
             this.shadedPanel2.Size = new System.Drawing.Size(256, 262);
             this.shadedPanel2.TabIndex = 0;
@@ -404,7 +404,7 @@ namespace ButtonDeck.Forms
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(874, 534);
+            this.ClientSize = new System.Drawing.Size(915, 535);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
             this.Controls.Add(this.shadedPanel1);
@@ -412,7 +412,7 @@ namespace ButtonDeck.Forms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.appBar1);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MinimumSize = new System.Drawing.Size(846, 450);
+            this.MinimumSize = new System.Drawing.Size(915, 535);
             this.Name = "MainForm";
             this.Tag = "";
             this.Text = "ButtonDeck";
