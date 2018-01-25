@@ -137,5 +137,17 @@
   <ItemGroup>
     <None Include="Resources\img_item_media_stop.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_start_recording.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_start_stream.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_stop_recording.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_item_stop_stream.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
