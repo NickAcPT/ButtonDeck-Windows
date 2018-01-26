@@ -1,5 +1,7 @@
-﻿using System;
+﻿using NickAc.Backend.Objects;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -16,11 +18,12 @@ namespace NickAc.Backend.Utils
             return null;
         }
 
+
         public void ReadXml(System.Xml.XmlReader reader)
         {
-            XmlSerializer keySerializer = new XmlSerializer(typeof(TKey));
-            XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue));
-
+            XmlSerializer keySerializer = new XmlSerializer(typeof(TKey), XMLUtils.ExtraTypes);
+            XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue), XMLUtils.ExtraTypes);
+            
             bool wasEmpty = reader.IsEmptyElement;
             reader.Read();
 
@@ -48,8 +51,8 @@ namespace NickAc.Backend.Utils
 
         public void WriteXml(System.Xml.XmlWriter writer)
         {
-            XmlSerializer keySerializer = new XmlSerializer(typeof(TKey));
-            XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue));
+            XmlSerializer keySerializer = new XmlSerializer(typeof(TKey), XMLUtils.ExtraTypes);
+            XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue), XMLUtils.ExtraTypes);
 
             foreach (TKey key in this.Keys) {
                 writer.WriteStartElement("item");

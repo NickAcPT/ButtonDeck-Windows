@@ -31,13 +31,7 @@ namespace NickAc.Backend.Objects
             this.description = description;
         }
     }
-
-    [XmlInclude(typeof(ExecutableRunAction))]
-    [XmlInclude(typeof(KeyPressAction))]
-    [XmlInclude(typeof(KeyToggleAction))]
-    [XmlInclude(typeof(MediaKeyAction))]
-    [XmlInclude(typeof(SwitchSceneAction))]
-    [XmlInclude(typeof(TestSceneMultiSwitch))]
+    
     public abstract class AbstractDeckAction
     {
         public static Type FindType(string fullName)

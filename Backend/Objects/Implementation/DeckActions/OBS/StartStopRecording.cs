@@ -9,6 +9,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 {
     public class StartStopRecording : AbstractDeckAction
     {
+        static bool firstTime = false;
         public enum RecordingState
         {
             Start,
@@ -30,14 +31,17 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 
         public override string GetActionName()
         {
+            if (!firstTime) {
+                firstTime ^= true;
+                return "Start/Stop Recording";
+            }
             switch (RecordAction) {
                 case RecordingState.Start:
                     return "Start Recording";
                 case RecordingState.Stop:
                     return "Stop Recording";
-                default:
-                    return "Start/Stop Recording";
             }
+            return "Start/Stop Recording";
         }
 
         public override void OnButtonDown(DeckDevice deckDevice)
