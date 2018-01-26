@@ -56,11 +56,6 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
             return "Simulate Keypress";
         }
 
-        public override bool OnButtonClick(DeckDevice deckDevice)
-        {
-            return false;
-        }
-
         public override void OnButtonDown(DeckDevice deckDevice)
         {
             NativeKeyHandler.PressKey(KeyInfoValue.ModifierKeys);

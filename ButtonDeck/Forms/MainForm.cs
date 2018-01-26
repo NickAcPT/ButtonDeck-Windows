@@ -26,6 +26,8 @@ namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
     {
+
+        //TODO: 🢒 and 🢓 (or > and v)
         private static MainForm instance;
 
         public static MainForm Instance {

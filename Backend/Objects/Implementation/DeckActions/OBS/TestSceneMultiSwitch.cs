@@ -101,7 +101,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                     var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
 
                     Type callType = assemblies.SelectMany(a => a.GetTypes())
-                                            .Single(t => t.FullName == "ButtonDeck.Misc.IDeckDeviceExtensions");
+                    .Single(t => t.FullName == "ButtonDeck.Misc.IDeckDeviceExtensions");
 
                     var method = callType.GetMethod("GetConnection", BindingFlags.Static | BindingFlags.Public);
 
@@ -130,7 +130,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                                 if (scenes.AsEnumerable().ElementAtOrDefault(e.SlotID - 1) != null)
                                     OBSUtils.SwitchScene(scenes[e.SlotID - 1]);
                             } else {
-                                if (scenes.AsEnumerable().ElementAtOrDefault((e.SlotID - 1) - scenes.Count) != null) 
+                                if (scenes.AsEnumerable().ElementAtOrDefault((e.SlotID - 1) - scenes.Count) != null)
                                     OBSUtils.SwitchPreviewScene(scenes[(e.SlotID - 1) - scenes.Count]);
                             }
                         }
@@ -142,7 +142,9 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                     SendFolder(connection, folder);
 
 
-                } catch (Exception e) {
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
+                } catch (Exception) {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
                     //Don't trow. Just flow.
                 }
 

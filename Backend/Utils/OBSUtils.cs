@@ -44,7 +44,9 @@ namespace NickAc.Backend.Utils
             try {
                 Thread th = new Thread(ConnectToServer);
                 th.Start();
-            } catch (Exception) {
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
+            } catch {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
             }
         }
 
@@ -120,7 +122,9 @@ namespace NickAc.Backend.Utils
                         MethodResult = ExecutablePath;
                     }
                 }
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
             } catch {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
             }
             return MethodResult;
         }
@@ -237,6 +241,39 @@ namespace NickAc.Backend.Utils
             return OBSConnection != null ? OBSConnection.ListScenes().Select(c => c.Name).ToList() : new List<string>();
         }
 
+        public static void StartRecording()
+        {
+            ConnectToOBS();
+            if (OBSConnection != null) {
+                Thread th = new Thread(OBSConnection.StartRecording);
+                th.Start();
+            }
+        }
+        public static void StopRecording()
+        {
+            ConnectToOBS();
+            if (OBSConnection != null) {
+                Thread th = new Thread(OBSConnection.StopRecording);
+                th.Start();
+            }
+        }
+
+        public static void StartStreaming()
+        {
+            ConnectToOBS();
+            if (OBSConnection != null) {
+                Thread th = new Thread(OBSConnection.StartStreaming);
+                th.Start();
+            }
+        }
+        public static void StopStreaming()
+        {
+            ConnectToOBS();
+            if (OBSConnection != null) {
+                Thread th = new Thread(OBSConnection.StopStreaming);
+                th.Start();
+            }
+        }
 
         #endregion
     }
