@@ -1,4 +1,5 @@
-﻿using NickAc.Backend.Utils;
+﻿using NickAc.Backend.Properties;
+using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 {
-    public class StartStopRecording : AbstractDeckAction
+    public class StartStopRecordingAction : AbstractDeckAction
     {
-        static bool firstTime = false;
+        static bool firstTime;
         public enum RecordingState
         {
             Start,
@@ -21,7 +22,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
         public RecordingState RecordAction { get; set; }
         public override AbstractDeckAction CloneAction()
         {
-            return new StartStopRecording();
+            return new StartStopRecordingAction();
         }
 
         public override DeckActionCategory GetActionCategory()
@@ -42,6 +43,18 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
                     return "Stop Recording";
             }
             return "Start/Stop Recording";
+        }
+
+        public override DeckImage GetDefaultItemImage()
+        {
+            switch (RecordAction) {
+                case RecordingState.Start:
+                    return new DeckImage(Resources.img_item_start_recording);
+                case RecordingState.Stop:
+                    return new DeckImage(Resources.img_item_stop_recording);
+                default:
+                    return base.GetDefaultItemImage();
+            }
         }
 
         public override void OnButtonDown(DeckDevice deckDevice)
