@@ -32,8 +32,6 @@ namespace ButtonDeck
             Trace.Listeners.Add(new TextWriterTraceListener(errorFileName));
             Trace.AutoFlush = true;
 
-
-
             if (args.Any(c => c.ToLower() == "/armobs")) {
                 if (args.Length == 1) {
                     var obs32List = Process.GetProcessesByName("obs32");

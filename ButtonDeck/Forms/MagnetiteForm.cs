@@ -52,11 +52,14 @@ namespace ButtonDeck.Forms
             sb.AppendLine($"    - Protocol Version: {Constants.PROTOCOL_VERSION}");
             sb.AppendLine($"    - Port Number: {Constants.PORT_NUMBER}");
             sb.AppendLine($"    - Persisted Devices: {DevicePersistManager.PersistedDevices.Count}");
-            sb.AppendLine($"    - Persisted Devices: {ApplicationSettingsManager.Settings.Theme}");
+            sb.AppendLine($"    - Current Theme: {ApplicationSettingsManager.Settings.Theme}");
             sb.AppendLine($"    - Debug Build: {BooleanToString(isDebugBuild)}");
             sb.AppendLine($"    - OBS Nagged: {BooleanToString(ApplicationSettingsManager.Settings.OBSPluginNagged)}");
             sb.AppendLine($"    - Device Name: {ApplicationSettingsManager.Settings.DeviceName}");
             sb.AppendLine($"    - Persisted Devices: {DevicePersistManager.PersistedDevices.Count}");
+            sb.AppendLine($"    - Is OBS Connected: {OBSUtils.IsConnected}");
+            //sb.AppendLine($"    - TCP Server Connections: {Program.ServerThread?.TcpServer?.CurrentConnections}");
+            sb.AppendLine($"    - TCP Server Max Connections: {Program.ServerThread?.TcpServer?.MaxConnections}");
             for (int i = 0, persistedCount = DevicePersistManager.PersistedDevices.Count; i < persistedCount; i++) {
                 var device = DevicePersistManager.PersistedDevices[i];
                 sb.AppendLine($"        - {i}: {device.DeviceName} [{device.DeviceGuid}]");
