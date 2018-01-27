@@ -83,7 +83,7 @@ namespace NickAc.Backend.Utils
                     file.CopyTo(tempPath, false);
                 }
             }
-            // If copying subdirectories, copy them and their contents to new location using recursive  function.
+            // If copying subdirectories, copy them and their contents to new location using recursive function.
             if (isCopySubDirs) {
                 foreach (DirectoryInfo item in directories) {
                     string tempPath = System.IO.Path.Combine(destDirName, item.Name);

@@ -64,7 +64,7 @@ namespace NickAc.Backend.Utils
                     }
                 }
             }
-            return default(T);
+            return (T)Enum.Parse(t, description);
         }
 
 
@@ -81,7 +81,7 @@ namespace NickAc.Backend.Utils
                     }
                 }
             }
-            return null;
+            return (System.Enum)Enum.Parse(enumType, description);
         }
 
     }

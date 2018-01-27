@@ -95,7 +95,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions
         {
             var img = GetKey(Key);
             if (img != null)
-            return new DeckImage(img);
+                return new DeckImage(img);
             return base.GetDefaultItemImage();
         }
 
