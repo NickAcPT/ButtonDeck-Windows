@@ -229,7 +229,7 @@ namespace ButtonDeck.Forms
                                             DeckAction = action.DeckAction.CloneAction()
                                         };
                                         var id2 = deckFolder.Add(deckItemToAdd);
-                                        deckItemToAdd.DeckImage = new DeckImage(Resources.img_item_default);
+                                        deckItemToAdd.DeckImage = new DeckImage(action.DeckAction.GetDefaultItemImage()?.Bitmap ?? Resources.img_item_default);
 
                                         CurrentDevice.CurrentFolder = deckFolder;
                                         RefreshAllButtons();
@@ -252,7 +252,7 @@ namespace ButtonDeck.Forms
                                     var newItem = new DynamicDeckItem
                                     {
                                         DeckAction = action.DeckAction.CloneAction(),
-                                        DeckImage = new DeckImage(Resources.img_item_default)
+                                        DeckImage = new DeckImage(action.DeckAction.GetDefaultItemImage()?.Bitmap ?? Resources.img_item_default)
                                     };
 
                                     var id = folder.Add(newItem);
