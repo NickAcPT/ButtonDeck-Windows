@@ -52,11 +52,9 @@ namespace NickAc.Backend.Networking.TcpLib
 
         public override void OnReceiveData(ConnectionState state)
         {
-            int countToWait = 0;
-            int countToFinal = 1500;
             List<byte> allData = new List<byte>();
             byte[] buffer;
-            System.Diagnostics.Debug.WriteLine("AvailiableData: " + state.AvailableData);
+            Debug.WriteLine("AvailiableData: " + state.AvailableData);
             
             while (state.AvailableData > 0) {
                 buffer = new byte[1024];

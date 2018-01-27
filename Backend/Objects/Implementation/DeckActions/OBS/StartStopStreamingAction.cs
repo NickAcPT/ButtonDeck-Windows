@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
 {
-    public class StartStopRecordingAction : AbstractDeckAction
+    public class StartStopStreamingAction : AbstractDeckAction
     {
         static bool firstTime;
-        public enum RecordingState
+        public enum StreamingState
         {
             Start,
             Stop,
@@ -20,10 +20,10 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
         [ActionPropertyInclude]
         [ActionPropertyDescription("Action")]
         [ActionPropertyUpdateImageOnChanged]
-        public RecordingState RecordAction { get; set; }
+        public StreamingState StreamAction { get; set; }
         public override AbstractDeckAction CloneAction()
         {
-            return new StartStopRecordingAction();
+            return new StartStopStreamingAction();
         }
 
         public override DeckActionCategory GetActionCategory()
@@ -35,24 +35,24 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
         {
             if (!firstTime) {
                 firstTime ^= true;
-                return "Start/Stop Recording";
+                return "Start/Stop Streaking";
             }
-            switch (RecordAction) {
-                case RecordingState.Start:
-                    return "Start Recording";
-                case RecordingState.Stop:
-                    return "Stop Recording";
+            switch (StreamAction) {
+                case StreamingState.Start:
+                    return "Start Streaming";
+                case StreamingState.Stop:
+                    return "Stop Streaming";
             }
-            return "Start/Stop Recording";
+            return "Start/Stop Streaming";
         }
 
         public override DeckImage GetDefaultItemImage()
         {
-            switch (RecordAction) {
-                case RecordingState.Start:
-                    return new DeckImage(Resources.img_item_start_recording);
-                case RecordingState.Stop:
-                    return new DeckImage(Resources.img_item_stop_recording);
+            switch (StreamAction) {
+                case StreamingState.Start:
+                    return new DeckImage(Resources.img_item_start_stream);
+                case StreamingState.Stop:
+                    return new DeckImage(Resources.img_item_stop_stream);
                 default:
                     return base.GetDefaultItemImage();
             }
@@ -65,12 +65,12 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
         public override void OnButtonUp(DeckDevice deckDevice)
         {
             if (OBSUtils.IsConnected) {
-                switch (RecordAction) {
-                    case RecordingState.Start:
-                        OBSUtils.StartRecording();
+                switch (StreamAction) {
+                    case StreamingState.Start:
+                        OBSUtils.StartStreaming();
                         break;
-                    case RecordingState.Stop:
-                        OBSUtils.StopRecording();
+                    case StreamingState.Stop:
+                        OBSUtils.StopStreaming();
                         break;
                 }
             }

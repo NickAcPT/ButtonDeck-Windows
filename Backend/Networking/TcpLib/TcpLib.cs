@@ -150,7 +150,7 @@ namespace NickAc.Backend.Networking.TcpLib
             _provider = provider;
             _port = port;
             _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
-              ProtocolType.Tcp);
+            ProtocolType.Tcp);
             _connections = new ArrayList();
             ConnectionReady = new AsyncCallback(ConnectionReady_Handler);
             AcceptConnection = new WaitCallback(AcceptConnection_Handler);
@@ -163,7 +163,7 @@ namespace NickAc.Backend.Networking.TcpLib
         /// A false return value tell you that the port is not available.
         /// </summary>
         public bool Start()
-        {   
+        {
             try {
                 _listener.Bind(new IPEndPoint(IPAddress.Any, _port));
                 _listener.Listen(100);
@@ -214,13 +214,15 @@ namespace NickAc.Backend.Networking.TcpLib
         private void AcceptConnection_Handler(object state)
         {
             ConnectionState st = state as ConnectionState;
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
             try { st._provider.OnAcceptConnection(st); } catch {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
                 //report error in provider... Probably to the EventLog
             }
             //Starts the ReceiveData callback loop
             if (st._conn.Connected)
                 st._conn.BeginReceive(st._buffer, 0, 0, SocketFlags.None,
-                  ReceivedDataReady, st);
+                ReceivedDataReady, st);
         }
 
 
@@ -231,20 +233,24 @@ namespace NickAc.Backend.Networking.TcpLib
         {
             try {
                 ConnectionState st = ar.AsyncState as ConnectionState;
-               st._conn.EndReceive(ar);
+                st._conn.EndReceive(ar);
                 //Im considering the following condition as a signal that the
                 //remote host droped the connection.
                 if (st._conn.Available == 0) DropConnection(st);
                 else {
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
                     try { st._provider.OnReceiveData(st); } catch (Exception) {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
                         //report error in the provider
                     }
                     //Resume ReceivedData callback loop
                     if (st._conn.Connected)
                         st._conn.BeginReceive(st._buffer, 0, 0, SocketFlags.None,
-                          ReceivedDataReady, st);
+                        ReceivedDataReady, st);
                 }
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
             } catch (Exception) {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
             }
         }
 
@@ -260,12 +266,16 @@ namespace NickAc.Backend.Networking.TcpLib
                 //Close all active connections
                 foreach (object obj in _connections) {
                     ConnectionState st = obj as ConnectionState;
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
                     try { st._provider.OnDropConnection(st); } catch {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
                         //some error in the provider
                     }
                     try {
                         st._conn.Shutdown(SocketShutdown.Both);
+#pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
                     } catch (Exception) {
+#pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body
                     }
                     st._conn.Close();
                 }

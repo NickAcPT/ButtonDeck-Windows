@@ -463,8 +463,6 @@ namespace NickAc.Backend.Networking.IO
             return BitConverter.Int64BitsToDouble(ReadLong());
         }
 
-        private char[] lineBuffer;
-
         /**
         * Reads from the
         * stream <code>in</code> a representation
