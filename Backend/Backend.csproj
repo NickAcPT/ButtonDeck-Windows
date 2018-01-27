@@ -93,16 +93,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\AppSettings.cs" />
-    <Compile Include="Utils\Constants.cs" />
-    <Compile Include="Utils\DeckActionHelper.cs" />
-    <Compile Include="Utils\DeckItemHelper.cs" />
-    <Compile Include="Utils\DevicePersistManager.cs" />
+    <Compile Include="Utils\Misc\AppSettings.cs" />
+    <Compile Include="Utils\Misc\Constants.cs" />
+    <Compile Include="Utils\Helper\DeckActionHelper.cs" />
+    <Compile Include="Utils\Helper\DeckItemHelper.cs" />
+    <Compile Include="Utils\Misc\DevicePersistManager.cs" />
     <Compile Include="Utils\EnumUtils.cs" />
     <Compile Include="Utils\Native\NativeKeyHandler.cs" />
     <Compile Include="Utils\OBSUtils.cs" />
-    <Compile Include="Utils\ReflectiveEnumerator.cs" />
-    <Compile Include="Utils\SerializableDictionary.cs" />
+    <Compile Include="Utils\Misc\ReflectiveEnumerator.cs" />
+    <Compile Include="Utils\Helper\SerializableDictionary.cs" />
     <Compile Include="Utils\XMLUtils.cs" />
   </ItemGroup>
   <ItemGroup>
