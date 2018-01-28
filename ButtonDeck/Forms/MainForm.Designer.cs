@@ -74,7 +74,7 @@ namespace ButtonDeck.Forms
             // modernButton1
             // 
             this.modernButton1.Image = null;
-            this.modernButton1.Location = new System.Drawing.Point(7, 7);
+            this.modernButton1.Location = new System.Drawing.Point(8, 7);
             this.modernButton1.Name = "modernButton1";
             this.modernButton1.NormalImage = null;
             this.modernButton1.Origin = null;
@@ -90,7 +90,7 @@ namespace ButtonDeck.Forms
             // modernButton2
             // 
             this.modernButton2.Image = null;
-            this.modernButton2.Location = new System.Drawing.Point(116, 7);
+            this.modernButton2.Location = new System.Drawing.Point(117, 7);
             this.modernButton2.Name = "modernButton2";
             this.modernButton2.NormalImage = null;
             this.modernButton2.Origin = null;
@@ -106,7 +106,7 @@ namespace ButtonDeck.Forms
             // modernButton3
             // 
             this.modernButton3.Image = null;
-            this.modernButton3.Location = new System.Drawing.Point(225, 7);
+            this.modernButton3.Location = new System.Drawing.Point(226, 7);
             this.modernButton3.Name = "modernButton3";
             this.modernButton3.NormalImage = null;
             this.modernButton3.Origin = null;
@@ -122,7 +122,7 @@ namespace ButtonDeck.Forms
             // modernButton4
             // 
             this.modernButton4.Image = null;
-            this.modernButton4.Location = new System.Drawing.Point(334, 7);
+            this.modernButton4.Location = new System.Drawing.Point(335, 7);
             this.modernButton4.Name = "modernButton4";
             this.modernButton4.NormalImage = null;
             this.modernButton4.Origin = null;
@@ -138,7 +138,7 @@ namespace ButtonDeck.Forms
             // modernButton5
             // 
             this.modernButton5.Image = null;
-            this.modernButton5.Location = new System.Drawing.Point(443, 7);
+            this.modernButton5.Location = new System.Drawing.Point(444, 7);
             this.modernButton5.Name = "modernButton5";
             this.modernButton5.NormalImage = null;
             this.modernButton5.Origin = null;
@@ -178,7 +178,7 @@ namespace ButtonDeck.Forms
             // modernButton15
             // 
             this.modernButton15.Image = null;
-            this.modernButton15.Location = new System.Drawing.Point(443, 229);
+            this.modernButton15.Location = new System.Drawing.Point(444, 229);
             this.modernButton15.Name = "modernButton15";
             this.modernButton15.NormalImage = null;
             this.modernButton15.Origin = null;
@@ -194,7 +194,7 @@ namespace ButtonDeck.Forms
             // modernButton10
             // 
             this.modernButton10.Image = null;
-            this.modernButton10.Location = new System.Drawing.Point(443, 118);
+            this.modernButton10.Location = new System.Drawing.Point(444, 118);
             this.modernButton10.Name = "modernButton10";
             this.modernButton10.NormalImage = null;
             this.modernButton10.Origin = null;
@@ -210,7 +210,7 @@ namespace ButtonDeck.Forms
             // modernButton11
             // 
             this.modernButton11.Image = null;
-            this.modernButton11.Location = new System.Drawing.Point(7, 229);
+            this.modernButton11.Location = new System.Drawing.Point(8, 229);
             this.modernButton11.Name = "modernButton11";
             this.modernButton11.NormalImage = null;
             this.modernButton11.Origin = null;
@@ -226,7 +226,7 @@ namespace ButtonDeck.Forms
             // modernButton6
             // 
             this.modernButton6.Image = null;
-            this.modernButton6.Location = new System.Drawing.Point(7, 118);
+            this.modernButton6.Location = new System.Drawing.Point(8, 118);
             this.modernButton6.Name = "modernButton6";
             this.modernButton6.NormalImage = null;
             this.modernButton6.Origin = null;
@@ -242,7 +242,7 @@ namespace ButtonDeck.Forms
             // modernButton14
             // 
             this.modernButton14.Image = null;
-            this.modernButton14.Location = new System.Drawing.Point(334, 229);
+            this.modernButton14.Location = new System.Drawing.Point(335, 229);
             this.modernButton14.Name = "modernButton14";
             this.modernButton14.NormalImage = null;
             this.modernButton14.Origin = null;
@@ -258,7 +258,7 @@ namespace ButtonDeck.Forms
             // modernButton9
             // 
             this.modernButton9.Image = null;
-            this.modernButton9.Location = new System.Drawing.Point(334, 118);
+            this.modernButton9.Location = new System.Drawing.Point(335, 118);
             this.modernButton9.Name = "modernButton9";
             this.modernButton9.NormalImage = null;
             this.modernButton9.Origin = null;
@@ -274,7 +274,7 @@ namespace ButtonDeck.Forms
             // modernButton12
             // 
             this.modernButton12.Image = null;
-            this.modernButton12.Location = new System.Drawing.Point(116, 229);
+            this.modernButton12.Location = new System.Drawing.Point(117, 229);
             this.modernButton12.Name = "modernButton12";
             this.modernButton12.NormalImage = null;
             this.modernButton12.Origin = null;
@@ -290,7 +290,7 @@ namespace ButtonDeck.Forms
             // modernButton7
             // 
             this.modernButton7.Image = null;
-            this.modernButton7.Location = new System.Drawing.Point(116, 118);
+            this.modernButton7.Location = new System.Drawing.Point(117, 118);
             this.modernButton7.Name = "modernButton7";
             this.modernButton7.NormalImage = null;
             this.modernButton7.Origin = null;
@@ -306,7 +306,7 @@ namespace ButtonDeck.Forms
             // modernButton13
             // 
             this.modernButton13.Image = null;
-            this.modernButton13.Location = new System.Drawing.Point(225, 229);
+            this.modernButton13.Location = new System.Drawing.Point(226, 229);
             this.modernButton13.Name = "modernButton13";
             this.modernButton13.NormalImage = null;
             this.modernButton13.Origin = null;
@@ -322,7 +322,7 @@ namespace ButtonDeck.Forms
             // modernButton8
             // 
             this.modernButton8.Image = null;
-            this.modernButton8.Location = new System.Drawing.Point(225, 118);
+            this.modernButton8.Location = new System.Drawing.Point(226, 118);
             this.modernButton8.Name = "modernButton8";
             this.modernButton8.NormalImage = null;
             this.modernButton8.Origin = null;

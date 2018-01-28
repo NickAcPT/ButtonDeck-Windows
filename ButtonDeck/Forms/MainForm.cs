@@ -835,7 +835,7 @@ namespace ButtonDeck.Forms
                         return;
                     }
 
-                    if (TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
+                    if (!TypeDescriptor.GetConverter(prop.PropertyType).CanConvertFrom
                 (typeof(string))) continue;
                     panel.Controls.Add(new Label()
                     {
