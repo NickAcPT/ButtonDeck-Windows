@@ -54,6 +54,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.General
 
         public override void OnButtonDown(DeckDevice deckDevice)
         {
+            if (string.IsNullOrEmpty(ToExecute) || string.IsNullOrWhiteSpace(ToExecute)) return;
             string exec = GetExecutable(ToExecute);
             var proc = new ProcessStartInfo(exec, ToExecute.Substring(exec.Length).Trim())
             {
