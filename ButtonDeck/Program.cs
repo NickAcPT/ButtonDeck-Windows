@@ -22,6 +22,7 @@ namespace ButtonDeck
         private const string errorFileName = "errors.log";
         public static ServerThread ServerThread { get; set; }
         public static bool SuccessfulServerStart { get; set; } = false;
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

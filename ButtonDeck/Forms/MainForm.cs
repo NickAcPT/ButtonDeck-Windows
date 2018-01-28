@@ -281,15 +281,25 @@ namespace ButtonDeck.Forms
                         } else if (ee.Data.GetDataPresent(typeof(DeckItemMoveHelper))) {
                             var action1 = ee.Data.GetData(typeof(DeckItemMoveHelper)) as DeckItemMoveHelper;
                             bool shouldMove = ee.Effect == DragDropEffects.Move;
-                            if (shouldMove)
-                                CurrentDevice.CurrentFolder.Remove(action1.OldSlot);
+                            if (shouldMove) {
+                                action1.OldFolder.Remove(action1.OldSlot);
+                                if (action1.OldFolder.GetParent() != null) {
+                                    var oldItems = action1.OldFolder.GetDeckItems();
+                                    bool isEmpty = action1.OldFolder.GetParent() != null ? oldItems.Count == 1 : oldItems.Count == 0;
+                                    int slot = action1.OldFolder.GetParent().GetItemIndex(action1.OldFolder);
+                                    if (isEmpty) {
+                                        action1.OldFolder.GetParent().Remove(slot);
+                                        RefreshButton(slot);
+                                    }
+                                }
+                            }
                             IDeckItem item1 = shouldMove ? action1.DeckItem : action1.DeckItem.DeepClone();
                             if (item1 is IDeckFolder folder && !shouldMove) {
                                 FixFolders(folder, false, CurrentDevice.CurrentFolder);
                             }
                             if (CurrentDevice.CurrentFolder.GetDeckItems().Any(cItem => CurrentDevice.CurrentFolder.GetItemIndex(cItem) == mb.CurrentSlot)) {
                                 //We must create a folder if there is an item
-                                var oldItem = CurrentDevice.CurrentFolder.GetDeckItems().First(cItem => CurrentDevice.CurrentFolder.GetItemIndex(cItem) == mb.CurrentSlot);
+                                var oldItem = action1.OldFolder.GetDeckItems().First(cItem => action1.OldFolder.GetItemIndex(cItem) == mb.CurrentSlot);
 
                                 var newFolder = new DynamicDeckFolder
                                 {
@@ -896,7 +906,7 @@ namespace ButtonDeck.Forms
                         bool isDoubleClick = lastClick.ElapsedMilliseconds != 0 && lastClick.ElapsedMilliseconds <= SystemInformation.DoubleClickTime;
                         if (isDoubleClick) return;
                         if ((CurrentDevice.CurrentFolder.GetParent() != null && (mb.CurrentSlot == 1))) return;
-                        mb.DoDragDrop(new DeckItemMoveHelper(act, mb.CurrentSlot) { CopyOld = ModifierKeys.HasFlag(Keys.Control) }, ModifierKeys.HasFlag(Keys.Control) ? DragDropEffects.Copy : DragDropEffects.Move);
+                        mb.DoDragDrop(new DeckItemMoveHelper(act, CurrentDevice.CurrentFolder, mb.CurrentSlot) { CopyOld = ModifierKeys.HasFlag(Keys.Control) }, ModifierKeys.HasFlag(Keys.Control) ? DragDropEffects.Copy : DragDropEffects.Move);
                     }
                 }
             }
