@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\IFTTTWebHookClient.cs" />
     <Compile Include="Utils\Misc\AppSettings.cs" />
     <Compile Include="Utils\Misc\Constants.cs" />
     <Compile Include="Utils\Helper\DeckActionHelper.cs" />
