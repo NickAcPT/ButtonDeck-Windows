@@ -86,6 +86,7 @@ namespace NickAc.Backend.Utils
             Theme = AppTheme.Neptune;
             FirstRun = true;
             DeviceName = "";
+            IFTTTAPIKey = "";
         }
 
         public AppTheme Theme { get; set; }
@@ -96,5 +97,6 @@ namespace NickAc.Backend.Utils
 
         public bool OBSPluginNagged { get; set; }
 
+        public string IFTTTAPIKey { get; set; }
     }
 }

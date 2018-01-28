@@ -36,6 +36,8 @@
             this.colorSchemePreviewControl2 = new ButtonDeck.Controls.ColorSchemePreviewControl();
             this.modernButton1 = new NickAc.ModernUIDoneRight.Controls.ModernButton();
             this.colorSchemePreviewControl3 = new ButtonDeck.Controls.ColorSchemePreviewControl();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // appBar1
@@ -45,7 +47,7 @@
             this.appBar1.IconVisible = false;
             this.appBar1.Location = new System.Drawing.Point(1, 33);
             this.appBar1.Name = "appBar1";
-            this.appBar1.Size = new System.Drawing.Size(768, 50);
+            this.appBar1.Size = new System.Drawing.Size(764, 50);
             this.appBar1.TabIndex = 0;
             this.appBar1.Text = "appBar1";
             this.appBar1.TextFont = new System.Drawing.Font("Segoe UI", 14F);
@@ -65,13 +67,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(17, 122);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(740, 29);
+            this.textBox1.Size = new System.Drawing.Size(736, 29);
             this.textBox1.TabIndex = 4;
             // 
             // modernButton2
             // 
             this.modernButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.modernButton2.Location = new System.Drawing.Point(640, 417);
+            this.modernButton2.Location = new System.Drawing.Point(636, 458);
             this.modernButton2.Name = "modernButton2";
             this.modernButton2.Size = new System.Drawing.Size(117, 39);
             this.modernButton2.TabIndex = 8;
@@ -114,7 +116,7 @@
             // 
             this.modernButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.modernButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.modernButton1.Location = new System.Drawing.Point(517, 417);
+            this.modernButton1.Location = new System.Drawing.Point(513, 458);
             this.modernButton1.Name = "modernButton1";
             this.modernButton1.Size = new System.Drawing.Size(117, 39);
             this.modernButton1.TabIndex = 8;
@@ -133,14 +135,34 @@
             this.colorSchemePreviewControl3.UnderlyingAppTheme = NickAc.Backend.Utils.AppSettings.AppTheme.Neptune;
             this.colorSchemePreviewControl3.Click += new System.EventHandler(this.ColorScheme_Selected);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 383);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 21);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "IFTTT Maker Key";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(17, 407);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(736, 29);
+            this.textBox2.TabIndex = 11;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.modernButton2;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.modernButton1;
-            this.ClientSize = new System.Drawing.Size(770, 469);
+            this.ClientSize = new System.Drawing.Size(766, 510);
             this.ColorScheme.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(119)))), ((int)(((byte)(189)))));
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.colorSchemePreviewControl3);
             this.Controls.Add(this.colorSchemePreviewControl2);
             this.Controls.Add(this.colorSchemePreviewControl1);
@@ -170,5 +192,7 @@
         private Controls.ColorSchemePreviewControl colorSchemePreviewControl2;
         private NickAc.ModernUIDoneRight.Controls.ModernButton modernButton1;
         private Controls.ColorSchemePreviewControl colorSchemePreviewControl3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
