@@ -26,7 +26,7 @@ namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
     {
-        
+
         private static MainForm instance;
 
         public static MainForm Instance {
@@ -42,6 +42,7 @@ namespace ButtonDeck.Forms
         {
             instance = this;
             InitializeComponent();
+            panel1.Freeze();
             DevicesTitlebarButton item = new DevicesTitlebarButton(this);
             TitlebarButtons.Add(item);
             if (Program.Silent) {
@@ -286,9 +287,28 @@ namespace ButtonDeck.Forms
                             if (item1 is IDeckFolder folder && !shouldMove) {
                                 FixFolders(folder, false, CurrentDevice.CurrentFolder);
                             }
-                            CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, item1);
-                            RefreshButton(action1.OldSlot,true);
-                            RefreshButton(mb.CurrentSlot, true);
+                            if (CurrentDevice.CurrentFolder.GetDeckItems().Any(cItem => CurrentDevice.CurrentFolder.GetItemIndex(cItem) == mb.CurrentSlot)) {
+                                //We must create a folder if there is an item
+                                var oldItem = CurrentDevice.CurrentFolder.GetDeckItems().First(cItem => CurrentDevice.CurrentFolder.GetItemIndex(cItem) == mb.CurrentSlot);
+
+                                var newFolder = new DynamicDeckFolder
+                                {
+                                    DeckImage = new DeckImage(Resources.img_folder)
+                                };
+                                //Create a new folder instance
+                                CurrentDevice.CheckCurrentFolder();
+                                newFolder.ParentFolder = CurrentDevice.CurrentFolder;
+                                newFolder.Add(1, folderUpItem);
+                                newFolder.Add(oldItem);
+                                newFolder.Add(action1.DeckItem);
+                                CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, newFolder);
+                                CurrentDevice.CurrentFolder = newFolder;
+                                RefreshAllButtons(true);
+                            } else {
+                                CurrentDevice.CurrentFolder.Add(mb.CurrentSlot, item1);
+                                RefreshButton(action1.OldSlot, true);
+                                RefreshButton(mb.CurrentSlot, true);
+                            }
                         }
                     };
                     mb.Text = string.Empty;
