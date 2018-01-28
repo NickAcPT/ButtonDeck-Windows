@@ -1,4 +1,4 @@
-﻿using NickAc.Backend.Objects.Implementation.DeckActions;
+﻿using NickAc.Backend.Objects.Implementation.DeckActions.General;
 using NickAc.Backend.Utils;
 using System;
 using System.Collections.Generic;
