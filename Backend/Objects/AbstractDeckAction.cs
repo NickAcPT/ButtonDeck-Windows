@@ -48,6 +48,7 @@ namespace NickAc.Backend.Objects
             General,
             AutoHotKey,
             OBS,
+            Misc,
         }
         public abstract DeckActionCategory GetActionCategory();
         public abstract string GetActionName();

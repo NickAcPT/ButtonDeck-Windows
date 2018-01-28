@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NickAc.Backend.Objects.Implementation.DeckActions
+namespace NickAc.Backend.Objects.Implementation.DeckActions.General
 {
     public class ExecutableRunAction : AbstractDeckAction
     {

@@ -77,10 +77,10 @@
     <Compile Include="Objects\IDeckDevice.cs" />
     <Compile Include="Objects\IDeckFolder.cs" />
     <Compile Include="Objects\IDeckItem.cs" />
-    <Compile Include="Objects\Implementation\DeckActions\ExecutableRunAction.cs" />
-    <Compile Include="Objects\Implementation\DeckActions\KeyPressAction.cs" />
-    <Compile Include="Objects\Implementation\DeckActions\KeyToggleAction.cs" />
-    <Compile Include="Objects\Implementation\DeckActions\MediaKeyAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\General\ExecutableRunAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\General\KeyPressAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\General\KeyToggleAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\General\MediaKeyAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopRecordingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopStreamingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\SwitchSceneAction.cs" />
@@ -151,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img_item_stop_stream.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Objects\Implementation\DeckActions\Misc\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

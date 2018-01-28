@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NickAc.Backend.Objects.Implementation.DeckActions
+namespace NickAc.Backend.Objects.Implementation.DeckActions.General
 {
     public class KeyToggleAction : KeyPressAction
     {
