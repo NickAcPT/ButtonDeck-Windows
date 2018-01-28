@@ -35,7 +35,7 @@ namespace NickAc.Backend.Objects.Implementation.DeckActions.OBS
         {
             if (!firstTime) {
                 firstTime ^= true;
-                return "Start/Stop Streaking";
+                return "Start/Stop Streaming";
             }
             switch (StreamAction) {
                 case StreamingState.Start:
