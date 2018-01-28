@@ -81,6 +81,7 @@
     <Compile Include="Objects\Implementation\DeckActions\General\KeyPressAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\General\KeyToggleAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\General\MediaKeyAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\Misc\IFTTTEventAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopRecordingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopStreamingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\SwitchSceneAction.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Utils\Helper\DeckItemHelper.cs" />
     <Compile Include="Utils\Misc\DevicePersistManager.cs" />
     <Compile Include="Utils\EnumUtils.cs" />
+    <Compile Include="Utils\Misc\IFTTTWebhookProperties.cs" />
     <Compile Include="Utils\Native\NativeKeyHandler.cs" />
     <Compile Include="Utils\OBSUtils.cs" />
     <Compile Include="Utils\Misc\ReflectiveEnumerator.cs" />
@@ -152,8 +154,6 @@
   <ItemGroup>
     <None Include="Resources\img_item_stop_stream.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\Implementation\DeckActions\Misc\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
