@@ -25,7 +25,7 @@ namespace ButtonDeck.Forms
             InitializeComponent();
             PrepareColorPreviews();
             textBox1.Text = OldSettings.DeviceName;
-            textBox1.Text = OldSettings.IFTTTAPIKey;
+            textBox2.Text = OldSettings.IFTTTAPIKey;
             textBox1.TextChanged += (s, e) => {
                 if (s is TextBox txt) {
                     hasSaved = txt.Text == OldSettings.DeviceName;
@@ -94,6 +94,7 @@ namespace ButtonDeck.Forms
         }
         private void ModernButton2_Click(object sender, EventArgs e)
         {
+            hasSaved = true;
             ApplicationSettingsManager.Settings.DeviceName = textBox1.Text;
             ApplicationSettingsManager.Settings.IFTTTAPIKey = textBox2.Text;
             Close();
