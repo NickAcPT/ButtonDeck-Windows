@@ -22,11 +22,11 @@ using System.Windows.Forms;
 using static NickAc.Backend.Objects.AbstractDeckAction;
 
 #pragma warning disable RECS0022 // A catch clause that catches System.Exception and has an empty body
+
 namespace ButtonDeck.Forms
 {
     public partial class MainForm : TemplateForm
     {
-
         private static MainForm instance;
 
         public static MainForm Instance {
@@ -36,6 +36,7 @@ namespace ButtonDeck.Forms
         }
 
         private const int CLIENT_ARRAY_LENGHT = 1024 * 50;
+
         #region Constructors
 
         public MainForm()
@@ -62,7 +63,6 @@ namespace ButtonDeck.Forms
                 {
                     Hide();
                     Shown -= handler;
-
                 }
 
                 Shown += handler;
@@ -98,6 +98,8 @@ namespace ButtonDeck.Forms
                 icon.ContextMenuStrip = menu;
                 icon.Visible = true;
             }
+            ColorSchemeCentral.ThemeChanged += (s, e) =>
+            ApplySidebarTheme(shadedPanel1);
         }
 
         public void ChangeButtonsVisibility(bool visible)
@@ -162,7 +164,6 @@ namespace ButtonDeck.Forms
             };
             appBar1.Actions.Add(itemTrash);
 
-
             AppAction itemMagnetite = new AppAction();
 
             itemMagnetite.Click += (s, ee) => {
@@ -209,7 +210,6 @@ namespace ButtonDeck.Forms
                         } else if (mb.Tag != null && CurrentDevice.CurrentFolder != null && CurrentDevice.CurrentFolder.GetParent() != null && mb.CurrentSlot == 1 && mb.Tag is IDeckItem upItem) {
                             CurrentDevice.CurrentFolder = CurrentDevice.CurrentFolder.GetParent();
                             RefreshAllButtons(true);
-
                         }
 
                         if (ee.Data.GetDataPresent(typeof(DeckActionHelper)))
@@ -249,7 +249,6 @@ namespace ButtonDeck.Forms
                                     folder.Add(1, folderUpItem);
                                     folder.Add(item);
 
-
                                     var newItem = new DynamicDeckItem
                                     {
                                         DeckAction = action.DeckAction.CloneAction(),
@@ -257,7 +256,6 @@ namespace ButtonDeck.Forms
                                     };
 
                                     var id = folder.Add(newItem);
-
 
                                     FocusItem(GetButtonControl(id), newItem);
 
@@ -267,7 +265,6 @@ namespace ButtonDeck.Forms
                                     mb.Image = Resources.img_folder;
                                     CurrentDevice.CurrentFolder = folder;
                                     RefreshAllButtons();
-
                                 } else {
                                     mb.Tag = new DynamicDeckItem
                                     {
@@ -329,7 +326,6 @@ namespace ButtonDeck.Forms
             });
         }
 
-
         public void RefreshAllButtons(bool sendToDevice = true)
         {
             Buttons_Unfocus(this, EventArgs.Empty);
@@ -351,12 +347,12 @@ namespace ButtonDeck.Forms
                     control.Tag = item;
                     control.Invoke(new Action(control.Refresh));
                 }
-
             }
             CurrentDevice.CheckCurrentFolder();
             if (sendToDevice)
                 SendItemsToDevice(CurrentDevice, folder);
         }
+
         public void RefreshButton(int slot, bool sendToDevice = true)
         {
             Buttons_Unfocus(this, EventArgs.Empty);
@@ -381,7 +377,6 @@ namespace ButtonDeck.Forms
                     control.Tag = item;
                     control.Invoke(new Action(control.Refresh));
                 }
-
             }
             CurrentDevice.CheckCurrentFolder();
             if (sendToDevice)
@@ -395,7 +390,6 @@ namespace ButtonDeck.Forms
 
         private void Buttons_Unfocus(object sender, EventArgs e)
         {
-
             Invoke(new Action(() => {
                 shadedPanel2.Hide();
                 shadedPanel1.Refresh();
@@ -412,7 +406,6 @@ namespace ButtonDeck.Forms
 
                 e.Device.CheckCurrentFolder();
                 FixFolders(e.Device);
-
 
                 if (CurrentDevice == null) {
                     ChangeToDevice(e.Device);
@@ -456,6 +449,7 @@ namespace ButtonDeck.Forms
                                 case ButtonInteractPacket.ButtonAction.ButtonDown:
                                     deckItem.DeckAction.OnButtonDown(device);
                                     break;
+
                                 case ButtonInteractPacket.ButtonAction.ButtonUp:
                                     deckItem.DeckAction.OnButtonUp(device);
                                     break;
@@ -510,7 +504,6 @@ namespace ButtonDeck.Forms
                 }
 
                 con.SendPacket(clearPacket);
-
             }
         }
 
@@ -538,8 +531,9 @@ namespace ButtonDeck.Forms
             FixFolders(device.MainFolder);
         }
 
-        static DeckImage defaultDeckImage = new DeckImage(Resources.img_folder_up);
-        static DynamicDeckItem folderUpItem = new DynamicDeckItem() { DeckImage = defaultDeckImage };
+        private static DeckImage defaultDeckImage = new DeckImage(Resources.img_folder_up);
+        private static DynamicDeckItem folderUpItem = new DynamicDeckItem() { DeckImage = defaultDeckImage };
+
         private void FixFolders(IDeckFolder folder, bool ignoreFirst = true, IDeckFolder trueParent = null)
         {
             if (!ignoreFirst) {
@@ -602,6 +596,7 @@ namespace ButtonDeck.Forms
 
             e.Device.ButtonInteraction -= Device_ButtonInteraction;
         }
+
         private void GenerateSidebar(Control parent)
         {
             Padding categoryPadding = new Padding(5, 0, 0, 0);
@@ -650,6 +645,7 @@ namespace ButtonDeck.Forms
                 return true;
             });
         }
+
         private void ImageModernButton1_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog()
@@ -665,7 +661,6 @@ namespace ButtonDeck.Forms
 
             dlg.Filter = string.Format("Images ({0})|{0}|All files|*.*",
                 string.Join(";", codecs.Select(codec => codec.FilenameExtension).ToArray()));
-
 
             dlg.DefaultExt = "png"; // Default file extension
 
@@ -685,7 +680,8 @@ namespace ButtonDeck.Forms
             }
         }
 
-        Stopwatch lastClick = new Stopwatch();
+        private Stopwatch lastClick = new Stopwatch();
+
         private void ItemButton_MouseClick(object sender, EventArgs e)
         {
             lastClick.Stop();
@@ -701,7 +697,6 @@ namespace ButtonDeck.Forms
                         CurrentDevice.CurrentFolder = folder;
                         RefreshAllButtons();
                         goto end;
-
                     }
                     if (CurrentDevice.CurrentFolder.GetParent() != null) {
                         //Not on the main folder
@@ -716,7 +711,6 @@ namespace ButtonDeck.Forms
                     //Show button panel with settable properties
                     FocusItem(mb, item);
                     lastClick.Reset();
-
                 } else {
                     Buttons_Unfocus(sender, e);
                 }
@@ -744,7 +738,6 @@ namespace ButtonDeck.Forms
                             senderB.Image = null;
                             Buttons_Unfocus(sender, e);
                             CurrentDevice.CurrentFolder.Remove(senderB.CurrentSlot);
-
                         }
                     };
 
@@ -806,7 +799,6 @@ namespace ButtonDeck.Forms
 
                     helperButton.Width = panel.DisplayRectangle.Width - 16;
                     panel.Controls.Add(helperButton);
-
                 } else {
                     if (prop.PropertyType.IsSubclassOf(typeof(Enum))) {
                         var values = Enum.GetValues(prop.PropertyType);
@@ -856,13 +848,12 @@ namespace ButtonDeck.Forms
                             //Ignore all errors
                         }
                     };
-                    txt.Width = panel.DisplayRectangle.Width - 16;
+                    txt.Width = panel.DisplayRectangle.Width - SystemInformation.VerticalScrollBarWidth * 2;
                     panel.Controls.Add(txt);
                 }
             }
 
             ModifyColorScheme(flowLayoutPanel1.Controls.OfType<Control>());
-
         }
 
         private void UpdateIcon(bool shouldUpdateIcon)
@@ -883,8 +874,13 @@ namespace ButtonDeck.Forms
         }
 
         #endregion
-        bool mouseDown;
-        Point mouseDownLoc = Cursor.Position;
+
+
+        #region Events
+
+        private bool mouseDown;
+        private Point mouseDownLoc = Cursor.Position;
+
         private void ItemButton_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = e.Button == MouseButtons.Left;
@@ -912,5 +908,7 @@ namespace ButtonDeck.Forms
             }
         }
     }
+    #endregion
 }
+
 #pragma warning restore RECS0022 // A catch clause that catches System.Exception and has an empty body

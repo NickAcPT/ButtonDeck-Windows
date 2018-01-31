@@ -379,6 +379,7 @@ namespace ButtonDeck.Forms
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(229, 150);
             this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // label2
             // 
