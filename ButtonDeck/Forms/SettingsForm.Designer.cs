@@ -38,6 +38,8 @@
             this.colorSchemePreviewControl3 = new ButtonDeck.Controls.ColorSchemePreviewControl();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.modernShadowPanel1 = new NickAc.ModernUIDoneRight.Controls.ModernShadowPanel();
+            this.modernShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // appBar1
@@ -94,7 +96,7 @@
             // 
             this.colorSchemePreviewControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.colorSchemePreviewControl1.DescriptionText = "Neptune";
-            this.colorSchemePreviewControl1.Location = new System.Drawing.Point(17, 198);
+            this.colorSchemePreviewControl1.Location = new System.Drawing.Point(7, 8);
             this.colorSchemePreviewControl1.Name = "colorSchemePreviewControl1";
             this.colorSchemePreviewControl1.Size = new System.Drawing.Size(177, 167);
             this.colorSchemePreviewControl1.TabIndex = 9;
@@ -105,7 +107,7 @@
             // 
             this.colorSchemePreviewControl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.colorSchemePreviewControl2.DescriptionText = "Neptune";
-            this.colorSchemePreviewControl2.Location = new System.Drawing.Point(200, 198);
+            this.colorSchemePreviewControl2.Location = new System.Drawing.Point(195, 8);
             this.colorSchemePreviewControl2.Name = "colorSchemePreviewControl2";
             this.colorSchemePreviewControl2.Size = new System.Drawing.Size(177, 167);
             this.colorSchemePreviewControl2.TabIndex = 9;
@@ -128,7 +130,7 @@
             // 
             this.colorSchemePreviewControl3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.colorSchemePreviewControl3.DescriptionText = "Neptune";
-            this.colorSchemePreviewControl3.Location = new System.Drawing.Point(383, 198);
+            this.colorSchemePreviewControl3.Location = new System.Drawing.Point(383, 8);
             this.colorSchemePreviewControl3.Name = "colorSchemePreviewControl3";
             this.colorSchemePreviewControl3.Size = new System.Drawing.Size(177, 167);
             this.colorSchemePreviewControl3.TabIndex = 9;
@@ -153,6 +155,16 @@
             this.textBox2.Size = new System.Drawing.Size(736, 29);
             this.textBox2.TabIndex = 11;
             // 
+            // modernShadowPanel1
+            // 
+            this.modernShadowPanel1.Controls.Add(this.colorSchemePreviewControl2);
+            this.modernShadowPanel1.Controls.Add(this.colorSchemePreviewControl1);
+            this.modernShadowPanel1.Controls.Add(this.colorSchemePreviewControl3);
+            this.modernShadowPanel1.Location = new System.Drawing.Point(13, 198);
+            this.modernShadowPanel1.Name = "modernShadowPanel1";
+            this.modernShadowPanel1.Size = new System.Drawing.Size(567, 182);
+            this.modernShadowPanel1.TabIndex = 12;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.modernButton2;
@@ -163,19 +175,18 @@
             this.ColorScheme.SecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(75)))), ((int)(((byte)(120)))));
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.colorSchemePreviewControl3);
-            this.Controls.Add(this.colorSchemePreviewControl2);
-            this.Controls.Add(this.colorSchemePreviewControl1);
             this.Controls.Add(this.modernButton1);
             this.Controls.Add(this.modernButton2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.appBar1);
+            this.Controls.Add(this.modernShadowPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "SettingsForm";
             this.Text = "ButtonDeck - Settings";
+            this.modernShadowPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +205,6 @@
         private Controls.ColorSchemePreviewControl colorSchemePreviewControl3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
+        private NickAc.ModernUIDoneRight.Controls.ModernShadowPanel modernShadowPanel1;
     }
 }

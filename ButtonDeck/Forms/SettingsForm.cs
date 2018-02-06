@@ -1,6 +1,7 @@
 ﻿using ButtonDeck.Controls;
 using ButtonDeck.Misc;
 using NickAc.Backend.Utils;
+using NickAc.ModernUIDoneRight.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,8 @@ namespace ButtonDeck.Forms
         {
             OldSettings = ApplicationSettingsManager.Settings.DeepClone();
             InitializeComponent();
+            modernShadowPanel1.Freeze();
+            modernShadowPanel1.Paint += ModernShadowPanel1_Paint;
             PrepareColorPreviews();
             textBox1.Text = OldSettings.DeviceName;
             textBox2.Text = OldSettings.IFTTTAPIKey;
@@ -39,14 +42,13 @@ namespace ButtonDeck.Forms
             };
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void ModernShadowPanel1_Paint(object sender, PaintEventArgs e)
         {
-            base.OnPaint(e);
-            foreach (var c in Controls.OfType<ColorSchemePreviewControl>()) {
+            foreach (var c in modernShadowPanel1.Controls.OfType<ColorSchemePreviewControl>()) {
                 if (c.Tag != null) {
-                    using (var border = new SolidBrush(ControlPaint.DarkDark(CurrentTheme.SecondaryColor))) {
-                        var rect = Rectangle.Inflate(c.Bounds, 2, 2);
-                        e.Graphics.FillRectangle(border, rect);
+                    //ShadowUtils.DrawOutsetShadow(e.Graphics, Color.Black, 1, 0, 10, 0, c);
+                    using (SolidBrush solidBrush = new SolidBrush(CurrentTheme.ForeColorShaded)) {
+                        e.Graphics.FillRectangle(solidBrush, Rectangle.Inflate(c.Bounds, 1, 1));
                     }
                 }
             }
@@ -70,7 +72,7 @@ namespace ButtonDeck.Forms
             colorSchemePreviewControl3.AppTheme = ColorSchemeCentral.KindaGreen;
             colorSchemePreviewControl3.UnderlyingAppTheme = AppSettings.AppTheme.KindaGreen;
 
-            Controls.OfType<ColorSchemePreviewControl>().All((c) => {
+            modernShadowPanel1.Controls.OfType<ColorSchemePreviewControl>().All((c) => {
                 c.Tag = ApplicationSettingsManager.Settings.Theme == c.UnderlyingAppTheme ? new object() : null;
                 ((ColorSchemePreviewControl)c).FixMyTheme();
                 return true;
@@ -82,7 +84,7 @@ namespace ButtonDeck.Forms
         {
             if (sender is ColorSchemePreviewControl ctrl) {
                 if (ctrl.UnderlyingAppTheme == ApplicationSettingsManager.Settings.Theme) return;
-                Controls.OfType<ColorSchemePreviewControl>().All((c) => {
+                modernShadowPanel1.Controls.OfType<ColorSchemePreviewControl>().All((c) => {
                     ApplicationSettingsManager.Settings.Theme = ctrl.UnderlyingAppTheme;
                     ColorSchemeCentral.OnThemeChanged(this);
                     c.Tag = null;

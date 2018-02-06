@@ -725,6 +725,13 @@ namespace ButtonDeck.Forms
         {
             mouseDown = false;
             if (sender is ImageModernButton senderB) {
+                if (e.Button == MouseButtons.Left && DevicePersistManager.IsVirtualDeviceConnected && ModifierKeys == Keys.Shift) {
+                    if (senderB.Tag != null && senderB.Tag is DynamicDeckItem item) {
+                        item.DeckAction?.OnButtonUp(CurrentDevice);
+                    }
+                    return;
+                }
+
                 if (!senderB.DisplayRectangle.Contains(e.Location)) return;
                 if (e.Button == MouseButtons.Right && CurrentDevice.CurrentFolder.GetDeckItems().Any(c => CurrentDevice.CurrentFolder.GetItemIndex(c) == senderB.CurrentSlot)) {
                     var popupMenu = new ContextMenuStrip();
@@ -883,6 +890,14 @@ namespace ButtonDeck.Forms
 
         private void ItemButton_MouseDown(object sender, MouseEventArgs e)
         {
+            if (sender is ImageModernButton senderB) {
+                if (e.Button == MouseButtons.Left && DevicePersistManager.IsVirtualDeviceConnected && ModifierKeys == Keys.Shift) {
+                    if (senderB.Tag != null && senderB.Tag is DynamicDeckItem item) {
+                        item.DeckAction?.OnButtonDown(CurrentDevice);
+                    }
+                    return;
+                }
+            }
             mouseDown = e.Button == MouseButtons.Left;
             mouseDownLoc = Cursor.Position;
         }
@@ -906,6 +921,11 @@ namespace ButtonDeck.Forms
                     }
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
     #endregion
