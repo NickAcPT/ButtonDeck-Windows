@@ -15,6 +15,16 @@ namespace NickAc.Backend.Utils
 {
     public static class OBSUtils
     {
+        public struct OBSSceneItemWrapper
+        {
+            public string ItemName { get; set; }
+        }
+        public struct OBSSceneWrapper
+        {
+            public string SceneName { get; set; }
+            public List<OBSSceneItemWrapper> SceneItems { get; set; }
+        }
+
         #region Fields
 
         public const string obsWsWebLocation = "https://github.com/Palakis/obs-websocket/releases/download/4.3.1/obs-websocket-4.3.1-Windows.zip";
@@ -219,6 +229,22 @@ namespace NickAc.Backend.Utils
             th.Start();
         }
 
+        private static OBSSceneWrapper ConstructSceneFromWebSocket(OBSWebsocketDotNet.OBSScene scene)
+        {
+            var finalScene = new OBSSceneWrapper
+            {
+                SceneName = scene.Name,
+                SceneItems = scene.Items.Select(ConstructSceneItemFromWebSocket).ToList()
+            };
+
+            return finalScene;
+        }
+
+        private static OBSSceneItemWrapper ConstructSceneItemFromWebSocket(OBSWebsocketDotNet.SceneItem item)
+        {
+            return new OBSSceneItemWrapper { ItemName = item.SourceName };
+        }
+
         public static void SwitchPreviewScene(string scene)
         {
             ConnectToOBS();
@@ -241,6 +267,11 @@ namespace NickAc.Backend.Utils
             return OBSConnection != null ? OBSConnection.ListScenes().Select(c => c.Name).ToList() : new List<string>();
         }
 
+        public static List<OBSSceneWrapper> GetOBSScenes()
+        {
+            ConnectToOBS();
+            return OBSConnection != null ? OBSConnection.ListScenes().Select(ConstructSceneFromWebSocket).ToList() : new List<OBSSceneWrapper>();
+        }
         public static void StartRecording()
         {
             ConnectToOBS();
@@ -271,6 +302,16 @@ namespace NickAc.Backend.Utils
             ConnectToOBS();
             if (OBSConnection != null) {
                 Thread th = new Thread(OBSConnection.StopStreaming);
+                th.Start();
+            }
+        }
+        public static void SetSceneItemVisibility(string item, string scene, bool visible)
+        {
+            ConnectToOBS();
+            if (OBSConnection != null) {
+                Thread th = new Thread(()=> {
+                    OBSConnection.SetSourceRender(item, visible, scene);
+                });
                 th.Start();
             }
         }

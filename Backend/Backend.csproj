@@ -82,6 +82,7 @@
     <Compile Include="Objects\Implementation\DeckActions\General\KeyToggleAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\General\MediaKeyAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\Misc\IFTTTEventAction.cs" />
+    <Compile Include="Objects\Implementation\DeckActions\OBS\SceneItemVisibilityAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopRecordingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\StartStopStreamingAction.cs" />
     <Compile Include="Objects\Implementation\DeckActions\OBS\SwitchSceneAction.cs" />
